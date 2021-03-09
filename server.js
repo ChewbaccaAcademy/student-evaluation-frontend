@@ -1,6 +1,3 @@
-
-
-app.listen(process.env.PORT || 8080);
 const express = require('express');
 const path = require('path');
 const app = express();
