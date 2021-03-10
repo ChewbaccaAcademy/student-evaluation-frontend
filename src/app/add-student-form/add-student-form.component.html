@@ -1,0 +1,42 @@
+
+<div class="container">
+<form [formGroup]="studentForm" (submit)="submitForm()" >
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      class="form-control"
+      id="name"
+      type="text"
+      formControlName="name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="lastname">Last Name</label>
+    <input
+      class="form-control"
+      id="lastname"
+      type="text"
+      formControlName="lastname"
+    />
+  </div>
+  <div class="form-group">
+    <label for="university">University</label>
+    <input
+      class="form-control"
+      id="university"
+      type="text"
+      formControlName="university"
+    />
+  </div>
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <input
+      class="form-control"
+      id="comment"
+      type="text"
+      formControlName="comment"
+    />
+  </div>
+  <button>Submit</button>
+</form>
+</div>
