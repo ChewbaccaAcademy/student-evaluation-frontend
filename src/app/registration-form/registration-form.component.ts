@@ -31,7 +31,10 @@ export class RegistrationFormComponent implements OnInit {
           updateOn: 'blur',
         },
       ],
-      stream: ['Frontend', [Validators.required]],
+      stream: [
+        'Select stream',
+        [Validators.required, Validators.pattern('^((?!Select stream).)*$')],
+      ],
       password: [
         '',
         [

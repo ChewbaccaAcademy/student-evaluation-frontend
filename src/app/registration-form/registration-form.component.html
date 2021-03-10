@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-2"></div>
-    <div class="col-sm-3"><h1>Student Evaluation Platform</h1></div>
+    <div class="col-sm-3">
+      <h1>Student Evaluation Platform</h1>
+    </div>
     <div class="col-sm-5">
-      <div class="col-sm-2"></div>
       <!--Form  -->
 
       <form [formGroup]="registrationForm" (submit)="submitForm()">
@@ -46,6 +47,7 @@
         </div>
         <div class="form-group">
           <select formControlName="stream" class="form-control drop-down">
+            <option>Select stream</option>
             <option>Frontend</option>
             <option>Backend</option>
             <option>Testing</option>
@@ -82,5 +84,6 @@
 
       <!-- End Form -->
     </div>
+    <div class="col-sm-2"></div>
   </div>
 </div>
