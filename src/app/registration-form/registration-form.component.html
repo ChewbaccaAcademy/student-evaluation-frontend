@@ -9,14 +9,18 @@
 
       <form [formGroup]="registrationForm" (submit)="submitForm()">
         <div class="form-group">
-          <input
-            class="form-control"
-            id="username"
-            type="text"
-            formControlName="username"
-            aria-label="Username"
-          />
-
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Username</div>
+            </div>
+            <input
+              class="form-control"
+              id="username"
+              type="text"
+              formControlName="username"
+              placeholder="Enter username"
+            />
+          </div>
           <ng-container *ngIf="!username.valid || !username.pristine">
             <div *ngIf="username.errors?.minlength" class="text-muted">
               Username should be atleast 5 characters long!
@@ -29,19 +33,20 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
-              <div class="input-group-text">@</div>
+              <div class="input-group-text">Email</div>
             </div>
             <input
               class="form-control"
               id="email"
               type="email"
               formControlName="email"
-              aria-label="Email"
+              placeholder="Enter email address"
             />
           </div>
           <div [hidden]="email.valid || email.pristine">
             <div *ngIf="email.errors?.pattern" class="text-muted">
-              Please enter correct email address!
+              Please enter correct email address (should contain @ between
+              characters)!
             </div>
           </div>
         </div>
@@ -58,14 +63,14 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
-              <div class="input-group-text">*</div>
+              <div class="input-group-text">Password</div>
             </div>
             <input
               class="form-control"
               id="password"
               type="password"
               formControlName="password"
-              aria-label="Password"
+              placeholder="Enter password"
             />
           </div>
           <div [hidden]="password.valid || password.pristine">
