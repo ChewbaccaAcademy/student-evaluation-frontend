@@ -16,20 +16,27 @@ export class RegistrationFormComponent implements OnInit {
       username: [
         '',
         {
-          validators: [Validators.required, Validators.pattern('^[A-Za-z ]*$')],
+          validators: [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(40),
+          ],
           updateOn: 'blur',
-          //asyncValidators: [blockedAuthorValidator(this.postService)],
         },
       ],
-      email: ['', [Validators.required]],
-      stream: ['', [Validators.required]],
+      email: [
+        '',
+        {
+          validators: [Validators.required, Validators.pattern('^\\S+@\\S+$')],
+          updateOn: 'blur',
+        },
+      ],
+      stream: ['Frontend', [Validators.required]],
       password: [
         '',
         [
           Validators.required,
-          Validators.minLength(5),
-          // Validators.maxLength(this.maxContent),
-          // explicitValidator,
+          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'),
         ],
       ],
     });
@@ -50,5 +57,7 @@ export class RegistrationFormComponent implements OnInit {
   get password() {
     return this.registrationForm.get('password');
   }
-  submitForm() {}
+  submitForm() {
+    console.log(this.registrationForm.value);
+  }
 }
