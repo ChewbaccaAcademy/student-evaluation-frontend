@@ -33,19 +33,19 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
-              <div class="input-group-text">Email</div>
+              <div class="input-group-text">E-mail</div>
             </div>
             <input
               class="form-control"
               id="email"
               type="email"
               formControlName="email"
-              placeholder="Enter email address"
+              placeholder="Enter e-mail address"
             />
           </div>
           <div [hidden]="email.valid || email.pristine">
             <div *ngIf="email.errors?.pattern" class="text-muted">
-              Please enter correct email address (should contain @ between
+              Please enter correct e-mail address (should contain @ between
               characters)!
             </div>
           </div>
