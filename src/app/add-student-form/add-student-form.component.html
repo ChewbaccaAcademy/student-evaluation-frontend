@@ -1,42 +1,63 @@
 
 <div class="container">
-<form [formGroup]="studentForm" (submit)="submitForm()" >
-  <div class="form-group">
-    <label for="name">Name</label>
+
+      
+<form [formGroup]="studentForm" (submit)="submitForm()">
+  <div class="row">
+ <div class="form-inline float-sm-left" >
+   <p for="name" style="width: 100px; text-align: left;">Name</p>
     <input
       class="form-control"
       id="name"
       type="text"
       formControlName="name"
     />
+     <ng-container *ngIf="name.touched ">
+        <div *ngIf="name.errors?.pattern" >Name should only contain letters. </div>
+        <div *ngIf="name.errors?.required" >Name is required. </div>
+     </ng-container>
   </div>
-  <div class="form-group">
-    <label for="lastname">Last Name</label>
-    <input
-      class="form-control"
-      id="lastname"
-      type="text"
-      formControlName="lastname"
-    />
+</div>
+  <div class="row">
+    <div class="form-inline float-sm-left">
+      <p for="lastname" style="width: 100px; text-align: left;"> Last Name</p>
+        <input
+          class="form-control"
+          id="lastname"
+          type="text"
+          formControlName="lastname"
+        />
+           <ng-container *ngIf="lastname.touched ">
+            <div *ngIf="lastname.errors?.pattern" >Last name should only contain letters. </div>
+            <div *ngIf="lastname.errors?.required" >Last name is required. </div>
+     </ng-container>
+      </div>
   </div>
-  <div class="form-group">
-    <label for="university">University</label>
-    <input
-      class="form-control"
-      id="university"
-      type="text"
-      formControlName="university"
-    />
+   <div class="row">
+    <div class="form-inline float-sm-left">
+      <p for="university" style="width: 100px; text-align: left;">University</p>
+        <input
+          class="form-control"
+          id="university"
+          type="text"
+          formControlName="university"
+          placeholder="Optional"
+        />
+      </div>
   </div>
-  <div class="form-group">
-    <label for="comment">Comment</label>
-    <input
-      class="form-control"
-      id="comment"
-      type="text"
-      formControlName="comment"
-    />
+  <div class="row">
+    <div class="form-inline float-sm-left">
+      <p for="comment" style="width: 100px; text-align: left;">Comment</p>
+        <input
+          class="form-control"
+          id="comment"
+          type="text"
+          formControlName="comment"
+          maxlength="10"
+        />
+      </div>
+      <div *ngIf="comment.errors?.maxlength" >Maximum length exceded.</div>
   </div>
-  <button>Submit</button>
-</form>
+  <button class="btn btn-outline-secondary" [disabled] = "!studentForm.valid" style = "position: absolute; left: 600px;">Add student</button>
+  </form>
 </div>

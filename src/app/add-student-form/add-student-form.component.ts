@@ -35,11 +35,10 @@ ngOnInit() {
         ]
         ,
         university: [''],
-        content: [
+        comment: [
           '',
           [
-            Validators.required,
-            Validators.maxLength(250),
+            Validators.maxLength(10)
           ],
         ],
       },
@@ -48,6 +47,20 @@ ngOnInit() {
 }
   submitForm() {
     console.log(this.studentForm.value);
+    this.studentForm.reset();
+  }
+
+  get name() {
+    return this.studentForm.get('name');
+  }
+  get lastname() {
+    return this.studentForm.get('lastname');
+   }
+  get university() {
+    return this.studentForm.get('university');
+   }
+  get comment() {
+    return this.studentForm.get('comment');
   }
 
 }
