@@ -18,7 +18,7 @@
               id="username"
               type="text"
               formControlName="username"
-              placeholder="Enter username"
+              placeholder="Enter your username"
             />
           </div>
           <ng-container *ngIf="!username.valid || !username.pristine">
@@ -40,7 +40,7 @@
               id="email"
               type="email"
               formControlName="email"
-              placeholder="Enter e-mail address"
+              placeholder="Enter your e-mail address"
             />
           </div>
           <div [hidden]="email.valid || email.pristine">
@@ -67,13 +67,16 @@
               id="password"
               type="password"
               formControlName="password"
-              placeholder="Enter password"
+              placeholder="Enter your password"
             />
           </div>
           <div [hidden]="password.valid || password.pristine">
             <div *ngIf="password.errors?.pattern" class="text-muted">
               Password should be at least 8 characters long and contain at least
               one digit!
+            </div>
+            <div *ngIf="password.errors?.maxlength" class="text-muted">
+              Password can't be longer than 50 characters!
             </div>
           </div>
         </div>

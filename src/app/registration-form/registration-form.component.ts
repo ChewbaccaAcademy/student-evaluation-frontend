@@ -48,6 +48,7 @@ export class RegistrationFormComponent implements OnInit {
         [
           Validators.required,
           Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'),
+          Validators.maxLength(50),
         ],
       ],
     });
