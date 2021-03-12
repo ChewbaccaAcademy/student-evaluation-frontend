@@ -3,8 +3,7 @@
         <input type="email" formControlName="email" class="form-control" placeholder="Email" />
         <div [hidden]="email.valid || email.pristine">
             <div *ngIf="email.errors?.pattern" class="text-muted">
-                Please enter correct e-mail address (should contain @ between
-                characters)!
+                Please enter correct e-mail address!
             </div>
             <!-- 
             <div *ngIf="email?.errors.userExists">
