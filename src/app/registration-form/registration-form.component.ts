@@ -8,6 +8,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegistrationFormComponent implements OnInit {
   public registrationForm: FormGroup;
+  public streamOptions: String[] = [
+    'Select stream',
+    'Frontend',
+    'Backend',
+    'Testing',
+    'Project',
+    'Administration',
+  ];
 
   constructor(private fb: FormBuilder) {}
 
