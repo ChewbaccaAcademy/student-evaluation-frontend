@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-student-form',
@@ -10,7 +11,7 @@ export class AddStudentFormComponent implements OnInit {
 
 
   public studentForm : FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService) { }
 
 ngOnInit() {
     this.studentForm = this.formBuilder.group(
@@ -47,6 +48,9 @@ ngOnInit() {
 }
   submitForm() {
     console.log(this.studentForm.value);
+    this.toastr.success('Success', 'Student was added', {
+  positionClass: 'toast-bottom-center',
+})
     this.studentForm.reset();
   }
 
