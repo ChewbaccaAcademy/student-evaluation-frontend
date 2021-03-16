@@ -15,7 +15,6 @@ export class RegistrationFormComponent implements OnInit {
     'Backend',
     'Testing',
     'Project',
-    'Administration',
   ];
 
   constructor(private fb: FormBuilder, private location: Location) {}
@@ -36,7 +35,7 @@ export class RegistrationFormComponent implements OnInit {
       email: [
         '',
         {
-          validators: [Validators.required, Validators.pattern('^\\S+@\\S+$')],
+          validators: [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
           updateOn: 'blur',
         },
       ],
