@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-registration-form',
@@ -14,10 +15,9 @@ export class RegistrationFormComponent implements OnInit {
     'Backend',
     'Testing',
     'Project',
-    'Administration',
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private location: Location) {}
 
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
@@ -35,7 +35,7 @@ export class RegistrationFormComponent implements OnInit {
       email: [
         '',
         {
-          validators: [Validators.required, Validators.pattern('^\\S+@\\S+$')],
+          validators: [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
           updateOn: 'blur',
         },
       ],
@@ -71,5 +71,8 @@ export class RegistrationFormComponent implements OnInit {
   }
   submitForm() {
     console.log(this.registrationForm.value);
+  }
+  goBack() {
+    this.location.back();
   }
 }
