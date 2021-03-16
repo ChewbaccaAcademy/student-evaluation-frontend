@@ -1,3 +1,4 @@
+import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -8,8 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
+  public loginError: string;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group(
@@ -40,8 +42,15 @@ get password() {
   return this.loginForm.controls['password'];
 }
 
+get errorMessage() {
+  return this.loginError;
+}
+
 onSubmit() {
   console.log(this.loginForm.value);
 }
-
+onLogin() {
+  this.loginService.login(this.email.value, this.password.value);
+  this.loginError = this.loginService.errorMessage;
+}
 }

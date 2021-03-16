@@ -20,6 +20,10 @@
                         <div *ngIf="email.errors?.pattern" class="text-muted">
                             Please check e-mail address format!
                         </div>
+                        <div>
+                            {{errorMessage}}
+                            <!--NOT WORKING  -->
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -35,7 +39,7 @@
                     <label>Not signed yet?</label>
                     <a routerLink="/register" class="btn btn-link">Register</a>
                     <div class="float-right">
-                        <button [disabled]="!loginForm.valid" class="btn btn-primary">
+                        <button [disabled]="!loginForm.valid" class="btn btn-primary" (click)="onLogin()">
                             Login
                         </button>
                     </div>
