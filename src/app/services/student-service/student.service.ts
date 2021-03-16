@@ -26,7 +26,6 @@ export class StudentService {
   constructor(private httpClient: HttpClient) {}
 
   addStudent(student: FormData): Observable<Student> {
-    console.log('here');
     return this.httpClient.post<Student>(
       'https://team-three-backend.herokuapp.com/api/student',
       student
