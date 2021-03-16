@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { ToastrService } from 'ngx-toastr';
-import { Student } from './student-form';
+import { StudentService } from '../services/student-service/student.service';
 
 @Component({
   selector: 'app-add-student-form',
@@ -13,7 +14,7 @@ export class AddStudentFormComponent implements OnInit {
 
 
   public studentForm : FormGroup;
-  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private toastr: ToastrService, private http: HttpClient, private studentService: StudentService) { }
 
 ngOnInit() {
     this.studentForm = this.formBuilder.group(
@@ -41,10 +42,10 @@ ngOnInit() {
         comment: [
           '',
           [
-            Validators.maxLength(10)
+            Validators.maxLength(250)
           ],
         ],
-        file: [null],
+        file: ['',[ RxwebValidators.extension({extensions:["png","jpg","jpeg"]})]],
         fileSource: [null]
       },
 
@@ -54,11 +55,11 @@ ngOnInit() {
     const formData = new FormData();
     formData.append('student', new Blob([JSON.stringify(this.studentForm.value)], { type: "application/json" }));
     formData.append('image', new Blob([JSON.stringify(this.studentForm.get('fileSource').value)], { type: "application/json" }));
-    console.log(formData.get('image'));
-    this.http.post('http://localhost:8081/student', formData).subscribe();
-    this.toastr.success('Success', 'Student was added', {
-  positionClass: 'toast-bottom-center',
-})
+    this.studentService.addStudent(formData).subscribe(
+      () => this.toastr.success( 'Student was added', 'Success', { positionClass: 'toast-bottom-center', }),
+      () => this.toastr.error('Student was not added', 'Error', { positionClass: 'toast-bottom-center', })
+    );
+    
     this.studentForm.reset();
   }
   onFileChange(event) {

@@ -48,25 +48,28 @@
   <div class="row">
     <div class="form-inline float-sm-left">
       <p for="comment" style="width: 100px; text-align: left;">Comment</p>
-        <input
-          class="form-control"
-          id="comment"
-          type="text"
-          formControlName="comment"
-          maxlength="10"
-        />
+        <textarea 
+        class="form-control" 
+        id="comment" 
+        rows="3" 
+        formControlName="comment"
+        maxlength="250">
+        </textarea>
       </div>
       <div *ngIf="comment.errors?.maxlength" >Maximum length exceded.</div>
   </div>
-  <div class="form-group">
-        <label for="file">File</label>
-        <input 
+  <div class="row">
+    <div class="form-inline float-sm-left">
+        <p for="file" style="width: 100px; text-align: left;">Add photo</p>
+        <input           
             formControlName="file"
             id="file" 
             type="file" 
             class="form-control"
+            accept="image/*" 
             (change)="onFileChange($event)">
     </div>
+  </div>
   <button class="btn btn-outline-secondary" [disabled] = "!studentForm.valid" style = "position: absolute; left: 800px;">Add student</button>
   </form>
 </div>

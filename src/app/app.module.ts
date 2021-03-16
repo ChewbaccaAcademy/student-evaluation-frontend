@@ -9,12 +9,13 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddStudentFormComponent
+    AddStudentFormComponent,
     LoginFormComponent,
     RegistrationFormComponent
   ],
@@ -26,7 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     ToastrModule.forRoot(), 
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RxReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
