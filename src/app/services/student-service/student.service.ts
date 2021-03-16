@@ -8,16 +8,9 @@ interface Student {
   lastname: string;
   university: string;
   comment: string;
-  evaluation: StudentEvaluation;
   imageUrl?: string;
 }
 
-interface StudentEvaluation {
-  Frontend: number;
-  Backend: number;
-  Testing: number;
-  Project: number;
-}
 
 @Injectable({
   providedIn: 'root',
