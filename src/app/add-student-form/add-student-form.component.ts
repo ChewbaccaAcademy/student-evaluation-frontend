@@ -45,7 +45,7 @@ ngOnInit() {
             Validators.maxLength(250)
           ],
         ],
-        file: ['',[ RxwebValidators.extension({extensions:["png","jpg","jpeg"]})]],
+        file: ['', [RxwebValidators.extension({ extensions: ["png", "jpg", "jpeg"] }), RxwebValidators.fileSize({maxSize: 500000 }) ]],
         fileSource: [null]
       },
 
@@ -83,6 +83,9 @@ ngOnInit() {
    }
   get comment() {
     return this.studentForm.get('comment');
+  }
+  get file() {
+    return this.studentForm.get('file');
   }
 
 }

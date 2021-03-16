@@ -69,6 +69,8 @@
             accept="image/*" 
             (change)="onFileChange($event)">
     </div>
+     <div *ngIf="file.errors?.extension" >Invalid photo format, only png, jpg, jpeg is allowed.</div>
+     <div *ngIf="file.errors?.fileSize" >Invalid photo size, max size 500kb.</div>
   </div>
   <button class="btn btn-outline-secondary" [disabled] = "!studentForm.valid" style = "position: absolute; left: 800px;">Add student</button>
   </form>
