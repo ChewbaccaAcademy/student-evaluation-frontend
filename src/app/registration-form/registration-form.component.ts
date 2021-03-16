@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-registration-form',
@@ -17,7 +18,7 @@ export class RegistrationFormComponent implements OnInit {
     'Administration',
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private location: Location) {}
 
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
@@ -71,5 +72,8 @@ export class RegistrationFormComponent implements OnInit {
   }
   submitForm() {
     console.log(this.registrationForm.value);
+  }
+  goBack() {
+    this.location.back();
   }
 }
