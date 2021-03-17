@@ -68,6 +68,8 @@ ngOnInit() {
     } else {
       this.toastr.error('Student was not added. Check your inputs', 'Error', { positionClass: 'toast-bottom-center', });
     }
+
+
   }
   onFileChange(event) {
   

@@ -1,0 +1,22 @@
+.input-group-text {
+  box-sizing: content-box;
+  width: 5em;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.my-center-element {
+  display: flex;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  overflow-x: hidden;
+}
+
+.black-border {
+  border: 2px solid black;
+  padding: 5%;
+}
