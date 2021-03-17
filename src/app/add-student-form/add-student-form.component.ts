@@ -54,7 +54,7 @@ ngOnInit() {
   submitForm() {
     const formData = new FormData();
     formData.append('student', new Blob([JSON.stringify(this.studentForm.value)], { type: "application/json" }));
-    formData.append('image', new Blob([JSON.stringify(this.studentForm.get('fileSource').value)], { type: "application/json" }));
+    formData.append('image',this.studentForm.get('fileSource').value);
     this.studentService.addStudent(formData).subscribe(
       () => this.toastr.success( 'Student was added', 'Success', { positionClass: 'toast-bottom-center', }),
       () => this.toastr.error('Student was not added', 'Error', { positionClass: 'toast-bottom-center', })
