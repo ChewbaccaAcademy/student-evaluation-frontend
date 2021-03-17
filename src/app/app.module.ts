@@ -27,7 +27,9 @@ import { MainWindowFormComponent } from './main-window-form/main-window-form.com
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(), 
+    ToastrModule.forRoot({
+      tapToDismiss: false
+    }), 
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule
