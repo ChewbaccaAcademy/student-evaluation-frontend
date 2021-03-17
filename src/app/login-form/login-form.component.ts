@@ -13,11 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
-  //public loginError: string;
-
-  public errorMsg: Observable<string>;
-  public token = 'asd';
-  public kk: Observable<string>;
+  public loginError: Observable<any>;
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) { }
 
@@ -50,25 +46,30 @@ get password() {
   return this.loginForm.controls['password'];
 }
 
-get errorMessage() {
-  return this.errorMsg;
-}
-
 onSubmit() {
-  //console.log(this.loginForm.value);
+  console.log(this.loginForm.value);
 }
-/*onLogin() {
-  this.loginService.login(this.email.value, this.password.value);
-  this.loginError = this.loginService.errorMessage;
-}*/
-
 onLogin() {
+  this.loginService.login(this.email.value, this.password.value).subscribe(response => {
+    console.log("response value: " , response);
+    if(response === true){
+      
+      this.loginError = of("true");
+
+    } else {
+      this.loginError = of("nope");
+    }
+  });
+  //this.loginError = this.loginService.errorMessage;
+  //console.log(this.loginError);
+}
+
+/*onLogin() {
   this.kk = this.loginService.login(this.email.value, this.password.value).pipe(catchError(error => {
     console.log(JSON.parse(error.error).message);
     return of(null);
-  }));
+  }));*/
 
   //this.router.navigate(['add']);
   //this.loginService.login(this.email.value, this.password.value).subscribe((result) => this.token = result);
-}
 }
