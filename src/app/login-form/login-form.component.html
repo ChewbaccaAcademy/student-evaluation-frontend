@@ -39,7 +39,8 @@
                     <label>Not signed yet?</label>
                     <a routerLink="/register" class="btn btn-link">Register</a>
                     <div class="float-right">
-                        <button [disabled]="!loginForm.valid" class="btn btn-primary" (click)="onLogin()">
+                        <button [disabled]="!loginForm.valid" class="btn btn-primary" (click)="onLogin()"
+                            routerLink="/main">
                             Login
                         </button>
                     </div>

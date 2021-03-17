@@ -10,6 +10,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { MainWindowFormComponent } from './main-window-form/main-window-form.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     AppComponent,
     AddStudentFormComponent,
     LoginFormComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    MainWindowFormComponent
   ],
   imports: [
     BrowserModule,
