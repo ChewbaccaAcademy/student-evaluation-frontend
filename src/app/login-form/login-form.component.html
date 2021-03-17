@@ -16,12 +16,21 @@
                         <input class="form-control" id="email" type="email" formControlName="email"
                             placeholder="E-mail address" />
                     </div>
+                    <!--<div [hidden]="email.valid || email.pristine">
+                        <div *ngIf="email.errors?.pattern" class="text-muted">
+                            Please check e-mail address format!
+                        </div>
+                        <div *ngIf="showErrorMessage">
+                            <h1>Invalid username or password Please try again</h1>
+                        </div>
+                    </div>-->
+
                     <div [hidden]="email.valid || email.pristine">
                         <div *ngIf="email.errors?.pattern" class="text-muted">
                             Please check e-mail address format!
                         </div>
                         <div>
-                            {{errorMessage}}
+                            {{errorMsg}}
                             <!--NOT WORKING  -->
                         </div>
                     </div>
@@ -39,8 +48,8 @@
                     <label>Not signed yet?</label>
                     <a routerLink="/register" class="btn btn-link">Register</a>
                     <div class="float-right">
-                        <button [disabled]="!loginForm.valid" class="btn btn-primary" (click)="onLogin()"
-                            routerLink="/main">
+                        <button [disabled]="!loginForm.valid" class="btn btn-primary" (click)="onLogin()">
+                            <!--routerLink="/main"  -->
                             Login
                         </button>
                     </div>
