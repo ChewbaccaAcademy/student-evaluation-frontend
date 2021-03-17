@@ -9,33 +9,22 @@ import {from, Observable, of} from 'rxjs';
 })
 
 export class LoginService {
-  public errorMessage: boolean;
+  public errorMsg;
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
   login(email: string, password: string): Observable<any> {
-      this.errorMessage = false;
-      console.log("hello");
-
-      //this.httpClient.post(this.apiURL + '/login', user, {headers:reqHeader, responseType: 'text'});
-
-      this.httpClient.post('http://localhost:8080/authenticate',{email: email, password: password})
-        .pipe(
-          map(
-          (res:Response) => (console.log(res))
-          ), 
-          //tap(value => console.log("tap" , value))
-          tap (
-            success => console.log('success'),
-            error => console.log('error')
-         )
-        )
-        .subscribe(
-          value => {
-          console.log("going to main menu" , value);
-          this.router.navigate(["/main"]);
-          }
-        );  
-      return of(this.errorMessage);
-  }
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+    return of(this.httpClient.post(
+      'http://localhost:8080/authenticate',
+      {email: email, password: password}, 
+      {headers:reqHeader, responseType: 'text'}
+      ).subscribe(value => {
+        console.log("value" , value);
+        this.router.navigate(["/main"]);
+      },
+      err => {
+        this.errorMsg = true;
+      }));
+}
 }

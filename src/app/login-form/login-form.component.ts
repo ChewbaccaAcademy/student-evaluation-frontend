@@ -1,10 +1,10 @@
 import { Observable, of, throwError } from 'rxjs';
-import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -50,26 +50,13 @@ onSubmit() {
   console.log(this.loginForm.value);
 }
 onLogin() {
-  this.loginService.login(this.email.value, this.password.value).subscribe(response => {
+  var serv = this.loginService.login(this.email.value, this.password.value).subscribe(response => {
     console.log("response value: " , response);
-    if(response === true){
-      
-      this.loginError = of("true");
-
+    if(response !== true){
+      this.loginError = of("Email/Password is invalid");
     } else {
-      this.loginError = of("nope");
+      this.router.navigate(["/main"]);
     }
   });
-  //this.loginError = this.loginService.errorMessage;
-  //console.log(this.loginError);
 }
-
-/*onLogin() {
-  this.kk = this.loginService.login(this.email.value, this.password.value).pipe(catchError(error => {
-    console.log(JSON.parse(error.error).message);
-    return of(null);
-  }));*/
-
-  //this.router.navigate(['add']);
-  //this.loginService.login(this.email.value, this.password.value).subscribe((result) => this.token = result);
 }
