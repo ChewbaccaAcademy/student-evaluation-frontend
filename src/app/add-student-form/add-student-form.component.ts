@@ -53,20 +53,23 @@ ngOnInit() {
     );
 }
   submitForm() {
+
     if (this.studentForm.valid) {
       const formData = new FormData();
       formData.append('student', new Blob([JSON.stringify(this.studentForm.value)], { type: "application/json" }));
-      formData.append('image', JSON.stringify(this.studentForm.get('fileSource').value));
+      formData.append('image', this.studentForm.get('fileSource').value);
       this.studentService.addStudent(formData).subscribe(
         () => this.toastr.success('Student was added', 'Success', { positionClass: 'toast-bottom-center', }),
-        () => this.toastr.error('Student was not added. Check your inputs', 'Error', { positionClass: 'toast-bottom-center', })
+        () => this.toastr.error('Student was not added', 'Error', { positionClass: 'toast-bottom-center', })
       );
+  
       this.studentForm.reset();
       this.myInputVariable.nativeElement.value = '';
       this.imageSrc = '';
-    } else {
-      this.toastr.error('Student was not added. Check your inputs', 'Error', { positionClass: 'toast-bottom-center', });
     }
+    else {
+       this.toastr.error('Student was not added. Check your inputs', 'Error', { positionClass: 'toast-bottom-center', });
+     }
 
 
   }
@@ -74,15 +77,16 @@ ngOnInit() {
   
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      this.studentForm.patchValue({
+        fileSource: file
+      });
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imageSrc = e.target.result;
       };
       reader.readAsDataURL(event.target.files[0]);
       document.getElementById("uploadImg") .style.display = "inline";
-      this.studentForm.patchValue({
-        fileSource: file
-      });
+      
     }
   }
 

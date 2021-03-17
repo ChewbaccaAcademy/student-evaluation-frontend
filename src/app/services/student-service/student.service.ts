@@ -20,7 +20,7 @@ export class StudentService {
 
   addStudent(student: FormData): Observable<Student> {
     return this.httpClient.post<Student>(
-      'https://team-three-backend.herokuapp.com/student',
+      'http://localhost:8080/student',
       student
     );
   }
