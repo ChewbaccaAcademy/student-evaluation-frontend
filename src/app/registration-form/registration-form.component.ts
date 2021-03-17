@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { User } from '../services/user-service/model/user';
+import { RegisterService } from '../services/user-service/register.service';
+import { ToastrService } from 'ngx-toastr';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-registration-form',
@@ -17,7 +22,7 @@ export class RegistrationFormComponent implements OnInit {
     'Project',
   ];
 
-  constructor(private fb: FormBuilder, private location: Location) {}
+  constructor(private fb: FormBuilder, private location: Location, private toastr: ToastrService, private registerService: RegisterService) {}
 
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
@@ -70,8 +75,19 @@ export class RegistrationFormComponent implements OnInit {
     return this.registrationForm.get('password');
   }
   submitForm() {
-    console.log(this.registrationForm.value);
+    const user: User = { username: this.username.value,
+                       password: this.password.value,
+                       stream: this.stream.value,
+                       email: this.email.value };
+    this.registerService.registerUser(user).subscribe((response) => {
+      if (response === true) {
+        this.toastr.success( 'Successfully registered!', 'Success', { positionClass: 'toast-bottom-center', });
+      } else {
+        this.toastr.error(response, 'Error', { positionClass: 'toast-bottom-center', });
+      }
+    });
   }
+
   goBack() {
     this.location.back();
   }
