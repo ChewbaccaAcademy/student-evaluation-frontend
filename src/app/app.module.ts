@@ -25,7 +25,9 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(), 
+    ToastrModule.forRoot({
+      tapToDismiss: false
+    }), 
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule
