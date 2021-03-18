@@ -16,11 +16,17 @@
                         <input class="form-control" id="email" type="email" formControlName="email"
                             placeholder="E-mail address" />
                     </div>
+
                     <div [hidden]="email.valid || email.pristine">
                         <div *ngIf="email.errors?.pattern" class="text-muted">
                             Please check e-mail address format!
                         </div>
                     </div>
+
+                    <div>
+                        {{loginError | async}}
+                    </div>
+
                 </div>
                 <div class="form-group">
                     <div class="input-group">
@@ -35,7 +41,8 @@
                     <label>Not signed yet?</label>
                     <a routerLink="/register" class="btn btn-link">Register</a>
                     <div class="float-right">
-                        <button [disabled]="!loginForm.valid" class="btn btn-primary">
+                        <button [disabled]="!loginForm.valid" class="btn btn-primary" (click)="onLogin()">
+
                             Login
                         </button>
                     </div>

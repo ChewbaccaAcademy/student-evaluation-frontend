@@ -13,7 +13,7 @@ export class RegisterService {
   registerUser(user: User): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     return this.httpClient
-      .post<User>('https://team-three-backend.herokuapp.com/signup', {
+      .post<User>(`${URL}/authenticate`, {
         username: user.username,
         password: user.password,
         stream: user.stream.toUpperCase(),
@@ -23,3 +23,5 @@ export class RegisterService {
       }));
   }
 }
+
+const URL: string = 'https://team-three-backend.herokuapp.com/';
