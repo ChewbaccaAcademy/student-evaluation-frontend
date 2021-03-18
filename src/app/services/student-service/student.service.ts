@@ -19,12 +19,14 @@ export class StudentService {
 
   addStudent(student: FormData): Observable<Student> {
     return this.httpClient.post<Student>(
-      'http://localhost:8080/student',
+      'https://team-three-backend.herokuapp.com/student',
       student
     );
   }
 
   getAllStudents(): Observable<Student[]> {
-    return this.httpClient.get<Student[]>('http://localhost:8080/student');
+    return this.httpClient.get<Student[]>(
+      'https://team-three-backend.herokuapp.com/student'
+    );
   }
 }
