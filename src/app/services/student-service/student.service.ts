@@ -11,7 +11,6 @@ interface Student {
   imageUrl?: string;
 }
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -20,9 +19,12 @@ export class StudentService {
 
   addStudent(student: FormData): Observable<Student> {
     return this.httpClient.post<Student>(
-      'https://team-three-backend.herokuapp.com/student',
+      'http://localhost:8080/student',
       student
     );
   }
 
+  getAllStudents(): Observable<Student[]> {
+    return this.httpClient.get<Student[]>('http://localhost:8080/student');
+  }
 }
