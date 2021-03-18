@@ -50,12 +50,12 @@ onSubmit() {
   console.log(this.loginForm.value);
 }
 onLogin() {
+  var errorMessage = this.loginService.errorMsg;
   var serv = this.loginService.login(this.email.value, this.password.value).subscribe(response => {
-    console.log("response value: " , response);
-    if(response !== true){
+    if(errorMessage != true){
       this.loginError = of("Email/Password is invalid");
     } else {
-      this.router.navigate(["/main"]);
+      this.loginError = of("");
     }
   });
 }
