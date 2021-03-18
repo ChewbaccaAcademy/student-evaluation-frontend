@@ -23,8 +23,8 @@
                         </div>
                     </div>
 
-                    <div>
-                        {{loginError | async}}
+                    <div *ngIf="loginErrorMessage$ | async as errorMessage">
+                        {{errorMessage}}
                     </div>
 
                 </div>
