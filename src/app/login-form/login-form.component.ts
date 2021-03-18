@@ -1,4 +1,4 @@
-import { Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,11 +13,13 @@ import { LoginService } from '../services/login.service';
 })
 export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
-  public loginError: Observable<any>;
+  public loginErrorMessage$: Subject<string>;
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
+    this.loginErrorMessage$ = this.loginService.errorMsg;
+
     this.loginForm = this.fb.group(
       {
         email: [
@@ -50,13 +52,6 @@ onSubmit() {
   console.log(this.loginForm.value);
 }
 onLogin() {
-  var errorMessage = this.loginService.errorMsg;
-  var serv = this.loginService.login(this.email.value, this.password.value).subscribe(response => {
-    if(errorMessage != true){
-      this.loginError = of("Email/Password is invalid");
-    } else {
-      this.loginError = of("");
-    }
-  });
+  this.loginService.login(this.email.value, this.password.value);
 }
 }
