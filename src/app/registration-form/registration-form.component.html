@@ -60,7 +60,11 @@
               one digit!
             </div>
             <div *ngIf="password.errors?.maxlength" class="text-muted">
-              Password can't be longer than 50 characters!
+              Password format:
+              <br>
+              At least 8 characters;
+              <br>
+              Contain 1 digit;
             </div>
           </div>
         </div>
