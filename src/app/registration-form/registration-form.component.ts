@@ -14,7 +14,7 @@ import { of } from 'rxjs';
 })
 export class RegistrationFormComponent implements OnInit {
   public registrationForm: FormGroup;
-  public streamOptions: String[] = [
+  public streamOptions: string[] = [
     'Select stream',
     'Frontend',
     'Backend',

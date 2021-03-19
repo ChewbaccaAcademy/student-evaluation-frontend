@@ -24,4 +24,4 @@ export class RegisterService {
   }
 }
 
-const URL: string = 'https://team-three-backend.herokuapp.com/';
+const URL = 'https://team-three-backend.herokuapp.com/';
