@@ -2,29 +2,32 @@ import { Router } from '@angular/router';
 import { mapTo, catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {from, Observable, of} from 'rxjs';
+import {BehaviorSubject, from, Observable, of} from 'rxjs';
+
+const URL: string = 'http://localhost:8080';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class LoginService {
-  public errorMsg = false;
+  public errorMsg : BehaviorSubject<string> = new BehaviorSubject("");
 
   constructor(private httpClient: HttpClient, private router: Router) {}
 
-  login(email: string, password: string): Observable<any> {
-    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
-    return of(this.httpClient.post(
+  login(email: string, password: string): void{
+    this.errorMsg.next("");
+    const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
+     this.httpClient.post(
       `${URL}/authenticate`,
       {email: email, password: password}, 
       {headers:reqHeader, responseType: 'text'}
-      ).subscribe(value => {
+      ).subscribe(() => {
         this.router.navigate(["/main"]);
       },
-      err => {
-        this.errorMsg = true;
-      }));
+      (error) => {
+        this.errorMsg.next(JSON.parse(error.error).message);
+      });
 }
 }
-const URL: string = 'https://team-three-backend.herokuapp.com/';
+
