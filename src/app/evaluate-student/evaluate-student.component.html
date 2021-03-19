@@ -16,7 +16,7 @@
                 <p for="student" style="width: 145px; text-align: left;">Student*</p>
                 <select formControlName="student" class="form-control drop-down">
                     <option default value="">Select student</option>
-                    <option *ngFor="let student of students">
+                    <option *ngFor="let student of students | async">
                         {{ student.name }} {{student.lastname}}
                     </option>
                 </select>
@@ -25,13 +25,13 @@
                 <p for="stream" style="width: 145px; text-align: left;">Stream*</p>
                 <select formControlName="stream" class="form-control element-width">
                     <option default value="">Select stream</option>
-                    <option *ngFor="let option of streamOptions" [value]="option.id">
+                    <option *ngFor="let option of streamOptions">
                         {{ option }}
                     </option>
                 </select>
             </div>
             <div class="form-group form-inline">
-                <p for="communication" style="width: 145px; text-align: left;">Communication*</p>
+                <p for="communication" style="width: 145px; text-align: left;">Communication</p>
                 <select formControlName="communication" class="form-control drop-down">
                     <option default value="">Select communication skills</option>
                     <option *ngFor="let option of communicationOptions">
@@ -77,7 +77,7 @@
                 </button>
                 <div class="float-right">
                     <button class="btn btn-outline-secondary" [disabled]="!evaluationForm.valid"
-                        style=" align-content: center;" (ngSubmit)="submitForm()">Evaluate</button>
+                        style=" align-content: center;" (click)="submitForm()">Evaluate</button>
                 </div>
             </div>
         </form>

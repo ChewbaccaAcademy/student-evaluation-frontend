@@ -13,22 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EvaluateStudentComponent implements OnInit {
   students: Observable<Student[]>;
-  // public students: Student[] = [
-  //   {
-  //     id: 1,
-  //     name: 'Jonas',
-  //     lastname: 'Jonauskas',
-  //     university: 'VU',
-  //     comment: 'Saunuolis',
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Pranas',
-  //     lastname: 'Pranauskas',
-  //     university: 'VGTU',
-  //     comment: 'Gerai dirba',
-  //   },
-  // ];
+
   public evaluationForm: FormGroup;
   public streamOptions: String[] = ['FE', 'BE', 'QA', 'Project'];
   public communicationOptions: String[] = [
@@ -92,23 +77,23 @@ export class EvaluateStudentComponent implements OnInit {
       ],
     });
 
-    // this.students = this.studentService
-    //   .getAllStudents()
-    //   .pipe(map((response: Student[]) => response));
+    this.students = this.studentService
+      .getAllStudents();
   }
 
   submitForm() {
     if (this.evaluationForm.valid) {
-      this.studentService.addEvaluation(this.evaluationForm.value).subscribe(
-        () =>
-          this.toastr.success('Evaluation was added', 'Success', {
-            positionClass: 'toast-bottom-center',
-          }),
-        () =>
-          this.toastr.error('Evaluation was not added', 'Error', {
-            positionClass: 'toast-bottom-center',
-          })
-      );
+      this.studentService.addEvaluation(this.evaluationForm.value);
+      // .subscribe(
+      //   () =>
+      //     this.toastr.success('Evaluation was added', 'Success', {
+      //       positionClass: 'toast-bottom-center',
+      //     }),
+      //   () =>
+      //     this.toastr.error('Evaluation was not added', 'Error', {
+      //       positionClass: 'toast-bottom-center',
+      //     })
+      // );
 
       this.evaluationForm.reset();
     } else {

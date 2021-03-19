@@ -1,8 +1,9 @@
 export interface Evaluation {
-    id: number;
-    name: string;
-    lastname: string;
-    university: string;
-    comment: string;
-    imageUrl?: string;
+    studentCredentials: string;
+    stream: string;
+    communication?: string;
+    abilityToLearn?: string;
+    direction: string;
+    overallEvaluation: number;
+    comment?: string;
   }
