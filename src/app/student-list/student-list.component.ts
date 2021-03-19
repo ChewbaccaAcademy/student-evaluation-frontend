@@ -10,7 +10,8 @@ import { Student } from '../services/user-service/model/student';
 })
 export class StudentListComponent implements OnInit {
   public students: Student[];
-  private fullStudents: Student[];
+  private fullStudentsList: Student[];
+  
   constructor(
     private studentService: StudentService,
     private sanitizer: DomSanitizer
@@ -19,7 +20,7 @@ export class StudentListComponent implements OnInit {
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
       this.students = value;
-      this.fullStudents = value;
+      this.fullStudentsList = value;
     });
   }
 
@@ -42,7 +43,7 @@ export class StudentListComponent implements OnInit {
   evaluate(student: Student) {}
 
   filterStudents(searchValue: string) {
-    this.students = this.fullStudents.filter((student) => {
+    this.students = this.fullStudentsList.filter((student) => {
       return student.name
         .toLowerCase()
         .concat(' ' + student.lastname.toLowerCase())
