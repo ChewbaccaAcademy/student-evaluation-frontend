@@ -35,7 +35,7 @@ export class RegistrationFormComponent implements OnInit {
       email: [
         '',
         {
-          validators: [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+          validators: [Validators.required, Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$')],
           updateOn: 'blur',
         },
       ],

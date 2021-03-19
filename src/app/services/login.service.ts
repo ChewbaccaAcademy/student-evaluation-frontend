@@ -6,6 +6,8 @@ import { UserApiInterceptorService } from './interceptors/user-api-interceptor.s
 
 const URL = 'https://team-three-backend.herokuapp.com';
 
+const HEROKU_URL: string = 'https://team-three-backend.herokuapp.com/';
+
 @Injectable({
   providedIn: 'root',
 })

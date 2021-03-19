@@ -26,7 +26,7 @@ export class EvaluateStudentComponent implements OnInit {
     `Doesn't understand and does nothing about it`,
     `Doesn't understand but asks, tries to learn from mistakes`,
   ];
-  public directionOptions: String[] = [`Java`, `Angular`, `Testing`, `Other`];
+  public directionOptions: { id: number; name: string }[] = [{ id: 0, name: 'Java' }, {id: 1, name: `Angular`}, {id: 2, name: `Testing`}, {id: 3, name: `Other`}];
   public overallEvaluationOptions: String[] = [
     `1 – not suitable`,
     `2 – not so good `,
@@ -109,7 +109,7 @@ export class EvaluateStudentComponent implements OnInit {
     return this.evaluationForm.get('student');
   }
   get stream() {
-    return this.evaluationForm.get('steram');
+    return this.evaluationForm.get('stream');
   }
   get communication() {
     return this.evaluationForm.get('communication');
