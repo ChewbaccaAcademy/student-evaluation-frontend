@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { User } from '../services/user-service/model/user';
+import { User } from 'src/app/model/user';
 import { RegisterService } from '../services/user-service/register.service';
 import { ToastrService } from 'ngx-toastr';
 import { catchError } from 'rxjs/operators';
@@ -42,7 +42,10 @@ export class RegistrationFormComponent implements OnInit {
       stream: ['Select stream', [Validators.required, Validators.pattern('^((?!Select stream).)*$')]],
       password: [
         '',
-        [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'), Validators.maxLength(50)],
+        [
+          Validators.required,
+          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')
+        ],
       ],
     });
   }

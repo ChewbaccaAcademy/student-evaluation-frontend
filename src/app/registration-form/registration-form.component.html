@@ -56,10 +56,6 @@
           </div>
           <div [hidden]="password.valid || password.pristine">
             <div *ngIf="password.errors?.pattern" class="text-muted">
-              Password should be at least 8 characters long and contain at least
-              one digit!
-            </div>
-            <div *ngIf="password.errors?.maxlength" class="text-muted">
               Password format:
               <br>
               At least 8 characters;
