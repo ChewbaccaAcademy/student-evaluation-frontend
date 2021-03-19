@@ -11,7 +11,7 @@ import { Student } from '../services/user-service/model/student';
 export class StudentListComponent implements OnInit {
   public students: Student[];
   private fullStudentsList: Student[];
-  
+
   constructor(
     private studentService: StudentService,
     private sanitizer: DomSanitizer
@@ -26,7 +26,7 @@ export class StudentListComponent implements OnInit {
 
   getImage(student: Student) {
     if (student.image) {
-      let objectURL = 'data:image/png;base64,' + student.image.imgByte;
+      const objectURL = 'data:image/png;base64,' + student.image.imgByte;
       return this.sanitizer.bypassSecurityTrustUrl(objectURL);
     } else {
       return './assets/images.jpg';
@@ -39,8 +39,6 @@ export class StudentListComponent implements OnInit {
       return 'noImage.jpg';
     }
   }
-  getUserDetails(student: Student) {}
-  evaluate(student: Student) {}
 
   filterStudents(searchValue: string) {
     this.students = this.fullStudentsList.filter((student) => {

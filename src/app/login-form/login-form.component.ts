@@ -36,7 +36,7 @@ export class LoginFormComponent implements OnInit {
               Validators.required,
             ],
           },
-        ]   
+        ]
   });
 }
 

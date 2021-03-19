@@ -5,11 +5,5 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './main-window-form.component.html',
   styleUrls: ['./main-window-form.component.css']
 })
-export class MainWindowFormComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class MainWindowFormComponent {
 }

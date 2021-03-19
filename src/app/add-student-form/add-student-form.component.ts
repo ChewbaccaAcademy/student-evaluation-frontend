@@ -46,7 +46,7 @@ ngOnInit() {
             Validators.maxLength(250)
           ],
         ],
-        file: ['', [RxwebValidators.extension({ extensions: ["png", "jpg", "jpeg"] }), RxwebValidators.fileSize({maxSize: 500000 }) ]],
+        file: ['', [RxwebValidators.extension({ extensions: ['png', 'jpg', 'jpeg'] }), RxwebValidators.fileSize({maxSize: 500000 }) ]],
         fileSource: [null]
       },
 
@@ -56,7 +56,7 @@ ngOnInit() {
 
     if (this.studentForm.valid) {
       const formData = new FormData();
-      formData.append('student', new Blob([JSON.stringify(this.studentForm.value)], { type: "application/json" }));
+      formData.append('student', new Blob([JSON.stringify(this.studentForm.value)], { type: 'application/json' }));
       formData.append('image', this.studentForm.get('fileSource').value);
       this.studentService.addStudent(formData).subscribe(
         () => this.toastr.success('Student was added', 'Success', { positionClass: 'toast-bottom-center', }),
@@ -85,7 +85,7 @@ ngOnInit() {
         this.imageSrc = e.target.result;
       };
       reader.readAsDataURL(event.target.files[0]);
-      document.getElementById("uploadImg") .style.display = "inline";
+      document.getElementById('uploadImg') .style.display = 'inline';
       
     }
   }
