@@ -4,6 +4,7 @@ import { HttpClient, HttpBackend, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Student } from 'src/app/model/student';
+import { Evaluation } from 'src/app/model/evaluation';
 
 const URL = 'https://team-three-backend.herokuapp.com';
 
