@@ -14,26 +14,21 @@ import { of } from 'rxjs';
 })
 export class RegistrationFormComponent implements OnInit {
   public registrationForm: FormGroup;
-  public streamOptions: string[] = [
-    'Select stream',
-    'Frontend',
-    'Backend',
-    'Testing',
-    'Project',
-  ];
+  public streamOptions: string[] = ['Select stream', 'Frontend', 'Backend', 'Testing', 'Project'];
 
-  constructor(private fb: FormBuilder, private location: Location, private toastr: ToastrService, private registerService: RegisterService) {}
+  constructor(
+    private fb: FormBuilder,
+    private location: Location,
+    private toastr: ToastrService,
+    private registerService: RegisterService,
+  ) {}
 
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
       username: [
         '',
         {
-          validators: [
-            Validators.required,
-            Validators.minLength(5),
-            Validators.maxLength(40),
-          ],
+          validators: [Validators.required, Validators.minLength(5), Validators.maxLength(40)],
           updateOn: 'blur',
         },
       ],
@@ -44,17 +39,10 @@ export class RegistrationFormComponent implements OnInit {
           updateOn: 'blur',
         },
       ],
-      stream: [
-        'Select stream',
-        [Validators.required, Validators.pattern('^((?!Select stream).)*$')],
-      ],
+      stream: ['Select stream', [Validators.required, Validators.pattern('^((?!Select stream).)*$')]],
       password: [
         '',
-        [
-          Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'),
-          Validators.maxLength(50),
-        ],
+        [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'), Validators.maxLength(50)],
       ],
     });
   }
@@ -75,15 +63,17 @@ export class RegistrationFormComponent implements OnInit {
     return this.registrationForm.get('password');
   }
   submitForm() {
-    const user: User = { username: this.username.value,
-                       password: this.password.value,
-                       stream: this.stream.value,
-                       email: this.email.value };
+    const user: User = {
+      username: this.username.value,
+      password: this.password.value,
+      stream: this.stream.value,
+      email: this.email.value,
+    };
     this.registerService.registerUser(user).subscribe((response) => {
       if (response === true) {
-        this.toastr.success( 'Successfully registered!', 'Success', { positionClass: 'toast-bottom-center', });
+        this.toastr.success('Successfully registered!', 'Success', { positionClass: 'toast-bottom-center' });
       } else {
-        this.toastr.error(response, 'Error', { positionClass: 'toast-bottom-center', });
+        this.toastr.error(response, 'Error', { positionClass: 'toast-bottom-center' });
       }
     });
   }

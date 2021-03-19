@@ -12,10 +12,7 @@ export class StudentListComponent implements OnInit {
   public students: Student[];
   private fullStudentsList: Student[];
 
-  constructor(
-    private studentService: StudentService,
-    private sanitizer: DomSanitizer
-  ) {}
+  constructor(private studentService: StudentService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {

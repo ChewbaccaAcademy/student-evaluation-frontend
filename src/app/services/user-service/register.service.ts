@@ -13,14 +13,22 @@ export class RegisterService {
   registerUser(user: User): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     return this.httpClient
-      .post<User>(`${URL}/authenticate`, {
-        username: user.username,
-        password: user.password,
-        stream: user.stream.toUpperCase(),
-        email: user.email,
-      }, { headers, responseType: 'text' as 'json' }).pipe(mapTo(true), catchError(error => {
-        return of(JSON.parse(error.error).message);
-      }));
+      .post<User>(
+        `${URL}/authenticate`,
+        {
+          username: user.username,
+          password: user.password,
+          stream: user.stream.toUpperCase(),
+          email: user.email,
+        },
+        { headers, responseType: 'text' as 'json' },
+      )
+      .pipe(
+        mapTo(true),
+        catchError((error) => {
+          return of(JSON.parse(error.error).message);
+        }),
+      );
   }
 }
 
