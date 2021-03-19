@@ -18,15 +18,10 @@ export class StudentService {
   constructor(private httpClient: HttpClient) {}
 
   addStudent(student: FormData): Observable<Student> {
-    return this.httpClient.post<Student>(
-      'https://team-three-backend.herokuapp.com/student',
-      student
-    );
+    return this.httpClient.post<Student>('https://team-three-backend.herokuapp.com/student', student);
   }
 
   getAllStudents(): Observable<Student[]> {
-    return this.httpClient.get<Student[]>(
-      'https://team-three-backend.herokuapp.com/student'
-    );
+    return this.httpClient.get<Student[]>('https://team-three-backend.herokuapp.com/student');
   }
 }

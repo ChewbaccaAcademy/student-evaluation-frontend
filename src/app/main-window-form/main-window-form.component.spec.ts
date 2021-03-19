@@ -8,9 +8,8 @@ describe('MainWindowFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainWindowFormComponent ]
-    })
-    .compileComponents();
+      declarations: [MainWindowFormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
