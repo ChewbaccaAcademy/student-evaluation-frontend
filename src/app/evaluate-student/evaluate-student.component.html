@@ -16,16 +16,21 @@
                 <p for="student" style="width: 145px; text-align: left;">Student*</p>
                 <select formControlName="student" class="form-control drop-down">
                     <option default value="">Select student</option>
-                    <option *ngFor="let student of students | async">
+                    <option *ngFor="let student of students | async" [value]="student.id">
                         {{ student.name }} {{student.lastname}}
                     </option>
                 </select>
+                <div [hidden]="student.valid || student.pristine">
+                    <div *ngIf="student.errors?.required" class="text-muted">
+                      Please check e-mail address format!
+                    </div>
+                  </div>
             </div>
             <div class="form-group form-inline">
                 <p for="stream" style="width: 145px; text-align: left;">Stream*</p>
                 <select formControlName="stream" class="form-control element-width">
                     <option default value="">Select stream</option>
-                    <option *ngFor="let option of streamOptions">
+                    <option *ngFor="let option of streamOptions;let $index = index" [value]="$index">
                         {{ option }}
                     </option>
                 </select>
@@ -34,7 +39,7 @@
                 <p for="communication" style="width: 145px; text-align: left;">Communication</p>
                 <select formControlName="communication" class="form-control drop-down">
                     <option default value="">Select communication skills</option>
-                    <option *ngFor="let option of communicationOptions">
+                    <option *ngFor="let option of communicationOptions; let $index = index" [value]="$index">
                         {{ option }}
                     </option>
                 </select>
@@ -43,7 +48,7 @@
                 <p for="abilityToLearn" style="width: 145px; text-align: left;">Ability to learn</p>
                 <select formControlName="abilityToLearn" class="form-control drop-down">
                     <option default value="">Select learning ability</option>
-                    <option *ngFor="let option of abilityToLearnOptions">
+                    <option *ngFor="let option of abilityToLearnOptions; let $index = index" [value]="$index">
                         {{ option }}
                     </option>
                 </select>
@@ -52,8 +57,8 @@
                 <p for="direction" style="width: 145px; text-align: left;">Direction*</p>
                 <select formControlName="direction" class="form-control drop-down">
                     <option default value="">Select direction</option>
-                    <option *ngFor="let option of directionOptions">
-                        {{ option }}
+                    <option *ngFor="let option of directionOptions" [value]="option.id">
+                        {{ option.name }}
                     </option>
                 </select>
             </div>
@@ -61,7 +66,7 @@
                 <p for="overallEvaluation" style="width: 145px; text-align: left;">Overal evaluation*</p>
                 <select formControlName="overallEvaluation" class="form-control drop-down">
                     <option default value="">Select evaluation</option>
-                    <option *ngFor="let option of overallEvaluationOptions">
+                    <option *ngFor="let option of overallEvaluationOptions; let $index = index" [value]="$index">
                         {{ option }}
                     </option>
                 </select>
