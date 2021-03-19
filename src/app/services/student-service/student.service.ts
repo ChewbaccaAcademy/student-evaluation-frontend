@@ -11,7 +11,6 @@ interface Student {
   imageUrl?: string;
 }
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -25,4 +24,9 @@ export class StudentService {
     );
   }
 
+  getAllStudents(): Observable<Student[]> {
+    return this.httpClient.get<Student[]>(
+      'https://team-three-backend.herokuapp.com/student'
+    );
+  }
 }
