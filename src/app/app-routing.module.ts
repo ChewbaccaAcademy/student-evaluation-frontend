@@ -8,6 +8,7 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AdminGuard } from './guards/admin.guard';
+import { EvaluateStudentComponent } from './evaluate-student/evaluate-student.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: '', component: MainLayoutComponent, children:
   [ { path: 'main', component: MainWindowFormComponent, canActivate: [AuthGuard] },
     { path: 'students', component: StudentListComponent, canActivate: [AuthGuard] },
-    { path: 'add', component: AddStudentFormComponent, canActivate: [AdminGuard] }
+    { path: 'add', component: AddStudentFormComponent, canActivate: [AdminGuard] },
+    { path: 'evaluate', component: EvaluateStudentComponent },
   ]},
   { path: '**', redirectTo: 'main' }
 ];

@@ -1,8 +1,8 @@
-import { Student } from './../user-service/model/student';
 import { UserApiInterceptorService } from './../interceptors/user-api-interceptor.service';
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Student } from 'src/app/model/student';
 
 const URL = 'https://team-three-backend.herokuapp.com';
 

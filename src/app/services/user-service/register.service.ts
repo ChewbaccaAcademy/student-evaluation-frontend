@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, mapTo } from 'rxjs/operators';
-import { User } from './model/user';
+import { User } from 'src/app/model/user';
+
+const LOCAL_URL: string = 'http://localhost:8080';
+const HEROKU_URL: string = 'https://team-three-backend.herokuapp.com';
 
 @Injectable({
   providedIn: 'root',
