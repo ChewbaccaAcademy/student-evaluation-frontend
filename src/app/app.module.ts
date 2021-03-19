@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { StudentListComponent } from './student-list/student-list.component';
 import { MainWindowFormComponent } from './main-window-form/main-window-form.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { MainWindowFormComponent } from './main-window-form/main-window-form.com
     LoginFormComponent,
     RegistrationFormComponent,
     StudentListComponent,
-    MainWindowFormComponent
+    MainWindowFormComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
