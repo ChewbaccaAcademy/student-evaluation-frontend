@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, from, Observable, of} from 'rxjs';
 
-const URL = 'http://localhost:8080';
+const URL = 'https://team-three-backend.herokuapp.com';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class LoginService {
     const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json'});
      this.httpClient.post(
       `${URL}/authenticate`,
-      {email: email, password: password}, 
+      {email: email, password: password},
       {headers:reqHeader, responseType: 'text'}
       ).subscribe(() => {
         this.router.navigate(['/main']);

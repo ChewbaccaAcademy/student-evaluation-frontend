@@ -12,24 +12,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.menuItems = [
       {
-        path: '/link1',
-        title: 'Link 1',
+        path: '/main',
+        title: 'Main',
       },
       {
-        path: '/link1',
-        title: 'Link 2',
-      },
-      {
-        path: '/link1',
-        title: 'Link 3',
-      },
-      {
-        path: '/link1',
-        title: 'Link 4',
-      },
-      {
-        path: '/link1',
-        title: 'Link 5',
+        path: '/students',
+        title: 'All Students',
       },
     ];
   }
