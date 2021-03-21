@@ -4,14 +4,16 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddStudentFormComponent } from './add-student-form/add-student-form.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 const routes: Routes = [
   //kai atsiras main window, tada pasikoreguosim
   { path: '', component: LoginFormComponent },
   { path: 'register', component: RegistrationFormComponent },
   { path: 'main', component: MainWindowFormComponent },
-  { path: 'add', component: AddStudentFormComponent },
-  { path: '**', redirectTo: '' },
+  { path: 'students', component: StudentListComponent },
+  {path: 'add', component: AddStudentFormComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
