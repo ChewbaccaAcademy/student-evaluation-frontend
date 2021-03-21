@@ -1,8 +1,5 @@
 <div class="container my-center-element">
-    <div class="row">
-        <div class="col-sm-4 align-self-center">
-            <h1>Student Evaluation Platform</h1>
-        </div>
+   <div class="row">
         <div class="col-sm-8">
             <!--Form  -->
 
@@ -16,13 +13,9 @@
                         <input class="form-control" id="email" type="email" formControlName="email"
                             placeholder="E-mail address" />
                     </div>
-
-                    <div [hidden]="email.valid || email.pristine">
-                        <div *ngIf="email.errors?.pattern" class="text-muted">
+                        <div style="visibility: {{!email.errors?.pattern ? 'hidden': 'visible'}};"  class="text-muted">
                             Please check e-mail address format!
                         </div>
-                    </div>
-
                     <div *ngIf="loginErrorMessage$ | async as errorMessage">
                         {{errorMessage}}
                     </div>

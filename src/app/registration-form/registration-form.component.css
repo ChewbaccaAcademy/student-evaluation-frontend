@@ -5,7 +5,7 @@
 .ng-valid:not(form).ng-valid:not(.drop-down) {
   border: 2px solid green;
 }
-
+a
 .input-group-text {
   box-sizing: content-box;
   width: 5em;
@@ -14,7 +14,7 @@
 }
 
 .my-center-element {
-  display: flex;
+   display: flex;
   margin: 0;
   position: absolute;
   top: 50%;

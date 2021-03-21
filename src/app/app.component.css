@@ -1,0 +1,112 @@
+
+/* .background {
+  background: linear-gradient(132deg, #ffffff, #ff3535);
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding:0;
+  margin:0px;
+}
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */
+
+
+
+
+.circle{
+  position: absolute;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  animation: ripple 15s infinite;
+  box-shadow: 0px 0px 1px 0px #508fb9;
+}
+
+.small{
+  background: #3399ff;
+  width: 200px;
+  height: 200px;
+  left: -100px;
+  top: -100px;
+}
+
+.medium{
+    background: #60afff;
+  width: 400px;
+  height: 400px;
+  left: -200px;
+  top: -200px;
+}
+
+.large{
+    background: #96cbff;
+  width: 600px;
+  height: 600px;
+  left: -300px;
+  top: -300px;
+}
+
+.xlarge{
+    background: #a1cefc;
+  width: 800px;
+  height: 800px;
+  left: -400px;
+  top: -400px;
+}
+
+.xxlarge{background: #ffffff;
+  width: 1000px;
+  height: 1000px;
+  left: -500px;
+  top: -500px;
+}
+
+.shade1{
+  opacity: 0.2;
+}
+.shade2{
+  opacity: 0.5;
+}
+
+.shade3{
+  opacity: 0.7;
+}
+
+.shade4{
+  opacity: 0.8;
+}
+
+.shade5{
+  opacity: 0.9;
+}
+
+@keyframes ripple{
+  0%{
+    transform: scale(0.8);
+  }
+  
+  50%{
+    transform: scale(1.2);
+  }
+  
+  100%{
+    transform: scale(0.8);
+  }
+}
+
+.child {
+
+  margin: 0 auto;
+}
+

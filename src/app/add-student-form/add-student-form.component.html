@@ -1,7 +1,7 @@
 
 <div class="container-fluid" style =" margin-top: 50px;">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-8">
       <form [formGroup]="studentForm">
           <div class="row">
             <div class="form-inline float-sm-left" >
@@ -12,9 +12,10 @@
                   type="text"
                   formControlName="name"
                 />
-                <ng-container *ngIf="name.touched ">
-                    <div *ngIf="name.errors?.pattern" >Name should only contain letters. </div>
-                    <div *ngIf="name.errors?.required" >Name is required. </div>
+                <ng-container >
+                  <div class="text-muted" *ngIf="name.errors?.required && name.touched" >Name is required. </div>
+                  <div class="text-muted" *ngIf="name.errors?.alpha" >Name should only contain letters. </div>
+                    
                 </ng-container>
               </div>
             </div>
@@ -28,8 +29,8 @@
                       formControlName="lastname"
                     />
                       <ng-container *ngIf="lastname.touched ">
-                        <div *ngIf="lastname.errors?.pattern" >Last name should only contain letters. </div>
-                        <div *ngIf="lastname.errors?.required" >Last name is required. </div>
+                        <div  class="text-muted" *ngIf="lastname.errors?.alpha" >Last name should only contain letters. </div>
+                        <div  class="text-muted" *ngIf="lastname.errors?.required" >Last name is required. </div>
                 </ng-container>
               </div>
             </div>
@@ -71,18 +72,14 @@
                         (change)="onFileChange($event)"
                         #inputFile>
                 </div>
-                <div *ngIf="file.errors?.extension" >Invalid photo format, only png, jpg, jpeg is allowed.</div>
-              <div *ngIf="file.errors?.fileSize"  >Invalid photo size, max size 500kb.</div>
+                <div  class="text-muted" *ngIf="file.errors?.extension" >Invalid photo format, only png, jpg, jpeg is allowed.</div>
+              <div  class="text-muted" *ngIf="file.errors?.fileSize"  >Invalid photo size, max size 500kb.</div>
             </div>
     </form> 
 	  </div>
-	  	<div class="col-md-6">
-        <img  id="uploadImg"src={{imageSrc}} width="200" height="200" onerror='this.style.display = "none"'>
-	  	</div>
+	  	<div class="col-md-4">
+        <div class="borderbox"><div class="boxImg" style="background-image: url({{imageSrc}}) "></div>
+        <button class="btn btn-outline-secondary float-right" [disabled] = "!studentForm.valid" style = "margin-top: 50px; align-content: center;" (click)="submitForm()">Add student</button>
   	</div>
-	<div class="row">
-		<div class="col-md-12"> 
-      <button class="btn btn-outline-secondary float-right" [disabled] = "!studentForm.valid" style = " align-content: center;" (click)="submitForm()">Add student</button>
-		</div>
 	</div>
 </div>

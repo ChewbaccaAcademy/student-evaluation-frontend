@@ -72,6 +72,7 @@ export class RegistrationFormComponent implements OnInit {
     this.registerService.registerUser(user).subscribe((response) => {
       if (response === true) {
         this.toastr.success('Successfully registered!', 'Success', { positionClass: 'toast-bottom-center' });
+        this.goBack();
       } else {
         this.toastr.error(response, 'Error', { positionClass: 'toast-bottom-center' });
       }

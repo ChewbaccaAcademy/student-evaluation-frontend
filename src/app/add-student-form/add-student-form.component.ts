@@ -27,13 +27,13 @@ export class AddStudentFormComponent implements OnInit {
       name: [
         '',
         {
-          validators: [Validators.required, RxwebValidators.alpha],
+          validators: [Validators.required, RxwebValidators.alpha()]   
         },
       ],
       lastname: [
         '',
         {
-          validators: [Validators.required, RxwebValidators.alpha],
+          validators: [Validators.required, RxwebValidators.alpha()]
         },
       ],
       university: [''],

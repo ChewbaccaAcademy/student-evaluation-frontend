@@ -1,3 +1,14 @@
+.boxImg{
+    width:193px; 
+    height: 193px; 
+
+    background-size: 200px 200px;
+}
+.borderbox{
+    width:200px; 
+    height: 200px; 
+    border: 3.5px dashed rgba(11, 27, 31, 0.445);
+}
 .btn-outline-secondary:disabled{
     border-color: black;
     background-color: rgb(230, 0, 0);
