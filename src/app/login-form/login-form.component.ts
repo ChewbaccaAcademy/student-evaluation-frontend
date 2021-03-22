@@ -1,7 +1,6 @@
 import { Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -13,7 +12,7 @@ export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
   public loginErrorMessage$: Subject<string>;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {}
+  constructor(private fb: FormBuilder, private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.loginErrorMessage$ = this.loginService.errorMsg;

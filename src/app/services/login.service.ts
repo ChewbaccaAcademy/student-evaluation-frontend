@@ -32,4 +32,9 @@ export class LoginService {
         },
       );
   }
+
+  logout(): void {
+    this.userApiInterceptorService.removeSessionToken();
+    this.router.navigate(['login']);
+  }
 }
