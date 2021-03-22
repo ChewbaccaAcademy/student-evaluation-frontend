@@ -23,6 +23,7 @@ interface Evaluation {
   direction?: string;
   evaluation: number;
   comment?: string;
+  active: boolean;
 }
 
 @Injectable({
