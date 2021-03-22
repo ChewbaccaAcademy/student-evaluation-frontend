@@ -46,6 +46,9 @@ export class EvaluateStudentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.students = this.studentService.getAllStudents();
+    
     this.evaluationForm = this.formBuilder.group({
       student: [
         '',
@@ -85,7 +88,6 @@ export class EvaluateStudentComponent implements OnInit {
       ],
     });
 
-    this.students = this.studentService.getAllStudents();
   }
 
   submitForm() {
