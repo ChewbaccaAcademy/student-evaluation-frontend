@@ -1,9 +1,7 @@
-import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
 import { LoginService } from '../services/login.service';
 
 @Component({
