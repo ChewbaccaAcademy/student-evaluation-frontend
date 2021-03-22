@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StudentService } from '../services/student-service/student.service';
+import { EvaluationService } from '../services/evaluation/evaluation.service';
 import { Student } from '../model/student';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -11,11 +12,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class EvaluateStudentComponent implements OnInit {
   students: Observable<Student[]>;
-  // students: Student[] = [
-  //   {name: 'Pranas', lastname: 'Praneliauskas', id: 1, university: 'VU', comment: 'geras'},
-  //   {name: 'Dzonis', lastname: 'Dzimis', id: 2, university: 'VGTU', comment: 'geriausias'},
-  //   {name: 'Jonas', lastname: 'Jonelis', id: 3, university: 'VK', comment: 'ot tokis'},
-  // ]
 
   public evaluationForm: FormGroup;
   public streamOptions: string[] = ['FE', 'BE', 'QA', 'Project'];
@@ -43,7 +39,11 @@ export class EvaluateStudentComponent implements OnInit {
     `5 – motivated, really good`,
   ];
 
-  constructor(private formBuilder: FormBuilder, private studentService: StudentService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private studentService: StudentService,
+    private evaluationService: EvaluationService,
+  ) {}
 
   ngOnInit(): void {
     this.evaluationForm = this.formBuilder.group({
@@ -90,8 +90,9 @@ export class EvaluateStudentComponent implements OnInit {
 
   submitForm() {
     if (this.evaluationForm.valid) {
-      this.studentService.addEvaluation(this.evaluationForm.value);
+      this.evaluationService.addEvaluation(this.student.value, this.evaluationForm.value);
     }
+    console.log(this.evaluationForm);
   }
 
   get student() {
