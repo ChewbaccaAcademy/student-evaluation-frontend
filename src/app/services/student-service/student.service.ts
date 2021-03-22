@@ -1,10 +1,10 @@
-import { Student } from './../user-service/model/student';
 import { UserApiInterceptorService } from './../interceptors/user-api-interceptor.service';
 import { HttpClient, HttpBackend, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Student } from 'src/app/model/student';
 import { Evaluation } from 'src/app/model/evaluation';
+import { Router } from '@angular/router';
 
 const URL = 'https://team-three-backend.herokuapp.com';
 
@@ -13,7 +13,9 @@ const URL = 'https://team-three-backend.herokuapp.com';
 })
 export class StudentService {
   private httpClient: HttpClient;
-  private reqHeader: HttpHeaders = new HttpHeaders({ 'Authorization': 'Bearer '+this.userApiInterceptorService.getSessionToken() });
+  private reqHeader: HttpHeaders = new HttpHeaders({
+    Authorization: 'Bearer ' + this.userApiInterceptorService.getSessionToken(),
+  });
 
   constructor(private httpBackend: HttpBackend, private userApiInterceptorService: UserApiInterceptorService) {
     this.httpClient = new HttpClient(httpBackend);
@@ -33,5 +35,14 @@ export class StudentService {
 
   updateStudent(student: Student): Observable<Student> {
     return this.httpClient.put<Student>(`${URL}/student/${student.id}`, student, { headers: this.reqHeader });
+    // addEvaluation(evaluation: Evaluation): void {
+    //   this.httpClient.post<Evaluation>(`${HEROKU_URL}/evaluation`, evaluation).subscribe(
+    //     () => {
+    //       this.router.navigate(['/main']);
+    //     },
+    //     (error) => {
+    //       this.errorMsg.next(JSON.parse(error.error).message);
+    //     },
+    //   );
   }
 }

@@ -23,7 +23,7 @@ export class LoginService {
     this.errorMsg.next('');
     const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.httpClient
-      .post(`${URL}/authenticate`, { email: email, password: password }, { headers: reqHeader, responseType: 'text' })
+      .post(`${HEROKU_URL}/authenticate`, { email: email, password: password }, { headers: reqHeader, responseType: 'text' })
       .subscribe(
         (sd) => {
           this.userApiInterceptorService.setAuthData(JSON.parse(sd));

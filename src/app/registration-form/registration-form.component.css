@@ -1,8 +1,8 @@
-.ng-dirty:not(form).ng-invalid:not(form) {
+.ng-dirty:not(form).ng-invalid:not(.dropdown) {
   border: 2px solid red;
 }
 
-.ng-valid:not(form).ng-valid:not(.drop-down) {
+.ng-valid:not(form).ng-valid:not(.dropdown) {
   border: 2px solid green;
 }
 

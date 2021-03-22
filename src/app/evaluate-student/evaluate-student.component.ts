@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
-import { map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-evaluate-student',
@@ -13,21 +11,31 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EvaluateStudentComponent implements OnInit {
   students: Observable<Student[]>;
+  // students: Student[] = [
+  //   {name: 'Pranas', lastname: 'Praneliauskas', id: 1, university: 'VU', comment: 'geras'},
+  //   {name: 'Dzonis', lastname: 'Dzimis', id: 2, university: 'VGTU', comment: 'geriausias'},
+  //   {name: 'Jonas', lastname: 'Jonelis', id: 3, university: 'VK', comment: 'ot tokis'},
+  // ]
 
   public evaluationForm: FormGroup;
-  public streamOptions: String[] = ['FE', 'BE', 'QA', 'Project'];
-  public communicationOptions: String[] = [
+  public streamOptions: string[] = ['FE', 'BE', 'QA', 'Project'];
+  public communicationOptions: string[] = [
     `Is active, communicative`,
     `Is passive`,
     `Prefers written communication over verbal`,
   ];
-  public abilityToLearnOptions: String[] = [
+  public abilityToLearnOptions: string[] = [
     `Is able to adapt to changing topics quickly`,
     `Doesn't understand and does nothing about it`,
     `Doesn't understand but asks, tries to learn from mistakes`,
   ];
-  public directionOptions: { id: number; name: string }[] = [{ id: 0, name: 'Java' }, {id: 1, name: `Angular`}, {id: 2, name: `Testing`}, {id: 3, name: `Other`}];
-  public overallEvaluationOptions: String[] = [
+  public directionOptions: { id: number; name: string }[] = [
+    { id: 0, name: 'Java' },
+    { id: 1, name: `Angular` },
+    { id: 2, name: `Testing` },
+    { id: 3, name: `Other` },
+  ];
+  public overallEvaluationOptions: string[] = [
     `1 – not suitable`,
     `2 – not so good `,
     `3 – potential to grow`,
@@ -35,11 +43,7 @@ export class EvaluateStudentComponent implements OnInit {
     `5 – motivated, really good`,
   ];
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private studentService: StudentService,
-    private toastr: ToastrService
-  ) {}
+  constructor(private formBuilder: FormBuilder, private studentService: StudentService) {}
 
   ngOnInit(): void {
     this.evaluationForm = this.formBuilder.group({
@@ -47,12 +51,14 @@ export class EvaluateStudentComponent implements OnInit {
         '',
         {
           validators: [Validators.required],
+          updateOn: 'blur',
         },
       ],
       stream: [
         '',
         {
           validators: [Validators.required],
+          updateOn: 'blur',
         },
       ],
       communication: [''],
@@ -61,12 +67,14 @@ export class EvaluateStudentComponent implements OnInit {
         '',
         {
           validators: [Validators.required],
+          updateOn: 'blur',
         },
       ],
       overallEvaluation: [
         '',
         {
           validators: [Validators.required],
+          updateOn: 'blur',
         },
       ],
       comment: [
@@ -77,31 +85,12 @@ export class EvaluateStudentComponent implements OnInit {
       ],
     });
 
-    this.students = this.studentService
-      .getAllStudents();
+    this.students = this.studentService.getAllStudents();
   }
 
   submitForm() {
     if (this.evaluationForm.valid) {
       this.studentService.addEvaluation(this.evaluationForm.value);
-      // .subscribe(
-      //   () =>
-      //     this.toastr.success('Evaluation was added', 'Success', {
-      //       positionClass: 'toast-bottom-center',
-      //     }),
-      //   () =>
-      //     this.toastr.error('Evaluation was not added', 'Error', {
-      //       positionClass: 'toast-bottom-center',
-      //     })
-      // );
-
-      this.evaluationForm.reset();
-    } else {
-      this.toastr.error(
-        'Evaluation was not added. Check your inputs',
-        'Error',
-        { positionClass: 'toast-bottom-center' }
-      );
     }
   }
 
