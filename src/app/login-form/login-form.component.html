@@ -1,11 +1,11 @@
-<div class="container my-center-element">
-   <div class="row">
-        <div class="col-sm-8">
-            <!--Form  -->
-
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="black-border">
+<div class="container">
+	<div class="row " >
+		<div class="col-md-12">
+            
+				<div class="form-group" >
+                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="black-border" style="float: none; margin: 0 auto;">
                 <br>
-                <div class="form-group">
+                <div class="form-group" >
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text">E-mail</div>
@@ -39,10 +39,9 @@
                             Login
                         </button>
                     </div>
+                    </div>
+                    </form>
                 </div>
-            </form>
-
-            <!-- End Form -->
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
