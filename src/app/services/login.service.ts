@@ -24,7 +24,7 @@ export class LoginService {
       .post(`${URL}/authenticate`, { email: email, password: password }, { headers: reqHeader, responseType: 'text' })
       .subscribe(
         (sd) => {
-          this.userApiInterceptorService.setSessionToken(sd);
+          this.userApiInterceptorService.setAuthData(JSON.parse(sd));
           this.router.navigate(['/main']);
         },
         (error) => {
@@ -34,7 +34,7 @@ export class LoginService {
   }
 
   logout(): void {
-    this.userApiInterceptorService.removeSessionToken();
+    this.userApiInterceptorService.removeAuthData();
     this.router.navigate(['login']);
   }
 }
