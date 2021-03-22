@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, mapTo } from 'rxjs/operators';
 import { User } from './model/user';
 
@@ -8,13 +8,16 @@ import { User } from './model/user';
   providedIn: 'root',
 })
 export class RegisterService {
-  constructor(private httpClient: HttpClient) {}
+  private httpClient: HttpClient;
+  constructor(private httpBackend: HttpBackend) {
+    this.httpClient = new HttpClient(httpBackend);
+  }
 
   registerUser(user: User): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
     return this.httpClient
       .post<User>(
-        `${URL}/authenticate`,
+        `${URL}/signup`,
         {
           username: user.username,
           password: user.password,
@@ -32,4 +35,4 @@ export class RegisterService {
   }
 }
 
-const URL = 'https://team-three-backend.herokuapp.com/';
+const URL = 'https://team-three-backend.herokuapp.com';

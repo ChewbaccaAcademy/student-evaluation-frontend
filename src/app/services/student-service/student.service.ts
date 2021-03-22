@@ -1,6 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { UserApiInterceptorService } from './../interceptors/user-api-interceptor.service';
+import { HttpClient, HttpBackend, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+
+const URL = 'https://team-three-backend.herokuapp.com';
 
 interface Student {
   id: number;
@@ -15,13 +18,19 @@ interface Student {
   providedIn: 'root',
 })
 export class StudentService {
-  constructor(private httpClient: HttpClient) {}
+  private httpClient: HttpClient;
+
+  constructor(private httpBackend: HttpBackend, private userApiInterceptorService: UserApiInterceptorService) {
+    this.httpClient = new HttpClient(httpBackend);
+  }
 
   addStudent(student: FormData): Observable<Student> {
-    return this.httpClient.post<Student>('https://team-three-backend.herokuapp.com/student', student);
+    const reqHeader = new HttpHeaders({ 'Authorization': 'Bearer '+this.userApiInterceptorService.getSessionToken() });
+    return this.httpClient.post<Student>(`${URL}/student`, student, { headers: reqHeader });
   }
 
   getAllStudents(): Observable<Student[]> {
-    return this.httpClient.get<Student[]>('https://team-three-backend.herokuapp.com/student');
+    const reqHeader = new HttpHeaders({ 'Authorization': 'Bearer '+this.userApiInterceptorService.getSessionToken() });
+    return this.httpClient.get<Student[]>(`${URL}/student`, { headers: reqHeader });
   }
 }
