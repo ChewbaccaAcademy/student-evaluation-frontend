@@ -1,10 +1,11 @@
 export interface Student {
-  id: number;
+  id?: number;
   name: string;
   lastname: string;
-  university: string;
-  comment: string;
+  university?: string;
+  comment?: string;
   image?: Image;
+  isActive?: boolean;
 }
 
 export interface Image {

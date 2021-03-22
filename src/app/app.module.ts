@@ -14,6 +14,7 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { MainWindowFormComponent } from './main-window-form/main-window-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserApiInterceptorService } from './services/interceptors/user-api-interceptor.service';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UserApiInterceptorService } from './services/interceptors/user-api-inte
     RegistrationFormComponent,
     StudentListComponent,
     MainWindowFormComponent,
-    NavbarComponent
+    NavbarComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,

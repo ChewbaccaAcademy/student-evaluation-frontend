@@ -5,15 +5,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddStudentFormComponent } from './add-student-form/add-student-form.component';
 import { StudentListComponent } from './student-list/student-list.component';
+import { AuthGuard } from './guards/auth.guard';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 const routes: Routes = [
-  //kai atsiras main window, tada pasikoreguosim
-  { path: '', component: LoginFormComponent },
+  { path: 'login', component: LoginFormComponent },
   { path: 'register', component: RegistrationFormComponent },
-  { path: 'main', component: MainWindowFormComponent },
-  { path: 'students', component: StudentListComponent },
-  {path: 'add', component: AddStudentFormComponent },
-  { path: '**', redirectTo: '' }
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: '', component: MainLayoutComponent, children:
+  [ { path: 'main', component: MainWindowFormComponent, canActivate: [AuthGuard] },
+    { path: 'students', component: StudentListComponent, canActivate: [AuthGuard] },
+    { path: 'add', component: AddStudentFormComponent, canActivate: [AuthGuard] }
+  ]},
+  { path: '**', redirectTo: 'main' }
 ];
 
 @NgModule({
