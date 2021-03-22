@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AddStudentFormComponent } from './add-student-form/add-student-form.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { StudentListComponent } from './student-list/student-list.component';
 import { MainWindowFormComponent } from './main-window-form/main-window-form.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { UserApiInterceptorService } from './services/interceptors/user-api-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MainWindowFormComponent } from './main-window-form/main-window-form.com
     RegistrationFormComponent,
     StudentListComponent,
     MainWindowFormComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,9 @@ import { MainWindowFormComponent } from './main-window-form/main-window-form.com
     ReactiveFormsModule,
     RxReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: UserApiInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

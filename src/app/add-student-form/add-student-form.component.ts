@@ -18,7 +18,6 @@ export class AddStudentFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
-    private http: HttpClient,
     private studentService: StudentService,
   ) {}
 
