@@ -1,90 +1,101 @@
-<div class="container my-center-element">
-    <div class="col-sm-12 align-content">
-        <form [formGroup]="evaluationForm" class="black-border">
-            <!-- <div class="row">
-                    <div class="form-inline float-sm-left">
-                        <p for="name" style="width: 100px; text-align: left;">Name</p>
-                        <input class="form-control" id="name" type="text" formControlName="name" />
-                        <ng-container *ngIf="name.touched ">
-                            <div *ngIf="name.errors?.pattern">Name should only contain letters. </div>
-                            <div *ngIf="name.errors?.required">Name is required. </div>
-                        </ng-container>
-                    </div>
-                </div> -->
+<div class="container">
+    <div>
+        <div class="col-md-12 align-content my-auto">
+            <!-- Form -->
 
-            <div class="form-group form-inline">
-                <p for="student" style="width: 145px; text-align: left;">Student*</p>
-                <select formControlName="student" class="form-control drop-down">
-                    <option default value="">Select student</option>
-                    <option *ngFor="let student of students | async" [value]="student.id">
-                        {{ student.name }} {{student.lastname}}
-                    </option>
-                </select>
-                <div [hidden]="student.valid || student.pristine">
-                    <div *ngIf="student.errors?.required" class="text-muted">
-                      Please check e-mail address format!
+            <form [formGroup]="evaluationForm" class="black-border">
+                <br>
+                <div class="form-group form-inline">
+                    <p for="student" style="width: 145px; text-align: left;">Student*</p>
+                    <select formControlName="student" class="form-control drop-down drop-down-width">
+                        <option default value="">Select student</option>
+                        <option *ngFor="let student of students | async" [value]="student.id">
+                            {{ student.name }} {{student.lastname}}
+                        </option>
+                    </select>
+                    <div [hidden]="student.valid || student.pristine">
+                        <div *ngIf="student.errors?.required" class="text-muted">
+                            Please choose a student!
+                        </div>
                     </div>
-                  </div>
-            </div>
-            <div class="form-group form-inline">
-                <p for="stream" style="width: 145px; text-align: left;">Stream*</p>
-                <select formControlName="stream" class="form-control element-width">
-                    <option default value="">Select stream</option>
-                    <option *ngFor="let option of streamOptions;let $index = index" [value]="$index">
-                        {{ option }}
-                    </option>
-                </select>
-            </div>
-            <div class="form-group form-inline">
-                <p for="communication" style="width: 145px; text-align: left;">Communication</p>
-                <select formControlName="communication" class="form-control drop-down">
-                    <option default value="">Select communication skills</option>
-                    <option *ngFor="let option of communicationOptions; let $index = index" [value]="$index">
-                        {{ option }}
-                    </option>
-                </select>
-            </div>
-            <div class="form-group form-inline">
-                <p for="abilityToLearn" style="width: 145px; text-align: left;">Ability to learn</p>
-                <select formControlName="abilityToLearn" class="form-control drop-down">
-                    <option default value="">Select learning ability</option>
-                    <option *ngFor="let option of abilityToLearnOptions; let $index = index" [value]="$index">
-                        {{ option }}
-                    </option>
-                </select>
-            </div>
-            <div class="form-group form-inline">
-                <p for="direction" style="width: 145px; text-align: left;">Direction*</p>
-                <select formControlName="direction" class="form-control drop-down">
-                    <option default value="">Select direction</option>
-                    <option *ngFor="let option of directionOptions" [value]="option.id">
-                        {{ option.name }}
-                    </option>
-                </select>
-            </div>
-            <div class="form-group form-inline">
-                <p for="overallEvaluation" style="width: 145px; text-align: left;">Overal evaluation*</p>
-                <select formControlName="overallEvaluation" class="form-control drop-down">
-                    <option default value="">Select evaluation</option>
-                    <option *ngFor="let option of overallEvaluationOptions; let $index = index" [value]="$index">
-                        {{ option }}
-                    </option>
-                </select>
-            </div>
-            <div class="form-group form-inline">
-                <p for="comment" style="width: 145px; text-align: left;">General comment</p>
-                <textarea class="form-control" id="comment" rows="3" formControlName="comment"
-                    placeholder="Your comment" maxlength="250">
-                    </textarea>
-            </div>
-            <div class="form-group"><button type="button" class="btn btn-danger">
-                    Back
-                </button>
-                <div class="float-right">
-                    <button class="btn btn-outline-secondary" [disabled]="!evaluationForm.valid"
-                        style=" align-content: center;" (click)="submitForm()">Evaluate</button>
                 </div>
-            </div>
-        </form>
+                <div class="form-group form-inline">
+                    <p for="stream" style="width: 145px; text-align: left;">Stream*</p>
+                    <select formControlName="stream" class="form-control drop-down drop-down-width">
+                        <option default value="">Select stream</option>
+                        <option *ngFor="let option of streamOptions;let $index = index" [value]="$index">
+                            {{ option }}
+                        </option>
+                    </select>
+                    <div [hidden]="stream.valid || stream.pristine">
+                        <div *ngIf="stream.errors?.required" class="text-muted">
+                            Please choose stream option!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-inline">
+                    <p for="communication" style="width: 145px; text-align: left;">Communication</p>
+                    <select formControlName="communication" class="form-control drop-down no-border drop-down-width">
+                        <option default value="">Select communication skills</option>
+                        <option *ngFor="let option of communicationOptions; let $index = index" [value]="$index">
+                            {{ option }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group form-inline">
+                    <p for="abilityToLearn" style="width: 145px; text-align: left;">Ability to learn</p>
+                    <select formControlName="abilityToLearn" class="form-control drop-down no-border drop-down-width">
+                        <option default value="">Select learning ability</option>
+                        <option *ngFor="let option of abilityToLearnOptions; let $index = index" [value]="$index">
+                            {{ option }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group form-inline">
+                    <p for="direction" style="width: 145px; text-align: left;">Direction*</p>
+                    <select formControlName="direction" class="form-control drop-down drop-down-width">
+                        <option default value="">Select direction</option>
+                        <option *ngFor="let option of directionOptions" [value]="option.id">
+                            {{ option.name }}
+                        </option>
+                    </select>
+                    <div [hidden]="direction.valid || direction.pristine">
+                        <div *ngIf="direction.errors?.required" class="text-muted">
+                            Please choose direction option!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-inline">
+                    <p for="overallEvaluation" style="width: 145px; text-align: left;">Overal evaluation*</p>
+                    <select formControlName="overallEvaluation" class="form-control drop-down drop-down-width">
+                        <option default value="">Select evaluation</option>
+                        <option *ngFor="let option of overallEvaluationOptions; let $index = index" [value]="$index">
+                            {{ option }}
+                        </option>
+                    </select>
+                    <div [hidden]="overallEvaluation.valid || overallEvaluation.pristine">
+                        <div *ngIf="overallEvaluation.errors?.required" class="text-muted">
+                            Please evaluate the student!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-inline">
+                    <p for="comment" style="width: 145px; text-align: left;">General comment</p>
+                    <textarea class="form-control no-border drop-down-width" id="comment" rows="3" formControlName="comment"
+                        placeholder="Your comment" maxlength="250">
+                    </textarea>
+                </div>
+                <div class="form-group"><button type="button" class="btn btn-danger" [routerLink]="['/main']">
+                        Back
+                    </button>
+                    <div class="float-right">
+                        <button class="btn btn-outline-secondary" [disabled]="!evaluationForm.valid"
+                            style=" align-content: center;" (click)="submitForm()">Evaluate</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- End Form -->
+        </div>
     </div>
 </div>

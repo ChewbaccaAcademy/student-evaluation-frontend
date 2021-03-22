@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { StudentService } from '../services/student-service/student.service';
-import { Student } from '../services/user-service/model/student';
+import { Student } from '../model/student';
 
 @Component({
   selector: 'app-student-list',

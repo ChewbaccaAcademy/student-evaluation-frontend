@@ -14,7 +14,7 @@ import { of } from 'rxjs';
 })
 export class RegistrationFormComponent implements OnInit {
   public registrationForm: FormGroup;
-  public streamOptions: string[] = ['Select stream', 'Frontend', 'Backend', 'Testing', 'Project'];
+  public streamOptions: string[] = ['Frontend', 'Backend', 'Testing', 'Project'];
 
   constructor(
     private fb: FormBuilder,
@@ -39,14 +39,14 @@ export class RegistrationFormComponent implements OnInit {
           updateOn: 'blur',
         },
       ],
-      stream: ['Select stream', [Validators.required, Validators.pattern('^((?!Select stream).)*$')]],
-      password: [
+      stream: [
         '',
-        [
-          Validators.required,
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')
-        ],
+        {
+          validators: [Validators.required, Validators.pattern('^((?!Select stream).)*$')],
+          updateOn: 'blur',
+        },
       ],
+      password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')]],
     });
   }
 
