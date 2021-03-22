@@ -30,48 +30,53 @@
   display: flex;
   border-radius: 50%;
   background: rgb(255, 255, 255);
-  animation: ripple 15s infinite;
+  
   box-shadow: 0px 0px 1px 0px #508fb9;
   z-index: -100;
 }
 
 .small{
   background: #3399ff;
-  width: 200px;
-  height: 200px;
-  left: -100px;
-  top: -100px;
+  width:140px;
+  height: 140px;
+  left: -30px;
+  top: -60px;
+  
 }
 
 .medium{
     background: #60afff;
-  width: 400px;
-  height: 400px;
-  left: -200px;
-  top: -200px;
+  width: 110px;
+  height: 110px;
+  left: -40px;
+  top: -20px;
+  animation: ripple 14s infinite;
 }
 
 .large{
     background: #96cbff;
-  width: 600px;
-  height: 600px;
-  left: -300px;
-  top: -300px;
+  width: 130px;
+  height: 130px;
+  left:-5px;
+  top: -45px;
+  animation: ripple 15s infinite;
 }
 
 .xlarge{
     background: #a1cefc;
-  width: 800px;
-  height: 800px;
-  left: -400px;
-  top: -400px;
+  width: 140px;
+  height: 140px;
+  left: -25px;
+  top: -35px;
+  animation: ripple 16s infinite;
 }
 
 .xxlarge{background: #ffffff;
-  width: 1000px;
-  height: 1000px;
-  left: -500px;
-  top: -500px;
+  width: 180px;
+  height: 180px;
+  left: -35px;
+  top: -45px;
+  animation: ripple 17s infinite;
 }
 
 .shade1{
@@ -95,7 +100,8 @@
 
 @keyframes ripple{
   0%{
-    transform: scale(0.8);
+   
+    transform: scale(1);
   }
   
   50%{
@@ -103,14 +109,14 @@
   }
   
   100%{
-    transform: scale(0.8);
+    transform: scale(1);
   }
 }
 
 
 
 .vertical-center {
-margin-top: 200px;
+margin-top: 100px;
 }
 
 
@@ -124,3 +130,62 @@ margin-top: 200px;
     margin-top: auto;
   }
 }
+
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(1)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    z-index: -100;
+}
+
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+    z-index: -100;
+}
+.waveTop {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+   -webkit-animation: move-wave 3s;
+   -webkit-animation-delay: 1s;
+   animation-delay: 1s;
+}
+.waveMiddle {
+    background-size: 50% 120px;
+}
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+.waveBottom {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
+
+
+
+
+
