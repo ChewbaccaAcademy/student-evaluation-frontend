@@ -1,7 +1,6 @@
-import { UserApiInterceptorService } from './../services/interceptors/user-api-interceptor.service';
-import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem } from '../shared/menu-item';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +10,11 @@ import { MenuItem } from '../shared/menu-item';
 export class NavbarComponent implements OnInit {
   @Input() menuItems: MenuItem[];
 
-  constructor(private router: Router, private userApiInterceptorService: UserApiInterceptorService) {}
+  constructor(private loginService: LoginService) {}
 
   ngOnInit(): void {}
 
   logout(){
-    this.userApiInterceptorService.removeSessionToken();
-    this.router.navigate(['']);
+    this.loginService.logout();
   }
 }
