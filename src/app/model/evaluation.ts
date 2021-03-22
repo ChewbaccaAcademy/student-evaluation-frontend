@@ -1,9 +1,10 @@
 export interface Evaluation {
-  studentCredentials: string;
-  stream: string;
+  id: number;
+  stream?: string;
   communication?: string;
-  abilityToLearn?: string;
-  direction: string;
-  overallEvaluation: number;
+  learnAbility?: string;
+  direction?: string;
+  evaluation: number;
   comment?: string;
+  active: boolean;
 }
