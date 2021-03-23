@@ -10,7 +10,7 @@ const URL = 'https://team-three-backend.herokuapp.com';
   providedIn: 'root',
 })
 export class StudentService {
-  private httpClient: HttpClient;
+  private putAndPostHttpClient: HttpClient;
   private reqHeader: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + this.userApiInterceptorService.getSessionToken(),
   });
