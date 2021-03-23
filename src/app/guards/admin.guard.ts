@@ -13,10 +13,7 @@ export class AdminGuard implements CanActivate {
 
   canActivate() {
     if (this.userApiInterceptorService.getSessionToken() != null && this.userApiInterceptorService.getSessionUserRole() != "ADMIN"  ) {
-console.log(this.userApiInterceptorService.getSessionToken() == null && this.userApiInterceptorService.getSessionUserRole() != "ADMIN");
-
       this.toastr.error('Only Admin can add students', 'Error', { positionClass: 'toast-bottom-center' });
-      console.log("Pize2")
       return false;
     }else if(this.userApiInterceptorService.getSessionToken() == null){
       this.router.navigate(['login']);
