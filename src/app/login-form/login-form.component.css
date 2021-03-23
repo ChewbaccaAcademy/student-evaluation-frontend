@@ -18,5 +18,14 @@
 
 .black-border {
   border: 2px solid black;
-  padding: 5%;
+  padding: 2%;
+  max-width: 500px;
+  float: none; margin: 0 auto;
+  
 }
+.container{
+  margin-top: 100px;
+}
+
+
+

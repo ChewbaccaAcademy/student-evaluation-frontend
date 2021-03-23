@@ -8,12 +8,10 @@ import { EvaluationPost } from 'src/app/model/evaluationPost';
 const URL = 'https://team-three-backend.herokuapp.com';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EvaluationService {
-
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   getAllEvaluations(): Observable<Evaluation[]> {
     return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation`);

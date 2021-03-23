@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container text-shrink">
   <div class="row">
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
@@ -20,9 +20,9 @@
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
   </div>
 
-  <div class="row">
-    <div class="col-sm">
-      <table class="table table-striped">
+  <div class="row justify-content-center">
+    <div  class="col-auto">
+      <table class="table table-striped table-responsive "> 
         <thead class="thead-dark">
           <tr>
             <th scope="col"></th>
@@ -34,17 +34,17 @@
             <th scope="col">Evaluate</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           <tr *ngFor="let student of students">
             <th>
-              <img
+              <img class="test"
                 [src]="getImage(student)"
                 [alt]="getImageTitle(student)"
-                height="200px"
+                height="100px"
               />
             </th>
-            <td class="align-middle align-left">
-              <a class="student-name" (click)="getUserDetails(student)">
+            <td class="align-middle" style ="word-break:normal;">
+              <a class="student-name text-center value" (click)="getUserDetails(student)">
                 {{ student.name }} {{ student.lastname }}
               </a>
             </td>

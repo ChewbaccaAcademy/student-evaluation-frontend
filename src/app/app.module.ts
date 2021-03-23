@@ -42,9 +42,7 @@ import { StudentDetailsComponent } from './student-details/student-details.compo
     ReactiveFormsModule,
     RxReactiveFormsModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: UserApiInterceptorService, multi: true }
-  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: UserApiInterceptorService, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
