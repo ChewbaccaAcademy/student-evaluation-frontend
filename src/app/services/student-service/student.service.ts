@@ -1,5 +1,4 @@
 import { Student } from '../../model/student';
-import { HttpRequestInterceptorService } from '../interceptors/http-request-interceptor.service';
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';

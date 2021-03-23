@@ -3,7 +3,6 @@ import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { HttpRequestInterceptorService } from './interceptors/http-request-interceptor.service';
 import { AuthService } from './auth-service.service';
 
 const URL = 'https://team-three-backend.herokuapp.com';
