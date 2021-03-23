@@ -93,7 +93,7 @@ export class EvaluateStudentComponent implements OnInit {
   }
 
   submitForm() {
-    var studentEvaluationForm: EvaluationPost = {
+    const studentEvaluationForm: EvaluationPost = {
       stream: this.stream.value,
       communication: this.communication.value,
       learnAbility: this.abilityToLearn.value,
@@ -107,7 +107,7 @@ export class EvaluateStudentComponent implements OnInit {
           this.toastr.success('Evaluation was successfully submited!', 'Success', { positionClass: 'toast-bottom-center' });
           this.router.navigate(['/main']);
         } else {
-          this.toastr.error(response, 'Error', { positionClass: 'toast-bottom-center' });
+          this.toastr.error('Please check your input fields', 'Error', { positionClass: 'toast-bottom-center' });
         }
   }); 
   }
