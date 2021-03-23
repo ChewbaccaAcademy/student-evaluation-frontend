@@ -1,8 +1,9 @@
 import { Student } from '../../model/student';
-import { UserApiInterceptorService } from './../interceptors/user-api-interceptor.service';
+import { HttpRequestInterceptorService } from '../interceptors/http-request-interceptor.service';
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { AuthService } from '../auth-service.service';
 
 const URL = 'https://team-three-backend.herokuapp.com';
 
@@ -11,12 +12,9 @@ const URL = 'https://team-three-backend.herokuapp.com';
 })
 export class StudentService {
   private putAndPostHttpClient: HttpClient;
-  private reqHeader: HttpHeaders = new HttpHeaders({
-    Authorization: 'Bearer ' + this.userApiInterceptorService.getSessionToken(),
-  });
+  private reqHeader: HttpHeaders = new HttpHeaders({ 'Access-Control-Allow-Origin': '*', 'Authorization': 'Bearer ' + this.authService.getSessionToken() });
 
-
-  constructor(private httpClient: HttpClient, private httpBackend: HttpBackend, private userApiInterceptorService: UserApiInterceptorService) {
+  constructor(private httpClient: HttpClient, private httpBackend: HttpBackend, private authService: AuthService) {
     this.putAndPostHttpClient = new HttpClient(httpBackend);
   }
 
@@ -29,10 +27,10 @@ export class StudentService {
   }
 
   addStudent(student: FormData): Observable<Student> {
-    return this.putAndPostHttpClient.post<Student>(`${URL}/student`, student, { headers: this.reqHeader });
+    return this.putAndPostHttpClient.post<Student>(`${URL}/student`, student);
   }
 
   updateStudent(student: Student): Observable<Student> {
-    return this.putAndPostHttpClient.put<Student>(`${URL}/student/${student.id}`, student, { headers: this.reqHeader });
+    return this.putAndPostHttpClient.put<Student>(`${URL}/student/${student.id}`, student);
   }
 }
