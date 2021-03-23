@@ -25,7 +25,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     StudentListComponent,
     MainWindowFormComponent,
     NavbarComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,9 +40,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     ReactiveFormsModule,
     RxReactiveFormsModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: UserApiInterceptorService, multi: true }
-  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: UserApiInterceptorService, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

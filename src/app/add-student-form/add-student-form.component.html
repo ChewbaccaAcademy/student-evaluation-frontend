@@ -1,5 +1,5 @@
 
-<div class="container-fluid" style =" margin-top: 50px;">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8">
       <form [formGroup]="studentForm">
@@ -79,7 +79,16 @@
 	  </div>
 	  	<div class="col-md-4">
         <div class="borderbox"><div class="boxImg" style="background-image: url({{imageSrc}}) "></div>
-        <button class="btn btn-outline-secondary float-right" [disabled] = "!studentForm.valid" style = "margin-top: 50px; align-content: center;" (click)="submitForm()">Add student</button>
-  	</div>
+        <button class="btn btn-outline-secondary float-right" style = "margin-top: 5px; align-content: center;" (click)="clearPhoto()">Remove Photo</button>  
+  	</div>  
 	</div>
+  </div>
+  <div class="row">
+     <div class="col-md-12 text-center">
+      <button class="btn btn-outline-secondary "
+      style="margin-top: 50px;"
+      [disabled] = "!studentForm.valid" 
+      (click)="submitForm()">Add student</button>
+    </div>
+  </div>
 </div>

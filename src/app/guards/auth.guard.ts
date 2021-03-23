@@ -3,10 +3,9 @@ import { CanActivate, Router } from '@angular/router';
 import { UserApiInterceptorService } from '../services/interceptors/user-api-interceptor.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-
   constructor(private router: Router, private userApiInterceptorService: UserApiInterceptorService) {}
 
   canActivate() {
@@ -17,5 +16,4 @@ export class AuthGuard implements CanActivate {
       return true;
     }
   }
-
 }

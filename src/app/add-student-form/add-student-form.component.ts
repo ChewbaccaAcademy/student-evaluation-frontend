@@ -13,7 +13,7 @@ import { StudentService } from '../services/student-service/student.service';
 export class AddStudentFormComponent implements OnInit {
   @ViewChild('inputFile')
   myInputVariable: ElementRef;
-  imageSrc: string;
+  imageSrc = '/assets/imgnotfound.png';
   public studentForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
@@ -26,13 +26,13 @@ export class AddStudentFormComponent implements OnInit {
       name: [
         '',
         {
-          validators: [Validators.required, RxwebValidators.alpha()]   
+          validators: [Validators.required, RxwebValidators.alpha()],
         },
       ],
       lastname: [
         '',
         {
-          validators: [Validators.required, RxwebValidators.alpha()]
+          validators: [Validators.required, RxwebValidators.alpha()],
         },
       ],
       university: [''],
@@ -53,13 +53,14 @@ export class AddStudentFormComponent implements OnInit {
       formData.append('student', new Blob([JSON.stringify(this.studentForm.value)], { type: 'application/json' }));
       formData.append('image', this.studentForm.get('fileSource').value);
       this.studentService.addStudent(formData).subscribe(
-        () => this.toastr.success('Student was added', 'Success', { positionClass: 'toast-bottom-center' }),
+        () => {
+          this.toastr.success('Student was added', 'Success', { positionClass: 'toast-bottom-center' });
+          this.studentForm.reset();
+          this.myInputVariable.nativeElement.value = '';
+          this.imageSrc = '/assets/imgnotfound.png';
+        },
         () => this.toastr.error('Student was not added', 'Error', { positionClass: 'toast-bottom-center' }),
       );
-
-      this.studentForm.reset();
-      this.myInputVariable.nativeElement.value = '';
-      this.imageSrc = '';
     } else {
       this.toastr.error('Student was not added. Check your inputs', 'Error', { positionClass: 'toast-bottom-center' });
     }
@@ -77,6 +78,11 @@ export class AddStudentFormComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       document.getElementById('uploadImg').style.display = 'inline';
     }
+  }
+
+  clearPhoto() {
+    this.imageSrc = '/assets/imgnotfound.png';
+    this.myInputVariable.nativeElement.value = '';
   }
 
   get name() {

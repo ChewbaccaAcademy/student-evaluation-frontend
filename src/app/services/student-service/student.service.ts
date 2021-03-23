@@ -11,7 +11,9 @@ const URL = 'https://team-three-backend.herokuapp.com';
 })
 export class StudentService {
   private httpClient: HttpClient;
-  private reqHeader: HttpHeaders = new HttpHeaders({ 'Authorization': 'Bearer '+this.userApiInterceptorService.getSessionToken() });
+  private reqHeader: HttpHeaders = new HttpHeaders({
+    Authorization: 'Bearer ' + this.userApiInterceptorService.getSessionToken(),
+  });
 
   constructor(private httpBackend: HttpBackend, private userApiInterceptorService: UserApiInterceptorService) {
     this.httpClient = new HttpClient(httpBackend);

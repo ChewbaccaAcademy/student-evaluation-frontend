@@ -1,9 +1,11 @@
 
-
 .navbar-brand{
     margin-right: 50px;
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(127deg) brightness(103%) contrast(103%);
 }
 .container {
   padding: 0;
+}
+.navbar-toggler{
+  align-content: right;
 }
