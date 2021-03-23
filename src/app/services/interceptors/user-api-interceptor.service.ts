@@ -1,6 +1,7 @@
 import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { LocalStorageData } from 'src/app/shared/local-storage-data';
 
 @Injectable({
   providedIn: 'root',
@@ -16,15 +17,35 @@ export class UserApiInterceptorService implements HttpInterceptor {
     return next.handle(authReq);
   }
 
-  public setSessionToken(token: string) {
-    localStorage.setItem('token', token);
+  public setAuthData(authData: LocalStorageData) {
+    localStorage.setItem('token', authData.jwt);
+    localStorage.setItem('tokenExpirationDate', authData.date.toString());
+    localStorage.setItem('userRole', authData.role[0]);
+    localStorage.setItem('userId', authData.userId.toString());
+
   }
 
   public getSessionToken(): string {
     return localStorage.getItem('token');
   }
 
-  public removeSessionToken() {
+  public getSessionExpirationDate(): string {
+    return localStorage.getItem('tokenExpirationDate');
+  }
+
+  public getSessionUserRole(): string {
+    return localStorage.getItem('userRole');
+  }
+
+  public getSessionUserId(): string {
+    return localStorage.getItem('userId');
+  }
+
+
+  public removeAuthData() {
     localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpirationDate');
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('userId');
   }
 }

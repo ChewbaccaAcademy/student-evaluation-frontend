@@ -44,7 +44,7 @@ export class LoginService {
   }
 
   logout(): void {
-    this.userApiInterceptorService.removeSessionToken();
+    this.userApiInterceptorService.removeAuthData();
     this.router.navigate(['login']);
   }
 }
