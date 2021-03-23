@@ -1,4 +1,4 @@
-import { Image } from '../model/Image';
+import { Image } from './image';
 
 export interface Student {
   id?: number;
