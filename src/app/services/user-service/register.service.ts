@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, mapTo } from 'rxjs/operators';
-import { User } from './model/user';
+import { User } from 'src/app/model/user';
+
+const URL = 'https://team-three-backend.herokuapp.com';
 
 @Injectable({
   providedIn: 'root',
@@ -34,5 +36,3 @@ export class RegisterService {
       );
   }
 }
-
-const URL = 'https://team-three-backend.herokuapp.com';

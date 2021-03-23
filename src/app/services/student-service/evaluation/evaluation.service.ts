@@ -1,30 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, mapTo } from 'rxjs/operators';
+import { Evaluation } from 'src/app/model/evaluation';
+import { EvaluationPost } from 'src/app/model/evaluationPost';
 
 const URL = 'https://team-three-backend.herokuapp.com';
-
-interface EvaluationPost {
-  id: number;
-  stream?: number;
-  communication?: number;
-  learnAbility?: number;
-  direction?: number;
-  evaluation: number;
-  comment?: string;
-  isActive?: boolean;
-}
-
-interface Evaluation {
-  id: number;
-  stream?: string;
-  communication?: string;
-  learnAbility?: string;
-  direction?: string;
-  evaluation: number;
-  comment?: string;
-  active: boolean;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -44,8 +25,14 @@ export class EvaluationService {
     return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation/${studentId}`);
   }
 
-  postEvaluation(studentId: number, evaluation: EvaluationPost): Observable<Evaluation> {
-    return this.httpClient.post<Evaluation>(`${URL}/student/evaluation/${studentId}`, evaluation);
+  postEvaluation(studentId: number, evaluation: EvaluationPost): any {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+     return this.httpClient.post<Evaluation>(`${URL}/student/evaluation/${studentId}`, evaluation, { headers, responseType: 'text' as 'json' },).pipe(
+      mapTo(true),
+      catchError((error) => {
+        return of(JSON.parse(error.error).message);
+      }),
+    );
   }
 
   updateEvaluation(studentId: number, evaluationId: number, evaluation: EvaluationPost): Observable<Evaluation> {

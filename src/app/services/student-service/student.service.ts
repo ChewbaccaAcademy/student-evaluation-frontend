@@ -1,4 +1,4 @@
-import { Student } from './../user-service/model/student';
+import { Student } from '../../model/student';
 import { UserApiInterceptorService } from './../interceptors/user-api-interceptor.service';
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';

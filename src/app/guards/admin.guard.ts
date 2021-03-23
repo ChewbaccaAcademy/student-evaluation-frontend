@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { UserApiInterceptorService } from 'student-evaluation-frontend/src/app/services/interceptors/user-api-interceptor.service';
+import { UserApiInterceptorService } from '../services/interceptors/user-api-interceptor.service';
 
 @Injectable({
   providedIn: 'root'

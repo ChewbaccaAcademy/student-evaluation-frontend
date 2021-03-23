@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { User } from '../services/user-service/model/user';
+import { User } from 'src/app/model/user';
 import { RegisterService } from '../services/user-service/register.service';
 import { ToastrService } from 'ngx-toastr';
 import { catchError } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { of } from 'rxjs';
 })
 export class RegistrationFormComponent implements OnInit {
   public registrationForm: FormGroup;
-  public streamOptions: string[] = ['Select stream', 'Frontend', 'Backend', 'Testing', 'Project'];
+  public streamOptions: string[] = ['Frontend', 'Backend', 'Testing', 'Project'];
 
   constructor(
     private fb: FormBuilder,
@@ -35,15 +35,18 @@ export class RegistrationFormComponent implements OnInit {
       email: [
         '',
         {
-          validators: [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+          validators: [Validators.required, Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$')],
           updateOn: 'blur',
         },
       ],
-      stream: ['Select stream', [Validators.required, Validators.pattern('^((?!Select stream).)*$')]],
-      password: [
+      stream: [
         '',
-        [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'), Validators.maxLength(50)],
+        {
+          validators: [Validators.required, Validators.pattern('^((?!Select stream).)*$')],
+          updateOn: 'blur',
+        },
       ],
+      password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')]],
     });
   }
 
