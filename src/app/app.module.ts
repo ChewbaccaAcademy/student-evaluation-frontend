@@ -11,10 +11,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { StudentListComponent } from './student-list/student-list.component';
-import { MainWindowFormComponent } from './main-window-form/main-window-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserApiInterceptorService } from './services/interceptors/user-api-interceptor.service';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { EvaluateStudentComponent } from './evaluate-student/evaluate-student.component';
+import { StudentDetailsComponent } from './student-details/student-details.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,10 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     LoginFormComponent,
     RegistrationFormComponent,
     StudentListComponent,
-    MainWindowFormComponent,
     NavbarComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    EvaluateStudentComponent,
+    StudentDetailsComponent,
   ],
   imports: [
     BrowserModule,

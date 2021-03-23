@@ -1,3 +1,5 @@
+import { Image } from '../model/Image';
+
 export interface Student {
   id?: number;
   name: string;
@@ -6,11 +8,4 @@ export interface Student {
   comment?: string;
   image?: Image;
   isActive?: boolean;
-}
-
-export interface Image {
-  id: number;
-  imgByte: string;
-  name: string;
-  type: string;
 }
