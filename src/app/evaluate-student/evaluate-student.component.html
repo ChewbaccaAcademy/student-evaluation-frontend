@@ -55,8 +55,8 @@
                     <p for="direction" style="width: 145px; text-align: left;">Direction*</p>
                     <select formControlName="direction" class="form-control drop-down drop-down-width">
                         <option default value="">Select direction</option>
-                        <option *ngFor="let option of directionOptions" [value]="option.id">
-                            {{ option.name }}
+                        <option *ngFor="let option of directionOptions; let $index = index" [value]="$index">
+                            {{ option }}
                         </option>
                     </select>
                     <div [hidden]="direction.valid || direction.pristine">
@@ -69,8 +69,8 @@
                     <p for="overallEvaluation" style="width: 145px; text-align: left;">Overal evaluation*</p>
                     <select formControlName="overallEvaluation" class="form-control drop-down drop-down-width">
                         <option default value="">Select evaluation</option>
-                        <option *ngFor="let option of overallEvaluationOptions; let $index = index" [value]="$index">
-                            {{ option }}
+                        <option *ngFor="let option of overallEvaluationOptions;" [value]="option.id">
+                            {{ option.name }}
                         </option>
                     </select>
                     <div [hidden]="overallEvaluation.valid || overallEvaluation.pristine">

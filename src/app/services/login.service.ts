@@ -6,8 +6,6 @@ import { UserApiInterceptorService } from './interceptors/user-api-interceptor.s
 
 const URL = 'https://team-three-backend.herokuapp.com';
 
-const HEROKU_URL: string = 'https://team-three-backend.herokuapp.com/';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -23,7 +21,7 @@ export class LoginService {
     this.errorMsg.next('');
     const reqHeader = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.httpClient
-      .post(`${HEROKU_URL}/authenticate`, { email: email, password: password }, { headers: reqHeader, responseType: 'text' })
+      .post(`${URL}/authenticate`, { email: email, password: password }, { headers: reqHeader, responseType: 'text' })
       .subscribe(
         (sd) => {
           this.userApiInterceptorService.setAuthData(JSON.parse(sd));

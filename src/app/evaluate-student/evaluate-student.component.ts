@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { StudentService } from '../services/student-service/student.service';
-import { EvaluationService } from '../services/evaluation/evaluation.service';
 import { Student } from '../model/student';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { EvaluationPost } from '../model/evaluationPost';
 
 @Component({
   selector: 'app-evaluate-student',
@@ -25,24 +28,23 @@ export class EvaluateStudentComponent implements OnInit {
     `Doesn't understand and does nothing about it`,
     `Doesn't understand but asks, tries to learn from mistakes`,
   ];
-  public directionOptions: { id: number; name: string }[] = [
-    { id: 0, name: 'Java' },
-    { id: 1, name: `Angular` },
-    { id: 2, name: `Testing` },
-    { id: 3, name: `Other` },
-  ];
-  public overallEvaluationOptions: string[] = [
-    `1 – not suitable`,
-    `2 – not so good `,
-    `3 – potential to grow`,
-    `4 – strong growth`,
-    `5 – motivated, really good`,
+
+  public directionOptions: string[] = ['Java', 'Angular', 'Testing', 'Other'];
+
+  public overallEvaluationOptions: { id: number; name: string }[] = [
+    { id: 1, name: '1 – not suitable' },
+    { id: 2, name: `2 – not so good` },
+    { id: 3, name: `3 – potential to grow` },
+    { id: 4, name: `4 – strong growth` },
+    { id: 5, name: `5 – motivated, really good` },
   ];
 
   constructor(
     private formBuilder: FormBuilder,
     private studentService: StudentService,
     private evaluationService: EvaluationService,
+    private toastr: ToastrService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -91,10 +93,23 @@ export class EvaluateStudentComponent implements OnInit {
   }
 
   submitForm() {
-    if (this.evaluationForm.valid) {
-      this.evaluationService.addEvaluation(this.student.value, this.evaluationForm.value);
-    }
-    console.log(this.evaluationForm);
+    var studentEvaluationForm: EvaluationPost = {
+      stream: this.stream.value,
+      communication: this.communication.value,
+      learnAbility: this.abilityToLearn.value,
+      direction: this.direction.value,
+      evaluation: this.overallEvaluation.value,
+      comment: this.comment.value,
+    };
+
+    this.evaluationService.postEvaluation(this.student.value, studentEvaluationForm).subscribe((response) => {
+      if (response === true) {
+          this.toastr.success('Evaluation was successfully submited!', 'Success', { positionClass: 'toast-bottom-center' });
+          this.router.navigate(['/main']);
+        } else {
+          this.toastr.error(response, 'Error', { positionClass: 'toast-bottom-center' });
+        }
+  }); 
   }
 
   get student() {

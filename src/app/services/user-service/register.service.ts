@@ -4,8 +4,7 @@ import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, mapTo } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
 
-const LOCAL_URL = 'http://localhost:8080';
-const HEROKU_URL = 'https://team-three-backend.herokuapp.com';
+const URL = 'https://team-three-backend.herokuapp.com';
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +36,3 @@ export class RegisterService {
       );
   }
 }
-
-const URL = 'https://team-three-backend.herokuapp.com';

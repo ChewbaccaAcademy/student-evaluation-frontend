@@ -1,5 +1,5 @@
 export interface EvaluationPost {
-  id: number;
+  id?: number;
   stream?: number;
   communication?: number;
   learnAbility?: number;
