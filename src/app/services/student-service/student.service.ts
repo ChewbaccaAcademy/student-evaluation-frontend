@@ -30,6 +30,6 @@ export class StudentService {
   }
 
   updateStudent(student: Student): Observable<Student> {
-    return this.putAndPostHttpClient.put<Student>(`${URL}/student/${student.id}`, student);
+    return this.putAndPostHttpClient.put<Student>(`${URL}/student/${student.id}`, student, { headers: this.reqHeader });
   }
 }
