@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { UserApiInterceptorService } from '../services/interceptors/user-api-interceptor.service';
+import { AuthService } from '../services/auth-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
 
-  constructor(private router: Router, private userApiInterceptorService: UserApiInterceptorService, private toastr: ToastrService,) {}
+  constructor(private router: Router, private authServce: AuthService, private toastr: ToastrService) {}
 
   canActivate() {
-    if (this.userApiInterceptorService.getSessionToken() != null && this.userApiInterceptorService.getSessionUserRole() != "ADMIN"  ) {
+    if (this.authServce.getSessionToken() != null && this.authServce.getSessionUserRole() != "ADMIN"  ) {
       this.toastr.error('Only Admin can add students', 'Error', { positionClass: 'toast-bottom-center' });
       return false;
-    }else if(this.userApiInterceptorService.getSessionToken() == null){
+    }else if(this.authServce.getSessionToken() == null){
       this.router.navigate(['login']);
       return false;
     }

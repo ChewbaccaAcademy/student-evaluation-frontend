@@ -1,21 +1,12 @@
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { LocalStorageData } from 'src/app/shared/local-storage-data';
+import { LocalStorageData } from '../shared/local-storage-data';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserApiInterceptorService implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const authReq = req.clone({
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.getSessionToken(),
-      }),
-    });
-    return next.handle(authReq);
-  }
+export class AuthService {
+
+  constructor() { }
 
   public setAuthData(authData: LocalStorageData) {
     localStorage.setItem('token', authData.jwt);
@@ -24,6 +15,7 @@ export class UserApiInterceptorService implements HttpInterceptor {
     localStorage.setItem('userId', authData.userId.toString());
 
   }
+
 
   public getSessionToken(): string {
     return localStorage.getItem('token');
