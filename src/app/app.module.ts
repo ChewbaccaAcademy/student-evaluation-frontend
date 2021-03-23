@@ -15,6 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserApiInterceptorService } from './services/interceptors/user-api-interceptor.service';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { EvaluateStudentComponent } from './evaluate-student/evaluate-student.component';
+import { StudentDetailsComponent } from './student-details/student-details.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { EvaluateStudentComponent } from './evaluate-student/evaluate-student.co
     NavbarComponent,
     MainLayoutComponent,
     EvaluateStudentComponent,
+    StudentDetailsComponent,
   ],
   imports: [
     BrowserModule,
