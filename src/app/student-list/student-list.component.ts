@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
+import { AuthService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-student-list',
@@ -11,14 +12,16 @@ import { Student } from '../model/student';
 export class StudentListComponent implements OnInit {
   public students: Student[];
   private fullStudentsList: Student[];
+  public isAdmin: boolean = false;
 
-  constructor(private studentService: StudentService, private sanitizer: DomSanitizer) { }
+  constructor(private studentService: StudentService, private sanitizer: DomSanitizer, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
       this.students = value;
       this.fullStudentsList = value;
     });
+    this.isAdmin = (this.authService.getSessionUserRole() === "ADMIN") ?  true : false;
   }
 
   getImage(student: Student) {
@@ -51,5 +54,5 @@ export class StudentListComponent implements OnInit {
   evaluate(student){
     // Empty for deployment to work
   }
-  
+
 }
