@@ -9,6 +9,9 @@ import { EvaluationService } from '../services/student-service/evaluation/evalua
 import { Evaluation } from '../model/evaluation';
 import { EvaluationPost } from '../model/evaluationPost';
 import { AuthService } from '../services/auth-service.service';
+import domtoimage from 'dom-to-image';
+import * as FileSaver from 'file-saver'
+
 
 @Component({
   selector: 'app-student-details',
@@ -86,4 +89,12 @@ export class StudentDetailsComponent implements OnInit {
       this.loadEvaluations();
     });
   }
+
+  exportCard(studentName: string){
+    domtoimage.toBlob(document.getElementById('student-details'))
+    .then(function (blob) {
+      FileSaver.saveAs(blob, studentName+'.png');
+    });
+  }
+
 }
