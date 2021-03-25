@@ -3,11 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { ParamMap } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
-import { Evaluation, EvaluationDeletable } from '../model/evaluation';
+import { Evaluation } from '../model/evaluation';
 import { EvaluationPost } from '../model/evaluationPost';
 import { AuthService } from '../services/auth-service.service';
 
@@ -21,7 +20,6 @@ export class StudentDetailsComponent implements OnInit {
   evaluationList$: Observable<Evaluation[]>;
   evaluationPost: EvaluationPost;
   studentId: number;
-  // isAdmin: boolean;
 
   public streamOptions: { id: number; name: string }[] = [
     { id: 0, name: 'FE' },
@@ -59,15 +57,12 @@ export class StudentDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.studentId = +params.get('id');
+      this.studentId = +params.get('studentId');
       this.student$ = this.studentService.getStudentById(+this.studentId);
       this.loadEvaluations();
-    })
+    });
   }
-
-
 
   getImage(student: Student) {
     if (student.image) {

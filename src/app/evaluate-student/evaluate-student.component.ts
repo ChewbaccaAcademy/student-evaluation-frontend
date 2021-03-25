@@ -55,7 +55,7 @@ export class EvaluateStudentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('id'))).subscribe(value => {
+    this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('studentId'))).subscribe(value => {
       this.studentId = +value;
     });
 

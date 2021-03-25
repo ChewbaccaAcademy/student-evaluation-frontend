@@ -11,7 +11,3 @@ export interface Evaluation {
   comment?: string;
   active: boolean;
 }
-
-export interface EvaluationDeletable extends Evaluation {
-  isDeletable?: boolean;
-}

@@ -18,9 +18,9 @@ const routes: Routes = [
     path: '', component: MainLayoutComponent, children:
       [{ path: 'students', component: StudentListComponent, canActivate: [AuthGuard] },
       { path: 'add', component: AddStudentFormComponent, canActivate: [AdminGuard] },
-      { path: 'student/:id', component: StudentDetailsComponent, canActivate: [AuthGuard] },
+      { path: 'student/:studentId', component: StudentDetailsComponent, canActivate: [AuthGuard] },
       { path: 'evaluate', component: EvaluateStudentComponent, canActivate: [AuthGuard] },
-      { path: 'evaluate/:id', component: EvaluateStudentComponent, canActivate: [AuthGuard] },
+      { path: 'evaluate/:studentId', component: EvaluateStudentComponent, canActivate: [AuthGuard] },
       ]
   },
   { path: '**', redirectTo: 'students' }

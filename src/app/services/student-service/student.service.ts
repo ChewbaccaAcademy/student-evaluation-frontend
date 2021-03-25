@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-//const URL = 'https://team-three-backend.herokuapp.com';
-
-const URL = 'http://localhost:8080';
+const URL = 'https://team-three-backend.herokuapp.com';
 
 @Injectable({
   providedIn: 'root',

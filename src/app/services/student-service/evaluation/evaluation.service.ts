@@ -2,12 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mapTo } from 'rxjs/operators';
-import { Evaluation, EvaluationDeletable } from 'src/app/model/evaluation';
+import { Evaluation } from 'src/app/model/evaluation';
 import { EvaluationPost } from 'src/app/model/evaluationPost';
 import { AuthService } from '../../auth-service.service';
-//const URL = 'https://team-three-backend.herokuapp.com';
 
-const URL = 'http://localhost:8080';
+const URL = 'https://team-three-backend.herokuapp.com';
 
 @Injectable({
   providedIn: 'root',
@@ -23,17 +22,8 @@ export class EvaluationService {
     return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation/user/${userId}`);
   }
 
-  getAllStudentEvaluations(studentId: number): Observable<EvaluationDeletable[]> {
-    return this.httpClient
-      .get<Evaluation[]>(`${URL}/student/evaluation/${studentId}`)
-      .pipe(
-        map((evaluation: Evaluation[]) =>
-          evaluation.map((post: EvaluationDeletable) => ({
-            ...post,
-            isDeletable: this.authService.getSessionUserId() === post.userId.toString(),
-          })),
-        ),
-      );
+  getAllStudentEvaluations(studentId: number): Observable<Evaluation[]> {
+    return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation/${studentId}`);
   }
 
   postEvaluation(studentId: number, evaluation: EvaluationPost): any {
