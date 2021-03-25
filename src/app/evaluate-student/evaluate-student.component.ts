@@ -86,7 +86,7 @@ export class EvaluateStudentComponent implements OnInit {
       ],
     });
 
-    if (this.studentId) {
+    if (!!this.studentId) {
       this.student.setValue(this.studentId);
       this.student.disable();
     }
@@ -107,7 +107,7 @@ export class EvaluateStudentComponent implements OnInit {
         this.toastr.success('Evaluation was successfully submited!', 'Success', {
           positionClass: 'toast-bottom-center',
         });
-        if (this.studentId) {
+        if (!!this.studentId) {
           this.router.navigate([`/student/${this.studentId}`]);
         } else {
           this.router.navigate(['/main']);
