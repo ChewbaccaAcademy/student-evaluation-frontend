@@ -44,9 +44,7 @@ import { UserEvaluationsComponent } from './user-evaluations/user-evaluations.co
     ReactiveFormsModule,
     RxReactiveFormsModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptorService, multi: true }
-  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptorService, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

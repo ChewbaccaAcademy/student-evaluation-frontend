@@ -12,7 +12,7 @@ import { EvaluationStudent } from 'src/app/model/evaluation-student';
   providedIn: 'root',
 })
 export class EvaluationService {
-  constructor(private httpClient: HttpClient, private authService: AuthService) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
   getAllEvaluations(): Observable<Evaluation[]> {
     return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation`);
@@ -25,7 +25,6 @@ export class EvaluationService {
   getAllUserEvaluationsStudent(): Observable<EvaluationStudent[]> {
     return this.httpClient.get<EvaluationStudent[]>(`${URL}/student/evaluation/user/details`);
   }
-
 
   getAllStudentEvaluations(studentId: number): Observable<Evaluation[]> {
     return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation/${studentId}`);

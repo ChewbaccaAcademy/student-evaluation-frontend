@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 export const streamOptions: string[] = ['FE', 'BE', 'QA', 'Project'];
 export const communicationOptions: string[] = [
   `Is active`,

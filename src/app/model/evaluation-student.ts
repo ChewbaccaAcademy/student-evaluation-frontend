@@ -1,5 +1,5 @@
-import { Evaluation } from "./evaluation";
-import { Student } from "./student";
+import { Evaluation } from './evaluation';
+import { Student } from './student';
 
 export interface EvaluationStudent {
   evaluation?: Evaluation;

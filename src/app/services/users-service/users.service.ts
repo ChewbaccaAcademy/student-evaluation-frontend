@@ -8,10 +8,9 @@ import { URL } from '../../config';
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getAllUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${URL}/users`);
   }
-
 }

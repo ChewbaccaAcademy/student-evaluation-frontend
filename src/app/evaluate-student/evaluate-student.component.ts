@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { EvaluationPost } from '../model/evaluationPost';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import * as evaluationFormGlobals from '../shared/evaluation-form-globals'
+import * as evaluationFormGlobals from '../shared/evaluation-form-globals';
 
 @Component({
   selector: 'app-evaluate-student',
@@ -38,10 +38,10 @@ export class EvaluateStudentComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('studentId'))).subscribe(value => {
+    this.activatedRoute.paramMap.pipe(map((paramMap) => paramMap.get('studentId'))).subscribe((value) => {
       this.studentId = +value;
     });
 
@@ -86,11 +86,10 @@ export class EvaluateStudentComponent implements OnInit {
       ],
     });
 
-    if (!!this.studentId) {
+    if (this.studentId) {
       this.student.setValue(this.studentId);
       this.student.disable();
     }
-
   }
 
   submitForm() {
@@ -105,14 +104,15 @@ export class EvaluateStudentComponent implements OnInit {
 
     this.evaluationService.postEvaluation(this.student.value, studentEvaluationForm).subscribe((response) => {
       if (response) {
-        this.toastr.success('Evaluation was successfully submited!', 'Success', { positionClass: 'toast-bottom-center' });
-        if (!!this.studentId) {
+        this.toastr.success('Evaluation was successfully submited!', 'Success', {
+          positionClass: 'toast-bottom-center',
+        });
+        if (this.studentId) {
           this.router.navigate([`/student/${this.studentId}`]);
         } else {
           this.router.navigate(['/main']);
         }
-      }
-      else {
+      } else {
         this.toastr.error('Please check your input fields', 'Error', { positionClass: 'toast-bottom-center' });
       }
     });

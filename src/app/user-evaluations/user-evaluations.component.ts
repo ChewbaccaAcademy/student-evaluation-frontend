@@ -5,16 +5,14 @@ import { Evaluation } from '../model/evaluation';
 import { EvaluationStudent } from '../model/evaluation-student';
 import { Student } from '../model/student';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
-import * as evaluationFormGlobals from '../shared/evaluation-form-globals'
+import * as evaluationFormGlobals from '../shared/evaluation-form-globals';
 
 @Component({
   selector: 'app-user-evaluations',
   templateUrl: './user-evaluations.component.html',
-  styleUrls: ['./user-evaluations.component.css']
+  styleUrls: ['./user-evaluations.component.css'],
 })
 export class UserEvaluationsComponent implements OnInit {
-
-  public students: Student[];
   public userEvaluations: EvaluationStudent[];
   public streamOptions: string[] = evaluationFormGlobals.streamOptions;
   public communicationOptions: string[] = evaluationFormGlobals.communicationOptions;
@@ -22,13 +20,16 @@ export class UserEvaluationsComponent implements OnInit {
   public directionOptions: string[] = evaluationFormGlobals.directionOptions;
   public overallEvaluationOptions: { id: number; name: string }[] = evaluationFormGlobals.overallEvaluationOptions;
 
-  constructor(private evaluationService: EvaluationService, private toastr: ToastrService, private sanitizer: DomSanitizer) {  }
+  constructor(
+    private evaluationService: EvaluationService,
+    private toastr: ToastrService,
+    private sanitizer: DomSanitizer,
+  ) {}
 
   ngOnInit(): void {
-      this.evaluationService.getAllUserEvaluationsStudent().subscribe(value =>{
+    this.evaluationService.getAllUserEvaluationsStudent().subscribe((value) => {
       this.userEvaluations = value;
-      })
-
+    });
   }
 
   getImage(student: Student) {
@@ -40,15 +41,12 @@ export class UserEvaluationsComponent implements OnInit {
     }
   }
 
-  updateValidation(evaluation: Evaluation){
+  updateValidation(evaluation: Evaluation) {}
 
-  }
-
-  deleteValidation(evaluation: Evaluation, index: number){
-   this.evaluationService.deleteEvaluation(evaluation.id).subscribe(()=>{
-     this.userEvaluations.splice(index, 1);
-     this.toastr.success('Evaluation was deleted', 'Success', { positionClass: 'toast-bottom-center' });
+  deleteValidation(evaluation: Evaluation, index: number) {
+    this.evaluationService.deleteEvaluation(evaluation.id).subscribe(() => {
+      this.userEvaluations.splice(index, 1);
+      this.toastr.success('Evaluation was deleted', 'Success', { positionClass: 'toast-bottom-center' });
     });
   }
-
 }

@@ -14,6 +14,6 @@ export interface Student {
       be?: number;
       qa?: number;
       project?: number;
-    }
-  }
+    };
+  };
 }

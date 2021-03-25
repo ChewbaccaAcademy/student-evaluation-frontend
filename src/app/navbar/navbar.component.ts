@@ -10,15 +10,14 @@ import { AuthService } from '../services/auth-service.service';
 })
 export class NavbarComponent implements OnInit {
   @Input() menuItems: MenuItem[];
-  public isAdmin: boolean = false;
+  public isAdmin = false;
 
   constructor(private loginService: LoginService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    if(this.authService.getSessionUserRole() === "ADMIN"){
+    if (this.authService.getSessionUserRole() === 'ADMIN') {
       this.isAdmin = true;
     }
-
   }
 
   logout() {

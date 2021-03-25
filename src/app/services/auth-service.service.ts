@@ -30,7 +30,6 @@ export class AuthService {
     return localStorage.getItem('userId');
   }
 
-
   public removeAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('tokenExpirationDate');

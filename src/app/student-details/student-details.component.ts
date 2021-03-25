@@ -13,7 +13,7 @@ import { AuthService } from '../services/auth-service.service';
 @Component({
   selector: 'app-student-details',
   templateUrl: './student-details.component.html',
-  styleUrls: ['./student-details.component.css']
+  styleUrls: ['./student-details.component.css'],
 })
 export class StudentDetailsComponent implements OnInit {
   student$: Observable<Student>;
@@ -54,7 +54,7 @@ export class StudentDetailsComponent implements OnInit {
     private evaluationService: EvaluationService,
     private sanitizer: DomSanitizer,
     private auth: AuthService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -73,7 +73,7 @@ export class StudentDetailsComponent implements OnInit {
     }
   }
 
-  loadEvaluations(){
+  loadEvaluations() {
     this.evaluationList$ = this.evaluationService.getAllStudentEvaluations(this.studentId);
   }
 
