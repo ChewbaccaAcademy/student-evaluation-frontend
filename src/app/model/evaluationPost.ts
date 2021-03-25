@@ -1,6 +1,6 @@
 export interface EvaluationPost {
   id?: number;
-  stream?: number;
+  stream: number;
   communication?: number;
   learnAbility?: number;
   direction?: number;

@@ -10,8 +10,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">E-mail</div>
                         </div>
-                        <input class="form-control" id="email" type="email" formControlName="email"
-                            placeholder="E-mail address" />
+                        <input class="form-control" id="email" type="email" formControlName="email"/>
                     </div>
                    
                         <div style="visibility: {{!email.errors?.pattern ? 'hidden': 'visible'}};"  class="text-muted">
@@ -23,12 +22,11 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">Password</div>
                         </div>
-                        <input class="form-control" id="password" type="password" formControlName="password"
-                            placeholder="Password" />
+                        <input class="form-control" id="password" type="password" formControlName="password"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Not signed yet?</label>
+                    <label>Not a registered user?</label>
                     <a routerLink="/register" class="btn btn-link">Register</a>
                     <div class="float-right">
                         <button [disabled]="!loginForm.valid" class="btn btn-primary">

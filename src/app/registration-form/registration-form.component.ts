@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { User } from 'src/app/model/user';
-import { RegisterService } from '../services/user-service/register.service';
+import { RegisterService } from '../services/register-service/register.service';
 import { ToastrService } from 'ngx-toastr';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
