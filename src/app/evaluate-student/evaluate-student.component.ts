@@ -55,7 +55,6 @@ export class EvaluateStudentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('id'))).subscribe(value => {
       this.studentId = +value;
     });
@@ -111,8 +110,8 @@ export class EvaluateStudentComponent implements OnInit {
   submitForm() {
     const studentEvaluationForm: EvaluationPost = {
       stream: this.stream.value,
-      communication: this.communication.value ? this.communication.value : undefined,
-      learnAbility: this.abilityToLearn.value ? this.abilityToLearn.value : undefined,
+      communication: this.communication.value || undefined,
+      learnAbility: this.abilityToLearn.value || undefined,
       direction: this.direction.value,
       evaluation: this.overallEvaluation.value,
       comment: this.comment.value,

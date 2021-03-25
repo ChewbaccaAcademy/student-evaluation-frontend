@@ -99,7 +99,7 @@
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="evaluationList$ | async as evaluationList">
 
           <tr *ngFor="let evaluation of evaluationList">
             <td class="align-middle">
@@ -127,7 +127,7 @@
               <p class="text-center value">{{evaluation.comment}}</p>
             </td>
             <td class="align-middle text-center">
-              <button type="button" class="btn btn-primary" *ngIf="(evaluation.isDeletable || isAdmin)" [disabled]="!evaluation.active"
+              <button type="button" class="btn btn-primary" *ngIf="(isEvaluationDeletable(evaluation))" [disabled]="!evaluation.active"
                 (click)="deleteEvaluation(evaluation)"></button>
 
             </td>

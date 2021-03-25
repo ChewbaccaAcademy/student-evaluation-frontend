@@ -18,10 +18,10 @@ import { AuthService } from '../services/auth-service.service';
 })
 export class StudentDetailsComponent implements OnInit {
   student$: Observable<Student>;
-  evaluationList: EvaluationDeletable[];
+  evaluationList$: Observable<Evaluation[]>;
   evaluationPost: EvaluationPost;
-  studentId: string;
-  isAdmin: boolean;
+  studentId: number;
+  // isAdmin: boolean;
 
   public streamOptions: { id: number; name: string }[] = [
     { id: 0, name: 'FE' },
@@ -59,21 +59,27 @@ export class StudentDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.student$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {
-        this.studentId = params.get('id');
-        this.evaluationService.getAllStudentEvaluations(this.studentId).subscribe((value) => {
-          if (this.auth.getSessionUserRole() === 'ADMIN') {
-            this.evaluationList = value;
-            this.isAdmin = true;
-          } else {
-            this.evaluationList = value.filter((post) => post.active);
-          }
-        });
-        return this.studentService.getStudentById(this.studentId);
-      })
-    );
+    // if (this.auth.getSessionUserRole() === 'ADMIN') {
+    //   this.isAdmin = true;
+    // }
+    // this.student$ = this.route.paramMap.pipe(
+    //   switchMap((params: ParamMap) => {
+    //     this.studentId = params.get('id');
+    //     this.evaluationService.getAllStudentEvaluations(this.studentId).subscribe((value) => {
+    //       this.evaluationList = value;
+    //     });
+    //     return this.studentService.getStudentById(+this.studentId);
+    //   })
+    // );
+
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.studentId = +params.get('id');
+      this.student$ = this.studentService.getStudentById(+this.studentId);
+      this.loadEvaluations();
+    })
   }
+
+
 
   getImage(student: Student) {
     if (student.image) {
@@ -84,9 +90,17 @@ export class StudentDetailsComponent implements OnInit {
     }
   }
 
+  loadEvaluations(){
+    this.evaluationList$ = this.evaluationService.getAllStudentEvaluations(this.studentId);
+  }
+
+  isEvaluationDeletable(evaluation: Evaluation) {
+    return this.auth.getSessionUserRole() === 'ADMIN' || evaluation.userId.toString() === this.auth.getSessionUserId();
+  }
+
   deleteEvaluation(evaluation: Evaluation) {
     this.evaluationService.deleteEvaluation(evaluation.id).subscribe(() => {
-      window.location.reload();
+      this.loadEvaluations();
     });
   }
 }
