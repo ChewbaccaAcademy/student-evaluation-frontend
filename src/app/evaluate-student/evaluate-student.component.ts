@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { EvaluationPost } from '../model/evaluationPost';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import * as evaluationFormGlobals from '../shared/evaluation-form-globals'
 
 @Component({
   selector: 'app-evaluate-student',
@@ -22,28 +23,13 @@ export class EvaluateStudentComponent implements OnInit {
   studentId: number;
 
   public evaluationForm: FormGroup;
-  public streamOptions: string[] = ['FE', 'BE', 'QA', 'Project'];
-  public communicationOptions: string[] = [
-    `Is active`,
-    `Is passive`,
-    `Communicative`,
-    `Prefers written communication over verbal`,
-  ];
-  public abilityToLearnOptions: string[] = [
-    `Is able to adapt to changing topics quickly`,
-    `Doesn't understand but asks, tries to learn from mistakes`,
-    `Doesn't understand and does nothing about it`,
-  ];
+  public streamOptions: string[] = evaluationFormGlobals.streamOptions;
+  public communicationOptions: string[] = evaluationFormGlobals.communicationOptions;
+  public abilityToLearnOptions: string[] = evaluationFormGlobals.abilityToLearnOptions;
 
-  public directionOptions: string[] = ['Java', 'Angular', 'Testing', 'Other'];
+  public directionOptions: string[] = evaluationFormGlobals.directionOptions;
 
-  public overallEvaluationOptions: { id: number; name: string }[] = [
-    { id: 1, name: '1 – not suitable' },
-    { id: 2, name: `2 – not so good` },
-    { id: 3, name: `3 – potential to grow` },
-    { id: 4, name: `4 – strong growth` },
-    { id: 5, name: `5 – motivated, really good` },
-  ];
+  public overallEvaluationOptions: { id: number; name: string }[] = evaluationFormGlobals.overallEvaluationOptions;
 
   constructor(
     private formBuilder: FormBuilder,

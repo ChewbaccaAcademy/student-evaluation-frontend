@@ -15,6 +15,10 @@ export class MainLayoutComponent implements OnInit {
         path: '/students',
         title: 'All Students',
       },
+      {
+        path: '/evaluations',
+        title: 'My Evaluations',
+      },
     ];
   }
 

@@ -9,6 +9,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AdminGuard } from './guards/admin.guard';
 import { EvaluateStudentComponent } from './evaluate-student/evaluate-student.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
+import { UserEvaluationsComponent } from './user-evaluations/user-evaluations.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: 'student/:studentId', component: StudentDetailsComponent, canActivate: [AuthGuard] },
       { path: 'evaluate', component: EvaluateStudentComponent, canActivate: [AuthGuard] },
       { path: 'evaluate/:studentId', component: EvaluateStudentComponent, canActivate: [AuthGuard] },
+      { path: 'evaluations', component: UserEvaluationsComponent, canActivate: [AuthGuard] },
       ]
   },
   { path: '**', redirectTo: 'students' }

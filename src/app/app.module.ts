@@ -16,6 +16,7 @@ import { HttpRequestInterceptorService } from './services/interceptors/http-requ
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { EvaluateStudentComponent } from './evaluate-student/evaluate-student.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
+import { UserEvaluationsComponent } from './user-evaluations/user-evaluations.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { StudentDetailsComponent } from './student-details/student-details.compo
     MainLayoutComponent,
     EvaluateStudentComponent,
     StudentDetailsComponent,
+    UserEvaluationsComponent,
   ],
   imports: [
     BrowserModule,
