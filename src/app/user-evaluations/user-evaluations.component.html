@@ -3,16 +3,8 @@
     <div class="col-auto">
       <table class="table table-striped  ">
         <thead class="thead-dark">
-          <tr>
-            <th scope="col">Photo</th>
-            <th scope="col">Student</th>
-            <th scope="col">Stream</th>
-            <th scope="col">Overal evaluation</th>
-            <th scope="col">Direction</th>
-            <th scope="col">Communication</th>
-            <th scope="col">Ability to learn</th>
-            <th scope="col">Comment</th>
-            <th scope="col">Action</th>
+          <tr >
+            <th scope="col" *ngFor="let name of evaluationTableHeaderNames">{{name}}</th>
           </tr>
         </thead>
         <tbody >

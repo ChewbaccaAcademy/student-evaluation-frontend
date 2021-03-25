@@ -19,6 +19,7 @@ export class UserEvaluationsComponent implements OnInit {
   public abilityToLearnOptions: string[] = evaluationFormGlobals.abilityToLearnOptions;
   public directionOptions: string[] = evaluationFormGlobals.directionOptions;
   public overallEvaluationOptions: { id: number; name: string }[] = evaluationFormGlobals.overallEvaluationOptions;
+  public evaluationTableHeaderNames: string[] =["Photo", "Student","Stream","Overal evaluation","Direction","Communication","Ability to learn","Comment","Action"];
 
   constructor(
     private evaluationService: EvaluationService,
