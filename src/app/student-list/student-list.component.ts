@@ -20,14 +20,14 @@ export class StudentListComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private router: Router,
     private formBuilder: FormBuilder,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
       this.students = value;
       this.fullStudentsList = value;
     });
-}
+  }
 
   getImage(student: Student) {
     if (student.image) {
@@ -53,5 +53,4 @@ export class StudentListComponent implements OnInit {
         .includes(searchValue.toLowerCase());
     });
   }
-
 }
