@@ -2,8 +2,7 @@ import { Student } from '../../model/student';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-
-const URL = 'https://team-three-backend.herokuapp.com';
+import { URL } from '../../config';
 
 @Injectable({
   providedIn: 'root',

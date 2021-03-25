@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './auth-service.service';
-
-const URL = 'https://team-three-backend.herokuapp.com';
+import { URL } from '../config';
 
 @Injectable({
   providedIn: 'root',

@@ -5,8 +5,7 @@ import { catchError, map, mapTo } from 'rxjs/operators';
 import { Evaluation } from 'src/app/model/evaluation';
 import { EvaluationPost } from 'src/app/model/evaluationPost';
 import { AuthService } from '../../auth-service.service';
-
-const URL = 'https://team-three-backend.herokuapp.com';
+import { URL } from '../../../config';
 
 @Injectable({
   providedIn: 'root',
