@@ -5,17 +5,14 @@ import { LocalStorageData } from '../shared/local-storage-data';
   providedIn: 'root',
 })
 export class AuthService {
-
-  constructor() { }
+  constructor() {}
 
   public setAuthData(authData: LocalStorageData) {
     localStorage.setItem('token', authData.jwt);
     localStorage.setItem('tokenExpirationDate', authData.date.toString());
     localStorage.setItem('userRole', authData.role[0]);
     localStorage.setItem('userId', authData.userId.toString());
-
   }
-
 
   public getSessionToken(): string {
     return localStorage.getItem('token');

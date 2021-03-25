@@ -1,19 +1,5 @@
 import { Image } from './image';
 
-// export interface Student {
-//   id?: number;
-//   name: string;
-//   lastname: string;
-//   university?: string;
-//   comment?: string;
-//   image?: Image;
-//   isActive?: boolean;
-//   fe?: number;
-//   be?: number;
-//   qa?: number;
-//   project?: number;
-// }
-
 export interface Student {
   id?: number;
   name: string;

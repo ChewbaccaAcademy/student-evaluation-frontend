@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of, pipe, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
 import { ToastrService } from 'ngx-toastr';
-import { ParamMap, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { EvaluationPost } from '../model/evaluationPost';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-evaluate-student',

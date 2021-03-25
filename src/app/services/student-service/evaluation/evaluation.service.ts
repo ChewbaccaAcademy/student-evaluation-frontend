@@ -6,15 +6,13 @@ import { Evaluation, EvaluationDeletable } from 'src/app/model/evaluation';
 import { EvaluationPost } from 'src/app/model/evaluationPost';
 import { AuthService } from '../../auth-service.service';
 
-//const URL = 'https://team-three-backend.herokuapp.com';
-
-const URL = 'http://localhost:8080';
+const URL = 'https://team-three-backend.herokuapp.com';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EvaluationService {
-  constructor(private httpClient: HttpClient, private authService: AuthService) {}
+  constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
   getAllEvaluations(): Observable<Evaluation[]> {
     return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation`);
@@ -57,7 +55,6 @@ export class EvaluationService {
   }
 
   deleteEvaluation(evaluationId: number): Observable<any> {
-    console.log(evaluationId);
     return this.httpClient.put(`${URL}/student/evaluation/${evaluationId}`, evaluationId);
   }
 }

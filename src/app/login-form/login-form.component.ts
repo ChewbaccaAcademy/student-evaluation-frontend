@@ -12,7 +12,7 @@ export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
   public loginErrorMessage$: Subject<string>;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) {}
+  constructor(private fb: FormBuilder, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.loginErrorMessage$ = this.loginService.errorMsg;

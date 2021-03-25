@@ -1,4 +1,3 @@
-import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
@@ -19,7 +18,7 @@ export class AddStudentFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private studentService: StudentService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.studentForm = this.formBuilder.group({
