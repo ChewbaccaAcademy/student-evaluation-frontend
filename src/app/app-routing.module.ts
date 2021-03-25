@@ -24,7 +24,7 @@ const routes: Routes = [
       { path: 'student/:studentId', component: StudentDetailsComponent, canActivate: [AuthGuard] },
       { path: 'evaluate', component: EvaluateStudentComponent, canActivate: [AuthGuard] },
       { path: 'evaluate/:studentId', component: EvaluateStudentComponent, canActivate: [AuthGuard] },
-      { path: 'evaluations', component: UserEvaluationsComponent, canActivate: [AuthGuard] },
+      { path: 'myevaluations', component: UserEvaluationsComponent, canActivate: [AuthGuard] },
     ],
   },
   { path: '**', redirectTo: 'students' },
