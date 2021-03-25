@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
 import { EvaluationPost } from '../model/evaluationPost';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import * as evaluationFormGlobals from '../shared/evaluation-form-globals';
+import {streamOptions} from '../shared/evaluation-form-globals';
+import {communicationOptions} from '../shared/evaluation-form-globals';
+import {abilityToLearnOptions} from '../shared/evaluation-form-globals';
+import {directionOptions} from '../shared/evaluation-form-globals';
+import {overallEvaluationOptions} from '../shared/evaluation-form-globals';
 
 @Component({
   selector: 'app-evaluate-student',
@@ -23,13 +27,11 @@ export class EvaluateStudentComponent implements OnInit {
   studentId: number;
 
   public evaluationForm: FormGroup;
-  public streamOptions: string[] = evaluationFormGlobals.streamOptions;
-  public communicationOptions: string[] = evaluationFormGlobals.communicationOptions;
-  public abilityToLearnOptions: string[] = evaluationFormGlobals.abilityToLearnOptions;
-
-  public directionOptions: string[] = evaluationFormGlobals.directionOptions;
-
-  public overallEvaluationOptions: { id: number; name: string }[] = evaluationFormGlobals.overallEvaluationOptions;
+  public streamOptions: string[] = streamOptions;
+  public communicationOptions: string[] = communicationOptions;
+  public abilityToLearnOptions: string[] = abilityToLearnOptions;
+  public directionOptions: string[] = directionOptions;
+  public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
 
   constructor(
     private formBuilder: FormBuilder,
