@@ -59,19 +59,7 @@ export class StudentDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // if (this.auth.getSessionUserRole() === 'ADMIN') {
-    //   this.isAdmin = true;
-    // }
-    // this.student$ = this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) => {
-    //     this.studentId = params.get('id');
-    //     this.evaluationService.getAllStudentEvaluations(this.studentId).subscribe((value) => {
-    //       this.evaluationList = value;
-    //     });
-    //     return this.studentService.getStudentById(+this.studentId);
-    //   })
-    // );
-
+   
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.studentId = +params.get('id');
       this.student$ = this.studentService.getStudentById(+this.studentId);
