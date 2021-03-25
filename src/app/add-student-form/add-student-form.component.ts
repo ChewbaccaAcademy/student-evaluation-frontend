@@ -1,7 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { ToastrService } from 'ngx-toastr';
+import { map } from 'rxjs/operators';
 import { StudentService } from '../services/student-service/student.service';
 
 @Component({
@@ -13,15 +15,18 @@ export class AddStudentFormComponent implements OnInit {
   @ViewChild('inputFile')
   myInputVariable: ElementRef;
   imageSrc = '/assets/imgnotfound.png';
+  editMode: boolean = false;
+  studentId: number;
   public studentForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private studentService: StudentService,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.studentForm = this.formBuilder.group({
+     this.studentForm = this.formBuilder.group({
       name: [
         '',
         {
@@ -45,6 +50,25 @@ export class AddStudentFormComponent implements OnInit {
       ],
       fileSource: [null],
     });
+    this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('studentId'))).subscribe(value => {
+      
+      this.studentId = +value;
+    });
+    
+    if (this.studentId != 0) {
+      this.editMode = true;
+      this.studentService.getStudentById(this.studentId).subscribe((student) => {
+        this.studentForm.get('name').setValue(student.name);
+        this.studentForm.get('lastname').setValue(student.lastname);
+        this.studentForm.get('university').setValue(student.university);
+        this.studentForm.get('comment').setValue(student.comment);
+      })
+
+    }
+    console.log(  this.studentId);
+    console.log(  this.editMode);
+   
+
   }
   submitForm() {
     if (this.studentForm.valid) {
