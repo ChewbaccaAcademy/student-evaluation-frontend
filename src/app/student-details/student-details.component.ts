@@ -90,10 +90,10 @@ export class StudentDetailsComponent implements OnInit {
     });
   }
 
-  exportCard(studentName: string){
+  exportCard(student: Student){
     domtoimage.toBlob(document.getElementById('student-details'))
     .then(function (blob) {
-      FileSaver.saveAs(blob, studentName+'.png');
+      FileSaver.saveAs(blob, `${student.name} ${student.lastname}.png`);
     });
   }
 
