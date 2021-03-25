@@ -9,6 +9,11 @@ import { Router } from '@angular/router';
 import { EvaluationPost } from '../model/evaluationPost';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import {streamOptions} from '../shared/evaluation-form-globals';
+import {communicationOptions} from '../shared/evaluation-form-globals';
+import {abilityToLearnOptions} from '../shared/evaluation-form-globals';
+import {directionOptions} from '../shared/evaluation-form-globals';
+import {overallEvaluationOptions} from '../shared/evaluation-form-globals';
 
 @Component({
   selector: 'app-evaluate-student',
@@ -22,28 +27,11 @@ export class EvaluateStudentComponent implements OnInit {
   studentId: number;
 
   public evaluationForm: FormGroup;
-  public streamOptions: string[] = ['FE', 'BE', 'QA', 'Project'];
-  public communicationOptions: string[] = [
-    `Is active`,
-    `Is passive`,
-    `Communicative`,
-    `Prefers written communication over verbal`,
-  ];
-  public abilityToLearnOptions: string[] = [
-    `Is able to adapt to changing topics quickly`,
-    `Doesn't understand but asks, tries to learn from mistakes`,
-    `Doesn't understand and does nothing about it`,
-  ];
-
-  public directionOptions: string[] = ['Java', 'Angular', 'Testing', 'Other'];
-
-  public overallEvaluationOptions: { id: number; name: string }[] = [
-    { id: 1, name: '1 – not suitable' },
-    { id: 2, name: `2 – not so good` },
-    { id: 3, name: `3 – potential to grow` },
-    { id: 4, name: `4 – strong growth` },
-    { id: 5, name: `5 – motivated, really good` },
-  ];
+  public streamOptions: string[] = streamOptions;
+  public communicationOptions: string[] = communicationOptions;
+  public abilityToLearnOptions: string[] = abilityToLearnOptions;
+  public directionOptions: string[] = directionOptions;
+  public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -52,10 +40,10 @@ export class EvaluateStudentComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('studentId'))).subscribe(value => {
+    this.activatedRoute.paramMap.pipe(map((paramMap) => paramMap.get('studentId'))).subscribe((value) => {
       this.studentId = +value;
     });
 
@@ -104,7 +92,6 @@ export class EvaluateStudentComponent implements OnInit {
       this.student.setValue(this.studentId);
       this.student.disable();
     }
-
   }
 
   submitForm() {
@@ -119,14 +106,15 @@ export class EvaluateStudentComponent implements OnInit {
 
     this.evaluationService.postEvaluation(this.student.value, studentEvaluationForm).subscribe((response) => {
       if (response) {
-        this.toastr.success('Evaluation was successfully submited!', 'Success', { positionClass: 'toast-bottom-center' });
+        this.toastr.success('Evaluation was successfully submited!', 'Success', {
+          positionClass: 'toast-bottom-center',
+        });
         if (!!this.studentId) {
           this.router.navigate([`/student/${this.studentId}`]);
         } else {
           this.router.navigate(['/main']);
         }
-      }
-      else {
+      } else {
         this.toastr.error('Please check your input fields', 'Error', { positionClass: 'toast-bottom-center' });
       }
     });

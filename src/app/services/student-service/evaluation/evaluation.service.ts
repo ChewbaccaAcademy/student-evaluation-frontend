@@ -6,12 +6,13 @@ import { Evaluation } from 'src/app/model/evaluation';
 import { EvaluationPost } from 'src/app/model/evaluationPost';
 import { AuthService } from '../../auth-service.service';
 import { URL } from '../../../config';
+import { EvaluationStudent } from 'src/app/model/evaluation-student';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EvaluationService {
-  constructor(private httpClient: HttpClient, private authService: AuthService) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
   getAllEvaluations(): Observable<Evaluation[]> {
     return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation`);
@@ -19,6 +20,10 @@ export class EvaluationService {
 
   getAllUserEvaluations(userId: number): Observable<Evaluation[]> {
     return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation/user/${userId}`);
+  }
+
+  getAllUserEvaluationsStudent(): Observable<EvaluationStudent[]> {
+    return this.httpClient.get<EvaluationStudent[]>(`${URL}/student/evaluation/user/details`);
   }
 
   getAllStudentEvaluations(studentId: number): Observable<Evaluation[]> {

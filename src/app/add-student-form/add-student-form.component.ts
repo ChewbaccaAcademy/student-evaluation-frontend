@@ -18,7 +18,7 @@ export class AddStudentFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastr: ToastrService,
     private studentService: StudentService,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.studentForm = this.formBuilder.group({
