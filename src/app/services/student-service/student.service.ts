@@ -2,14 +2,12 @@ import { Student } from '../../model/student';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-
-const URL = 'https://team-three-backend.herokuapp.com';
+import { URL } from '../../config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StudentService {
-
   constructor(private httpClient: HttpClient) {
   }
 
@@ -18,7 +16,7 @@ export class StudentService {
   }
 
   getStudentById(studentId: number): Observable<Student> {
-    return this.httpClient.get<Student>(`${URL}/student/${studentId}`);
+    return this.httpClient.get<Student>(`${URL}/student/${+studentId}`);
   }
 
   addStudent(student: FormData): Observable<Student> {

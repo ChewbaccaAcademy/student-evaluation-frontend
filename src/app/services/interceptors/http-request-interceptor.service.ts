@@ -4,10 +4,9 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth-service.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HttpRequestInterceptorService implements HttpInterceptor {
-
   constructor(private authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -22,7 +21,7 @@ export class HttpRequestInterceptorService implements HttpInterceptor {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': authorization,
-      })
+      }),
     });
 
     if ((req.method == 'PUT' || req.method == 'POST') && req.url.match('/student')) {
@@ -30,6 +29,4 @@ export class HttpRequestInterceptorService implements HttpInterceptor {
     }
     return next.handle(authReq);
   }
-
-
 }

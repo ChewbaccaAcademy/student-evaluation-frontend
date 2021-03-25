@@ -3,8 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, mapTo } from 'rxjs/operators';
 import { User } from 'src/app/model/user';
-
-const URL = 'https://team-three-backend.herokuapp.com';
+import { URL } from '../../config';
 
 @Injectable({
   providedIn: 'root',

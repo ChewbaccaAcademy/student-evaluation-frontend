@@ -12,7 +12,7 @@ export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
   public loginErrorMessage$: Subject<string>;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) {}
+  constructor(private fb: FormBuilder, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.loginErrorMessage$ = this.loginService.errorMsg;
@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnInit {
       email: [
         '',
         {
-          validators: [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+          validators: [Validators.required, Validators.pattern('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$')],
           updateOn: 'blur',
         },
       ],

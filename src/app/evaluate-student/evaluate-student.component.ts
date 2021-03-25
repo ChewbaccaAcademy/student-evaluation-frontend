@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +7,8 @@ import { EvaluationService } from '../services/student-service/evaluation/evalua
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { EvaluationPost } from '../model/evaluationPost';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-evaluate-student',
@@ -15,18 +17,22 @@ import { EvaluationPost } from '../model/evaluationPost';
 })
 export class EvaluateStudentComponent implements OnInit {
   students: Observable<Student[]>;
+  returnObject$: Observable<any>;
+  isSingleStudent: boolean;
+  studentId: number;
 
   public evaluationForm: FormGroup;
   public streamOptions: string[] = ['FE', 'BE', 'QA', 'Project'];
   public communicationOptions: string[] = [
-    `Is active, communicative`,
+    `Is active`,
     `Is passive`,
+    `Communicative`,
     `Prefers written communication over verbal`,
   ];
   public abilityToLearnOptions: string[] = [
     `Is able to adapt to changing topics quickly`,
-    `Doesn't understand and does nothing about it`,
     `Doesn't understand but asks, tries to learn from mistakes`,
+    `Doesn't understand and does nothing about it`,
   ];
 
   public directionOptions: string[] = ['Java', 'Angular', 'Testing', 'Other'];
@@ -45,12 +51,16 @@ export class EvaluateStudentComponent implements OnInit {
     private evaluationService: EvaluationService,
     private toastr: ToastrService,
     private router: Router,
-  ) {}
+    private activatedRoute: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('studentId'))).subscribe(value => {
+      this.studentId = +value;
+    });
 
     this.students = this.studentService.getAllStudents();
-    
+
     this.evaluationForm = this.formBuilder.group({
       student: [
         '',
@@ -90,26 +100,36 @@ export class EvaluateStudentComponent implements OnInit {
       ],
     });
 
+    if (!!this.studentId) {
+      this.student.setValue(this.studentId);
+      this.student.disable();
+    }
+
   }
 
   submitForm() {
     const studentEvaluationForm: EvaluationPost = {
       stream: this.stream.value,
-      communication: this.communication.value,
-      learnAbility: this.abilityToLearn.value,
+      communication: this.communication.value || undefined,
+      learnAbility: this.abilityToLearn.value || undefined,
       direction: this.direction.value,
       evaluation: this.overallEvaluation.value,
       comment: this.comment.value,
     };
 
     this.evaluationService.postEvaluation(this.student.value, studentEvaluationForm).subscribe((response) => {
-      if (response === true) {
-          this.toastr.success('Evaluation was successfully submited!', 'Success', { positionClass: 'toast-bottom-center' });
-          this.router.navigate(['/main']);
+      if (response) {
+        this.toastr.success('Evaluation was successfully submited!', 'Success', { positionClass: 'toast-bottom-center' });
+        if (!!this.studentId) {
+          this.router.navigate([`/student/${this.studentId}`]);
         } else {
-          this.toastr.error('Please check your input fields', 'Error', { positionClass: 'toast-bottom-center' });
+          this.router.navigate(['/main']);
         }
-  }); 
+      }
+      else {
+        this.toastr.error('Please check your input fields', 'Error', { positionClass: 'toast-bottom-center' });
+      }
+    });
   }
 
   get student() {

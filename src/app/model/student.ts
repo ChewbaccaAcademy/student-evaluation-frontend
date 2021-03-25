@@ -8,4 +8,12 @@ export interface Student {
   comment?: string;
   image?: Image;
   isActive?: boolean;
+  averageEvaluationDetails: {
+    streamOverall: {
+      fe?: number;
+      be?: number;
+      qa?: number;
+      project?: number;
+    }
+  }
 }

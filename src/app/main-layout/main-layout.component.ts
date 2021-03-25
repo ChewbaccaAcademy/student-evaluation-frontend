@@ -12,10 +12,6 @@ export class MainLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.menuItems = [
       {
-        path: '/main',
-        title: 'Main',
-      },
-      {
         path: '/students',
         title: 'All Students',
       },

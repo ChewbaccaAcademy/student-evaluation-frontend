@@ -1,9 +1,3 @@
-.btn-outline-secondary:disabled {
-  border-color: black;
-  background-color: rgb(230, 0, 0);
-  color: white;
-}
-
 .ng-dirty:not(form).ng-invalid:not(.dropdown) {
   border: 2px solid red;
 }

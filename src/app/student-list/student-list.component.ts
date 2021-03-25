@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
+import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-student-list',
@@ -11,8 +13,10 @@ import { Student } from '../model/student';
 export class StudentListComponent implements OnInit {
   public students: Student[];
   private fullStudentsList: Student[];
-
-  constructor(private studentService: StudentService, private sanitizer: DomSanitizer) { }
+  constructor(
+    private studentService: StudentService,
+    private sanitizer: DomSanitizer,
+  ) { }
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
@@ -45,11 +49,4 @@ export class StudentListComponent implements OnInit {
         .includes(searchValue.toLowerCase());
     });
   }
-  getUserDetails(student) {
-    // Empty for deployment to work
-  }
-  evaluate(student){
-    // Empty for deployment to work
-  }
-  
 }

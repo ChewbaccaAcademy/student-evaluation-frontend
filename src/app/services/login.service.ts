@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './auth-service.service';
-
-const URL = 'https://team-three-backend.herokuapp.com';
+import { URL } from '../config';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +12,6 @@ const URL = 'https://team-three-backend.herokuapp.com';
 export class LoginService {
   public errorMsg: BehaviorSubject<string> = new BehaviorSubject('');
   private httpClient: HttpClient;
-
   constructor(private httpBackend: HttpBackend, private router: Router, private toastr: ToastrService, private authService: AuthService) {
     this.httpClient = new HttpClient(httpBackend);
   }
