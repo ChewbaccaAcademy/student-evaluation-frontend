@@ -48,7 +48,7 @@ import { HttpResponseInterceptorService } from './services/interceptors/http-res
     RxReactiveFormsModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass:  HttpRequestInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent],
