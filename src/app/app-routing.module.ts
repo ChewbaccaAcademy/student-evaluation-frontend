@@ -20,8 +20,8 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: 'students', component: StudentListComponent, canActivate: [AuthGuard] },
-      { path: 'add', component: AddStudentFormComponent, canActivate: [AdminGuard] },
-      { path: 'edit/:studentId', component: AddStudentFormComponent, canActivate: [AdminGuard] },
+      { path: 'add', component: AddStudentFormComponent,  },
+      { path: 'edit/:studentId', component: AddStudentFormComponent, },
       { path: 'student/:studentId', component: StudentDetailsComponent, canActivate: [AuthGuard] },
       { path: 'evaluate', component: EvaluateStudentComponent, canActivate: [AuthGuard] },
       { path: 'evaluate/:studentId', component: EvaluateStudentComponent, canActivate: [AuthGuard] },

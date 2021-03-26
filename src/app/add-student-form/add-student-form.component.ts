@@ -6,6 +6,7 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Image } from '../model/image';
 import { Student } from '../model/student';
 import { StudentService } from '../services/student-service/student.service';
 
@@ -21,6 +22,8 @@ export class AddStudentFormComponent implements OnInit {
   editMode: boolean = false;
   studentId: number;
   student$: Observable<Student>;
+  test: string = "1";
+  image: Image;
 
   public studentForm: FormGroup;
   constructor(
@@ -36,13 +39,13 @@ export class AddStudentFormComponent implements OnInit {
       name: [
         '',
         {
-          validators: [Validators.required, RxwebValidators.alpha()],
+          validators: [ Validators.pattern('^[^0-9]+$'),Validators.required],
         },
       ],
       lastname: [
         '',
         {
-          validators: [Validators.required, RxwebValidators.alpha()],
+          validators: [  Validators.pattern('^[^0-9]+$'), Validators.required],
         },
       ],
       university: [''],
@@ -59,18 +62,24 @@ export class AddStudentFormComponent implements OnInit {
     this.activatedRoute.paramMap.pipe(map(paramMap => paramMap.get('studentId'))).subscribe(value => {
       this.studentId = +value;
       this.loadStudent();
-    }, () => {
-
-      
-    }, () => { this.loadStudent() });
-    
-  
-    console.log(  this.studentId);
-    console.log(this.editMode);
-    console.log(this.imageSrc);
-   
+    });  
 
   }
+  loadStudent() {
+      if (!!this.studentId) {
+      this.editMode = true;
+      this.studentService.getStudentById(this.studentId).subscribe((student) => {
+        this.studentForm.get('name').setValue(student.name);
+        this.studentForm.get('lastname').setValue(student.lastname);
+        this.studentForm.get('university').setValue(student.university);
+        this.studentForm.get('comment').setValue(student.comment);
+        this.imageSrc = this.getImage(student);
+        console.log(this.imageSrc);
+      });
+    }
+  }
+
+
   submitForm() {
     console.log("submit");
     if (this.studentForm.valid) {
@@ -148,25 +157,6 @@ export class AddStudentFormComponent implements OnInit {
   get file() {
     return this.studentForm.get('file');
   }
-  loadStudent() {
-      if (this.studentId != 0) {
-      this.editMode = true;
-      this.studentService.getStudentById(this.studentId).subscribe((student) => {
-        this.studentForm.get('name').setValue(student.name);
-        this.studentForm.get('lastname').setValue(student.lastname);
-        this.studentForm.get('university').setValue(student.university);
-        this.studentForm.get('comment').setValue(student.comment);
-        
-      });
-        
-      
-
-    }
-    
-  }
-
-
-
 
   getImage(student: Student) {
     if (student.image) {

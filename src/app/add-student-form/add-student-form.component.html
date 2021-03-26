@@ -14,7 +14,7 @@
                 />
                 <ng-container >
                   <div class="text-muted" *ngIf="name.errors?.required && name.touched" >Name is required. </div>
-                  <div class="text-muted" *ngIf="name.errors?.alpha" >Name should only contain letters. </div>
+                  <div class="text-muted" *ngIf="name.errors?.pattern" >Name should only contain letters. </div>
                     
                 </ng-container>
               </div>
@@ -29,8 +29,8 @@
                       formControlName="lastname"
                     />
                       <ng-container *ngIf="lastname.touched ">
-                        <div  class="text-muted" *ngIf="lastname.errors?.alpha" >Last name should only contain letters. </div>
-                        <div  class="text-muted" *ngIf="lastname.errors?.required" >Last name is required. </div>
+                        <div  class="text-muted" *ngIf="lastname.errors?.pattern" >Last name should only contain letters. </div>
+                        <div  class="text-muted" *ngIf="lastname.errors?.required && name.touched" >Last name is required. </div>
                 </ng-container>
               </div>
             </div>
@@ -77,10 +77,12 @@
             </div>
     </form> 
 	  </div>
-	  	<div class="col-md-4">
-        <div class="borderbox"><div class="boxImg"  style="background-image: url({{imageSrc}}) "></div>
-        <button class="btn btn-outline-secondary float-right" style = "margin-top: 5px; align-content: center;" (click)=" clearPhoto() ">Remove Photo</button>  
-  	</div>  
+	  	<div class="col-md-4 text-center">
+        <div>
+        <img  [src]="imageSrc"/>
+        </div>
+        <button class="btn btn-outline-secondary" style = "margin-top: 5px;" (click)=" clearPhoto() ">Remove Photo</button>  
+      </div>  
 	</div>
   </div>
   <div class="row">
@@ -91,4 +93,3 @@
       (click)="editMode ?  updateStudent() :  submitForm() ">{{editMode ?   'Update student' :'Add student'}} </button>
     </div>
   </div>
-</div>
