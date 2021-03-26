@@ -23,7 +23,7 @@ export class StudentService {
     return this.httpClient.post<Student>(`${URL}/student`, student);
   }
 
-  updateStudent(student: Student): Observable<Student> {
-    return this.httpClient.put<Student>(`${URL}/student/${student.id}`, student);
+  updateStudent(formData: FormData, id: number): Observable<Student> {
+    return this.httpClient.put<Student>(`${URL}/student/${id}`, formData);
   }
 }

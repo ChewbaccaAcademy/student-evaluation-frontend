@@ -78,8 +78,8 @@
     </form> 
 	  </div>
 	  	<div class="col-md-4">
-        <div class="borderbox"><div class="boxImg" style="background-image: url({{imageSrc}}) "></div>
-        <button class="btn btn-outline-secondary float-right" style = "margin-top: 5px; align-content: center;" (click)="clearPhoto()">Remove Photo</button>  
+        <div class="borderbox"><div class="boxImg"  style="background-image: url({{imageSrc}}) "></div>
+        <button class="btn btn-outline-secondary float-right" style = "margin-top: 5px; align-content: center;" (click)=" clearPhoto() ">Remove Photo</button>  
   	</div>  
 	</div>
   </div>
@@ -88,7 +88,7 @@
       <button class="btn btn-outline-secondary "
       style="margin-top: 50px;"
       [disabled] = "!studentForm.valid" 
-      (click)="submitForm()">Add student</button>
+      (click)="editMode ?  updateStudent() :  submitForm() ">{{editMode ?   'Update student' :'Add student'}} </button>
     </div>
   </div>
 </div>
