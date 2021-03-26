@@ -71,7 +71,7 @@ li img {
   border-radius: 50%;
 }
 
-li strong {
+li span {
   position: relative;
   align-self: center;
   margin-left: 20px;
@@ -81,4 +81,11 @@ li strong {
 div.autocomplete {
   padding-left: 10px;
   cursor: pointer;
+}
+
+.truncate {
+  white-space:pre;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  max-width: auto;
 }

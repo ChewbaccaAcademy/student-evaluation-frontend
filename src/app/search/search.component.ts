@@ -1,6 +1,6 @@
 import { SearchService } from './../services/search/search.service';
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { Student } from '../model/student';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
@@ -13,7 +13,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit {
   inputForm = new FormControl();
-  resultStudentList: Array<Student | any>;
+  resultStudentList$: Observable<Student[]>;
+  query: string;
 
   constructor(
     private searchService: SearchService,
@@ -34,29 +35,27 @@ export class SearchComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   clickout(event: { target: any }) {
     if (!this.searchComponentRef.nativeElement.contains(event.target)) {
-      this.resultStudentList = null;
+      this.clearList();
     }
   }
 
   searchStudentSource(query: string): void {
+    this.query = query;
     if (query.length > 2) {
-      this.enableSearch(query).subscribe((dataSource) => {
-        this.doStudentSearch(dataSource);
-      });
+      this.resultStudentList$ = this.searchService.searchStudent(query);
     } else {
-      this.resultStudentList = null;
+      this.clearList();
     }
   }
 
-  enableSearch(value: string): Observable<Student[]> {
-    return this.searchService.searchStudent(value);
-  }
-
-  private doStudentSearch(students: Array<Student>): void {
-    this.resultStudentList = [];
-    for (const student of students) {
-      this.resultStudentList.push(student);
-    }
+  getStudentName(student: Student): string {
+    const parts = this.query.split(' ').filter(part => !!part);
+    let studentName = student.name + ' ' + student.lastname;
+    parts.forEach(item => {
+      const expression = new RegExp(item, 'ig');
+      studentName = studentName.replace(expression, `<strong>${studentName.match(expression)[0]}</strong>`);
+    });
+    return studentName;
   }
 
   getImage(student: Student) {
@@ -70,6 +69,10 @@ export class SearchComponent implements OnInit {
 
   openStudent(): void {
     this.inputForm.setValue('');
-    this.resultStudentList = null;
+    this.clearList();
+  }
+
+  private clearList(): void {
+    this.resultStudentList$ = EMPTY;
   }
 }
