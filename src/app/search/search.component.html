@@ -1,12 +1,12 @@
 <input type="text" class="form-control" maxlength="512" placeholder="Search..." [formControl]="inputForm"/>
 <div class="autocomplete">
-  <ul *ngIf="resultDataList?.length > 0">
-    <li *ngFor="let result of resultDataList" (click)="openStudent()" [routerLink]="['/student', result?.id]">
-      <img [src]='getImage(result)'>
-      <div [innerHTML]='result?.name + " " + result?.lastname'></div>
+  <ul *ngIf="resultStudentList?.length > 0">
+    <li *ngFor="let student of resultStudentList" (click)="openStudent()" [routerLink]="['/student', student?.id]">
+      <img [src]='getImage(student)'>
+      <strong [innerHTML]='student?.name + " " + student?.lastname'></strong>
     </li>
   </ul>
-  <ul *ngIf="resultDataList?.length === 0">
+  <ul *ngIf="resultStudentList?.length === 0">
     <li>No results found.</li>
   </ul>
 </div>

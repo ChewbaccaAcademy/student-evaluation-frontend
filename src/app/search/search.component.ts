@@ -13,7 +13,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit {
   inputForm = new FormControl();
-  resultDataList: Array<Student | any>;
+  resultStudentList: Array<Student | any>;
 
   constructor(
     private searchService: SearchService,
@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   clickout(event: { target: any }) {
     if (!this.searchComponentRef.nativeElement.contains(event.target)) {
-      this.resultDataList = null;
+      this.resultStudentList = null;
     }
   }
 
@@ -44,7 +44,7 @@ export class SearchComponent implements OnInit {
         this.doStudentSearch(dataSource);
       });
     } else {
-      this.resultDataList = null;
+      this.resultStudentList = null;
     }
   }
 
@@ -52,18 +52,10 @@ export class SearchComponent implements OnInit {
     return this.searchService.searchStudent(value);
   }
 
-  private doStudentSearch(dataArray: Array<Student>): void {
-    this.resultDataList = [];
-    for (const element of dataArray) {
-      this.resultDataList.push(element);
-    }
-
-    for (const element of this.resultDataList) {
-      const feature = element;
-      let updatedText: string;
-      if (this.resultDataList.length > 0) {
-        updatedText = feature.name.replace('<strong>' + feature?.name + ' ' + feature?.lastname + '</strong>');
-      }
+  private doStudentSearch(students: Array<Student>): void {
+    this.resultStudentList = [];
+    for (const student of students) {
+      this.resultStudentList.push(student);
     }
   }
 
@@ -76,12 +68,8 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  closeSearch(): void {
-    this.resultDataList = null;
-  }
-
   openStudent(): void {
     this.inputForm.setValue('');
-    this.resultDataList = null;
+    this.resultStudentList = null;
   }
 }
