@@ -1,0 +1,63 @@
+<div class="container text-shrink">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <table class="table table-striped  ">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" *ngFor="let name of evaluationTableHeaderNames">{{name}}</th>
+          </tr>
+        </thead>
+        <tbody >
+          <tr *ngFor="let evaluation of userEvaluations; let j = index">
+            <th class="align-middle text-center">
+              <img class="test"
+                [src]="getImage(evaluation.student)"
+                height="90px"
+              />
+            </th>
+            <td class="align-middle" style ="word-break:normal;">
+              <a href="" [routerLink]="['/student', evaluation.student.id]">{{evaluation.student.name}} {{evaluation.student.lastname}}</a>
+            </td>
+            <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.stream}}</p></td>
+            <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.evaluation}}</p></td>
+            <td class="align-middle"><p class="text-center value">{{directionOptions[evaluation.evaluation.direction]}}</p></td>
+            <td class="align-middle"><p class="text-center value">{{communicationOptions[evaluation.evaluation.communication]}}</p></td>
+            <td class="align-middle"><p class="text-center value">{{abilityToLearnOptions[evaluation.evaluation.learnAbility]}}</p></td>
+            <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.comment}}</p></td>
+            <td class="align-middle text-center">
+              <button type="button" class="btn btn-primary user-choice" (click)="updateValidation(evaluation.evaluation)" >Update</button>
+
+             <button type="button" class="btn btn-danger user-choice" data-toggle="modal"  [attr.data-target]="'#deleteConfirmationModal'+j" >
+                Delete
+              </button>
+
+              <div class="modal fade" [attr.id]="'deleteConfirmationModal'+j" tabindex="-1" role="dialog" [attr.aria-labelledby]="'deleteConfirmationModal'+j" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" [attr.id]="'deleteConfirmationModalLabel'+j">Attention!!!</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to delete this evaluation?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-danger" (click)="deleteValidation(evaluation.evaluation, j)" data-dismiss="modal">Yes, delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

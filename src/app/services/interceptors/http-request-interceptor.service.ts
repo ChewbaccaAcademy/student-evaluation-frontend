@@ -15,7 +15,7 @@ export class HttpRequestInterceptorService implements HttpInterceptor {
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*',
         'Authorization': authorization,
-      })
+      }),
     });
     const authReq = req.clone({
       headers: new HttpHeaders({

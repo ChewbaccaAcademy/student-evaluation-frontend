@@ -9,11 +9,14 @@ import { EvaluationService } from '../services/student-service/evaluation/evalua
 import { Evaluation } from '../model/evaluation';
 import { EvaluationPost } from '../model/evaluationPost';
 import { AuthService } from '../services/auth-service.service';
+import domtoimage from 'dom-to-image';
+import * as FileSaver from 'file-saver'
+
 
 @Component({
   selector: 'app-student-details',
   templateUrl: './student-details.component.html',
-  styleUrls: ['./student-details.component.css']
+  styleUrls: ['./student-details.component.css'],
 })
 export class StudentDetailsComponent implements OnInit {
   student$: Observable<Student>;
@@ -54,7 +57,7 @@ export class StudentDetailsComponent implements OnInit {
     private evaluationService: EvaluationService,
     private sanitizer: DomSanitizer,
     private auth: AuthService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -73,7 +76,7 @@ export class StudentDetailsComponent implements OnInit {
     }
   }
 
-  loadEvaluations(){
+  loadEvaluations() {
     this.evaluationList$ = this.evaluationService.getAllStudentEvaluations(this.studentId);
   }
 
@@ -86,4 +89,12 @@ export class StudentDetailsComponent implements OnInit {
       this.loadEvaluations();
     });
   }
+
+  exportCard(student: Student){
+    domtoimage.toBlob(document.getElementById('student-details'))
+    .then(function (blob) {
+      FileSaver.saveAs(blob, `${student.name} ${student.lastname}.png`);
+    });
+  }
+
 }

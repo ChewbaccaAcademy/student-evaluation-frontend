@@ -12,7 +12,12 @@ import { URL } from '../config';
 export class LoginService {
   public errorMsg: BehaviorSubject<string> = new BehaviorSubject('');
   private httpClient: HttpClient;
-  constructor(private httpBackend: HttpBackend, private router: Router, private toastr: ToastrService, private authService: AuthService) {
+  constructor(
+    private httpBackend: HttpBackend,
+    private router: Router,
+    private toastr: ToastrService,
+    private authService: AuthService,
+  ) {
     this.httpClient = new HttpClient(httpBackend);
   }
 
