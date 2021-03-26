@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 import { EvaluationPost } from '../model/evaluationPost';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import {streamOptions} from '../shared/evaluation-form-globals';
-import {communicationOptions} from '../shared/evaluation-form-globals';
-import {abilityToLearnOptions} from '../shared/evaluation-form-globals';
-import {directionOptions} from '../shared/evaluation-form-globals';
-import {overallEvaluationOptions} from '../shared/evaluation-form-globals';
+import { streamOptions } from '../shared/evaluation-form-globals';
+import { communicationOptions } from '../shared/evaluation-form-globals';
+import { abilityToLearnOptions } from '../shared/evaluation-form-globals';
+import { directionOptions } from '../shared/evaluation-form-globals';
+import { overallEvaluationOptions } from '../shared/evaluation-form-globals';
 
 @Component({
   selector: 'app-evaluate-student',
@@ -88,7 +88,7 @@ export class EvaluateStudentComponent implements OnInit {
       ],
     });
 
-    if (!!this.studentId) {
+    if (this.studentId) {
       this.student.setValue(this.studentId);
       this.student.disable();
     }
@@ -109,7 +109,7 @@ export class EvaluateStudentComponent implements OnInit {
         this.toastr.success('Evaluation was successfully submited!', 'Success', {
           positionClass: 'toast-bottom-center',
         });
-        if (!!this.studentId) {
+        if (this.studentId) {
           this.router.navigate([`/student/${this.studentId}`]);
         } else {
           this.router.navigate(['/main']);

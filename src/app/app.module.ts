@@ -17,6 +17,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { EvaluateStudentComponent } from './evaluate-student/evaluate-student.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { UserEvaluationsComponent } from './user-evaluations/user-evaluations.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { UserEvaluationsComponent } from './user-evaluations/user-evaluations.co
     EvaluateStudentComponent,
     StudentDetailsComponent,
     UserEvaluationsComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

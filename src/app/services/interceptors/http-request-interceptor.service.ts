@@ -14,13 +14,13 @@ export class HttpRequestInterceptorService implements HttpInterceptor {
     const putHeader = req.clone({
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin': '*',
-        'Authorization': authorization,
+        Authorization: authorization,
       }),
     });
     const authReq = req.clone({
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': authorization,
+        Authorization: authorization,
       }),
     });
 

@@ -1,15 +1,14 @@
 'use strict';
 export const streamOptions: string[] = ['FE', 'BE', 'QA', 'Project'];
 export const communicationOptions: string[] = [
-  `Is active`,
+  `Is active, communicative`,
   `Is passive`,
-  `Communicative`,
   `Prefers written communication over verbal`,
 ];
 export const abilityToLearnOptions: string[] = [
   `Is able to adapt to changing topics quickly`,
-  `Doesn't understand but asks, tries to learn from mistakes`,
   `Doesn't understand and does nothing about it`,
+  `Doesn't understand but asks, tries to learn from mistakes`,
 ];
 
 export const directionOptions: string[] = ['Java', 'Angular', 'Testing', 'Other'];
