@@ -10,8 +10,7 @@ import { Evaluation } from '../model/evaluation';
 import { EvaluationPost } from '../model/evaluationPost';
 import { AuthService } from '../services/auth-service.service';
 import domtoimage from 'dom-to-image';
-import * as FileSaver from 'file-saver'
-
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-student-details',
@@ -90,11 +89,9 @@ export class StudentDetailsComponent implements OnInit {
     });
   }
 
-  exportCard(student: Student){
-    domtoimage.toBlob(document.getElementById('student-details'))
-    .then(function (blob) {
+  exportCard(student: Student) {
+    domtoimage.toBlob(document.getElementById('student-details')).then(function (blob) {
       FileSaver.saveAs(blob, `${student.name} ${student.lastname}.png`);
     });
   }
-
 }

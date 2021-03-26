@@ -81,7 +81,7 @@
         <div>
         <img  [src]="imageSrc"/>
         </div>
-        <button class="btn btn-outline-secondary" style = "margin-top: 5px;" (click)=" clearPhoto() ">Remove Photo</button>  
+        <button *ngIf="imageSrc != '/assets/imgnotfound.png' " class="btn btn-outline-secondary" style = "margin-top: 5px;" (click)=" clearPhoto() ">Remove Photo</button>  
       </div>  
 	</div>
   </div>

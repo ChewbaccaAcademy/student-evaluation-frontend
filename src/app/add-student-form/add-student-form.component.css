@@ -4,8 +4,5 @@ img{
     height: 200px;
     border: 3.5px dashed rgba(11, 27, 31, 0.445);
 }
-.btn-outline-secondary:disabled{
-    border-color: black;
-    background-color: rgb(230, 0, 0);
-    color: white;
-}
+
+

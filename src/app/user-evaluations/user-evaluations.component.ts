@@ -5,11 +5,11 @@ import { Evaluation } from '../model/evaluation';
 import { EvaluationStudent } from '../model/evaluation-student';
 import { Student } from '../model/student';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
-import {streamOptions} from '../shared/evaluation-form-globals';
-import {communicationOptions} from '../shared/evaluation-form-globals';
-import {abilityToLearnOptions} from '../shared/evaluation-form-globals';
-import {directionOptions} from '../shared/evaluation-form-globals';
-import {overallEvaluationOptions} from '../shared/evaluation-form-globals';
+import { streamOptions } from '../shared/evaluation-form-globals';
+import { communicationOptions } from '../shared/evaluation-form-globals';
+import { abilityToLearnOptions } from '../shared/evaluation-form-globals';
+import { directionOptions } from '../shared/evaluation-form-globals';
+import { overallEvaluationOptions } from '../shared/evaluation-form-globals';
 
 @Component({
   selector: 'app-user-evaluations',
@@ -23,7 +23,17 @@ export class UserEvaluationsComponent implements OnInit {
   public abilityToLearnOptions: string[] = abilityToLearnOptions;
   public directionOptions: string[] = directionOptions;
   public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
-  public evaluationTableHeaderNames: string[] =["Photo", "Student","Stream","Overall evaluation","Direction","Communication","Ability to learn","Comment","Action"];
+  public evaluationTableHeaderNames: string[] = [
+    'Photo',
+    'Student',
+    'Stream',
+    'Overall evaluation',
+    'Direction',
+    'Communication',
+    'Ability to learn',
+    'Comment',
+    'Action',
+  ];
 
   constructor(
     private evaluationService: EvaluationService,
