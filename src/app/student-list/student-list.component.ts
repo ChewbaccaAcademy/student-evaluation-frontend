@@ -3,7 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
 import { Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-student-list',
@@ -13,7 +12,7 @@ import { FormBuilder } from '@angular/forms';
 export class StudentListComponent implements OnInit {
   public students: Student[];
   private fullStudentsList: Student[];
-  constructor(private studentService: StudentService, private sanitizer: DomSanitizer) {}
+  constructor(private studentService: StudentService, private sanitizer: DomSanitizer, private router: Router) {}
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
@@ -45,5 +44,9 @@ export class StudentListComponent implements OnInit {
         .concat(' ' + student.lastname.toLowerCase())
         .includes(searchValue.toLowerCase());
     });
+  }
+
+  evaluateStudent(studentId: number) {
+    this.router.navigate(['/evaluate'], { queryParams: { student: studentId } });
   }
 }

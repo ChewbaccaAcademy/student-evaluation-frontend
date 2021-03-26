@@ -7,11 +7,14 @@ import { ParamMap } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
 import { Evaluation } from '../model/evaluation';
-import { EvaluationPost } from '../model/evaluationPost';
 import { AuthService } from '../services/auth-service.service';
 import domtoimage from 'dom-to-image';
-import * as FileSaver from 'file-saver'
-
+import * as FileSaver from 'file-saver';
+import { streamOptions } from '../shared/evaluation-form-globals';
+import { communicationOptions } from '../shared/evaluation-form-globals';
+import { abilityToLearnOptions } from '../shared/evaluation-form-globals';
+import { directionOptions } from '../shared/evaluation-form-globals';
+import { overallEvaluationOptions } from '../shared/evaluation-form-globals';
 
 @Component({
   selector: 'app-student-details',
@@ -21,35 +24,12 @@ import * as FileSaver from 'file-saver'
 export class StudentDetailsComponent implements OnInit {
   student$: Observable<Student>;
   evaluationList$: Observable<Evaluation[]>;
-  evaluationPost: EvaluationPost;
   studentId: number;
-
-  public streamOptions: { id: number; name: string }[] = [
-    { id: 0, name: 'FE' },
-    { id: 1, name: `BE` },
-    { id: 2, name: `QA` },
-    { id: 3, name: `Project` },
-  ];
-
-  public communicationOptions: { id: number; name: string }[] = [
-    { id: 0, name: 'Is active' },
-    { id: 1, name: `Is passive` },
-    { id: 2, name: `Communicative` },
-    { id: 3, name: `Prefers written communication over verbal` },
-  ];
-
-  public learnAbilityOptions: { id: number; name: string }[] = [
-    { id: 0, name: 'Is able to adapt to changing topics quickly' },
-    { id: 1, name: `Doesn't understand but asks, tries to learn from mistakes` },
-    { id: 2, name: `Doesn't understand and does nothing about it` },
-  ];
-
-  public directionOptions: { id: number; name: string }[] = [
-    { id: 0, name: 'Java' },
-    { id: 1, name: `Angular` },
-    { id: 2, name: `Testing` },
-    { id: 3, name: `Other` },
-  ];
+  public streamOptions: string[] = streamOptions;
+  public communicationOptions: { id: number; name: string }[] = communicationOptions;
+  public abilityToLearnOptions: { id: number; name: string }[] = abilityToLearnOptions;
+  public directionOptions: { id: number; name: string }[] = directionOptions;
+  public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
 
   constructor(
     private route: ActivatedRoute,
@@ -90,9 +70,8 @@ export class StudentDetailsComponent implements OnInit {
     });
   }
 
-  exportCard(student: Student){
-    domtoimage.toBlob(document.getElementById('student-details'))
-    .then(function (blob) {
+  exportCard(student: Student) {
+    domtoimage.toBlob(document.getElementById('student-details')).then(function (blob) {
       FileSaver.saveAs(blob, `${student.name} ${student.lastname}.png`);
     });
   }

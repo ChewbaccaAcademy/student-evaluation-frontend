@@ -52,4 +52,8 @@ export class EvaluationService {
   deleteEvaluation(evaluationId: number): Observable<any> {
     return this.httpClient.put(`${URL}/student/evaluation/${evaluationId}`, evaluationId);
   }
+
+  getEvaluationById(evaluationId: number): Observable<Evaluation> {
+    return this.httpClient.get<Evaluation>(`${URL}/student/evaluation/single/${evaluationId}`);
+  }
 }

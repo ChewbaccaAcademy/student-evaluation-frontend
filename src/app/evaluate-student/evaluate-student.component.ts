@@ -8,12 +8,12 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { EvaluationPost } from '../model/evaluationPost';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
-import {streamOptions} from '../shared/evaluation-form-globals';
-import {communicationOptions} from '../shared/evaluation-form-globals';
-import {abilityToLearnOptions} from '../shared/evaluation-form-globals';
-import {directionOptions} from '../shared/evaluation-form-globals';
-import {overallEvaluationOptions} from '../shared/evaluation-form-globals';
+import { streamOptions } from '../shared/evaluation-form-globals';
+import { communicationOptions } from '../shared/evaluation-form-globals';
+import { abilityToLearnOptions } from '../shared/evaluation-form-globals';
+import { directionOptions } from '../shared/evaluation-form-globals';
+import { overallEvaluationOptions } from '../shared/evaluation-form-globals';
+import { Evaluation } from '../model/evaluation';
 
 @Component({
   selector: 'app-evaluate-student',
@@ -22,15 +22,16 @@ import {overallEvaluationOptions} from '../shared/evaluation-form-globals';
 })
 export class EvaluateStudentComponent implements OnInit {
   students: Observable<Student[]>;
-  returnObject$: Observable<any>;
-  isSingleStudent: boolean;
   studentId: number;
+  evaluationId: number;
+  editStudentId: number;
+  editEvaluation: Evaluation;
 
   public evaluationForm: FormGroup;
   public streamOptions: string[] = streamOptions;
-  public communicationOptions: string[] = communicationOptions;
-  public abilityToLearnOptions: string[] = abilityToLearnOptions;
-  public directionOptions: string[] = directionOptions;
+  public communicationOptions: { id: number; name: string }[] = communicationOptions;
+  public abilityToLearnOptions: { id: number; name: string }[] = abilityToLearnOptions;
+  public directionOptions: { id: number; name: string }[] = directionOptions;
   public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
 
   constructor(
@@ -40,15 +41,13 @@ export class EvaluateStudentComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.pipe(map((paramMap) => paramMap.get('studentId'))).subscribe((value) => {
-      this.studentId = +value;
-    });
-
+    this.studentId = this.activatedRoute.snapshot.queryParams['student'];
+    this.evaluationId = this.activatedRoute.snapshot.queryParams['edit'];
+    this.editStudentId = this.activatedRoute.snapshot.queryParams['editStudent'];
     this.students = this.studentService.getAllStudents();
-
     this.evaluationForm = this.formBuilder.group({
       student: [
         '',
@@ -92,6 +91,21 @@ export class EvaluateStudentComponent implements OnInit {
       this.student.setValue(this.studentId);
       this.student.disable();
     }
+
+    if (!!this.evaluationId) {
+      this.evaluationService.getEvaluationById(this.evaluationId).subscribe((value) => {
+        this.editEvaluation = value;
+        this.student.setValue(this.editStudentId);
+        this.student.disable();
+        this.stream.setValue(this.streamOptions.indexOf(this.editEvaluation.stream));
+        this.communication.setValue(this.editEvaluation.communication || '');
+        this.abilityToLearn.setValue(this.editEvaluation.learnAbility || '');
+        this.direction.setValue(this.editEvaluation.direction);
+        this.overallEvaluation.setValue(this.editEvaluation.evaluation);
+        this.comment.setValue(this.editEvaluation.comment);
+
+      });
+    }
   }
 
   submitForm() {
@@ -104,19 +118,32 @@ export class EvaluateStudentComponent implements OnInit {
       comment: this.comment.value,
     };
 
-    this.evaluationService.postEvaluation(this.student.value, studentEvaluationForm).subscribe((response) => {
-      if (response) {
-        this.toastr.success('Evaluation was successfully submited!', 'Success', {
-          positionClass: 'toast-bottom-center',
-        });
-        if (!!this.studentId) {
-          this.router.navigate([`/student/${this.studentId}`]);
+    if(!!this.evaluationId){
+      this.evaluationService.updateEvaluation(this.editStudentId, this.evaluationId, studentEvaluationForm).subscribe(() => {
+        this.router.navigate(['/myevaluations']);
+      })
+    } else {
+      this.evaluationService.postEvaluation(this.student.value, studentEvaluationForm).subscribe((response) => {
+        if (response) {
+          this.toastr.success('Evaluation was successfully submited!', 'Success', {
+            positionClass: 'toast-bottom-center',
+          });
+          if (!!this.studentId) {
+            this.router.navigate([`/student/${this.studentId}`]);
+          } else {
+            this.router.navigate(['/main']);
+          }
         } else {
-          this.router.navigate(['/main']);
+          this.toastr.error('Please check your input fields', 'Error', { positionClass: 'toast-bottom-center' });
         }
-      } else {
-        this.toastr.error('Please check your input fields', 'Error', { positionClass: 'toast-bottom-center' });
-      }
+      });
+    }
+  }
+
+  deleteEvaluation(evaluationId: number) {
+    this.evaluationService.deleteEvaluation(evaluationId).subscribe(() => {
+      this.router.navigate(['/main']);
+      this.toastr.success('Evaluation was deleted', 'Success', { positionClass: 'toast-bottom-center' });
     });
   }
 

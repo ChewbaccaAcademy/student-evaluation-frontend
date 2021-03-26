@@ -1,18 +1,22 @@
 'use strict';
 export const streamOptions: string[] = ['FE', 'BE', 'QA', 'Project'];
-export const communicationOptions: string[] = [
-  `Is active`,
-  `Is passive`,
-  `Communicative`,
-  `Prefers written communication over verbal`,
+export const communicationOptions: { id: number; name: string }[] = [
+  { id: 0, name: `Is active, communicative` },
+  { id: 1, name: `Is passive` },
+  { id: 2, name: `Prefers written communication over verbal` },
 ];
-export const abilityToLearnOptions: string[] = [
-  `Is able to adapt to changing topics quickly`,
-  `Doesn't understand but asks, tries to learn from mistakes`,
-  `Doesn't understand and does nothing about it`,
+export const abilityToLearnOptions: { id: number; name: string }[] = [
+  { id: 0, name: `Is able to adapt to changing topics quickly` },
+  { id: 1, name: `Doesn't understand but asks, tries to learn from mistakes` },
+  { id: 2, name: `Doesn't understand and does nothing about it` },
 ];
 
-export const directionOptions: string[] = ['Java', 'Angular', 'Testing', 'Other'];
+export const directionOptions: { id: number; name: string }[] = [
+  { id: 0, name: 'Java' },
+  { id: 1, name: 'Angular' },
+  { id: 2, name: 'Testing' },
+  { id: 3, name: 'Other' }
+];
 
 export const overallEvaluationOptions: { id: number; name: string }[] = [
   { id: 1, name: '1 – not suitable' },
