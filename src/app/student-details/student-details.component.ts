@@ -4,7 +4,7 @@ import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
 import { Observable } from 'rxjs';
 import { ParamMap } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
 import { Evaluation } from '../model/evaluation';
 import { EvaluationPost } from '../model/evaluationPost';
@@ -52,7 +52,7 @@ export class StudentDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public studentService: StudentService,
+    private studentService: StudentService,
     private evaluationService: EvaluationService,
     private auth: AuthService,
   ) {}
@@ -83,5 +83,9 @@ export class StudentDetailsComponent implements OnInit {
     domtoimage.toBlob(document.getElementById('student-details')).then(function (blob) {
       FileSaver.saveAs(blob, `${student.name} ${student.lastname}.png`);
     });
+  }
+
+  getStudentImage(student: Student): SafeUrl {
+    return this.studentService.getImage(student);
   }
 }

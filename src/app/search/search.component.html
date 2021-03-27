@@ -2,7 +2,7 @@
 <div class="autocomplete" *ngIf="resultStudentList$ | async as resultStudentList">
   <ul>
     <li *ngFor="let student of resultStudentList" (click)="openStudent()" [routerLink]="['/student', student?.id]">
-      <img [src]='studentService.getImage(student)'>
+      <img [src]='getStudentImage(student)'>
       <span class="truncate" [innerHTML]="getStudentName(student)"></span>
     </li>
   </ul>

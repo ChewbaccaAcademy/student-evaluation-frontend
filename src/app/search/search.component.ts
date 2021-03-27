@@ -5,6 +5,7 @@ import { Observable, EMPTY } from 'rxjs';
 import { Student } from '../model/student';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-search',
@@ -18,13 +19,13 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
-    public studentService: StudentService,
+    private studentService: StudentService,
     private searchComponentRef: ElementRef,
   ) {}
 
   ngOnInit() {
     this.inputForm.valueChanges.pipe(debounceTime(200), distinctUntilChanged()).subscribe((res) => {
-      if (/^[a-zA-Z ]*$/.test(res)) {
+      if (/^[\p{L} ]*$/u.test(res)) {
         this.searchStudentSource(res);
       } else {
         this.searchStudentSource('');
@@ -40,6 +41,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchStudentSource(query: string): void {
+    query = query.trim();
     this.query = query;
     if (query.length > 2) {
       this.resultStudentList$ = this.searchService.searchStudent(query);
@@ -53,9 +55,13 @@ export class SearchComponent implements OnInit {
     let studentName = student.name + ' ' + student.lastname;
     parts.forEach(item => {
       const expression = new RegExp(item, 'ig');
-      studentName = studentName.replace(expression, `<strong>${studentName.match(expression)[0]}</strong>`);
+      studentName = studentName.replace(expression, studentName.match(expression) && `<strong>${studentName.match(expression)[0]}</strong>`);
     });
     return studentName;
+  }
+
+  getStudentImage(student: Student): SafeUrl {
+    return this.studentService.getImage(student);
   }
 
   openStudent(): void {

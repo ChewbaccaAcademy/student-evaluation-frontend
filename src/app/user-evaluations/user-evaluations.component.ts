@@ -9,6 +9,8 @@ import { communicationOptions } from '../shared/evaluation-form-globals';
 import { abilityToLearnOptions } from '../shared/evaluation-form-globals';
 import { directionOptions } from '../shared/evaluation-form-globals';
 import { overallEvaluationOptions } from '../shared/evaluation-form-globals';
+import { Student } from '../model/student';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-evaluations',
@@ -37,7 +39,7 @@ export class UserEvaluationsComponent implements OnInit {
   constructor(
     private evaluationService: EvaluationService,
     private toastr: ToastrService,
-    public studentService: StudentService,
+    private studentService: StudentService,
   ) {}
 
   ngOnInit(): void {
@@ -53,5 +55,9 @@ export class UserEvaluationsComponent implements OnInit {
       this.userEvaluations.splice(index, 1);
       this.toastr.success('Evaluation was deleted', 'Success', { positionClass: 'toast-bottom-center' });
     });
+  }
+
+  getStudentImage(student: Student): SafeUrl {
+    return this.studentService.getImage(student);
   }
 }

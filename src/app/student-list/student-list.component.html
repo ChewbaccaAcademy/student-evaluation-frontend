@@ -45,7 +45,7 @@
         <tbody>
           <tr *ngFor="let student of students">
             <th>
-              <img class="test" [src]="studentService.getImage(student)" [alt]="getImageTitle(student)" height="100px" />
+              <img class="test" [src]="getStudentImage(student)" [alt]="getImageTitle(student)" height="100px" />
             </th>
             <td class="align-middle" style="word-break:normal;">
               <a class="student-name text-center value" [routerLink]="['/student', student.id]">
