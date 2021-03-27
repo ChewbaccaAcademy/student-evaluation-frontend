@@ -1,8 +1,8 @@
+import { StudentService } from './../services/student-service/student.service';
 import { SearchService } from './../services/search/search.service';
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { Observable, EMPTY } from 'rxjs';
 import { Student } from '../model/student';
-import { DomSanitizer } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private searchService: SearchService,
-    private sanitizer: DomSanitizer,
+    public studentService: StudentService,
     private searchComponentRef: ElementRef,
   ) {}
 
@@ -56,15 +56,6 @@ export class SearchComponent implements OnInit {
       studentName = studentName.replace(expression, `<strong>${studentName.match(expression)[0]}</strong>`);
     });
     return studentName;
-  }
-
-  getImage(student: Student) {
-    if (student.image) {
-      const objectURL = 'data:image/png;base64,' + student.image.imgByte;
-      return this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    } else {
-      return './assets/images.jpg';
-    }
   }
 
   openStudent(): void {

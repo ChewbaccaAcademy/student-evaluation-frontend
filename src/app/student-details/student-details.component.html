@@ -1,7 +1,7 @@
 <div id="student-details" class="container-fluid" *ngIf="student$ | async as student">
   <div class="row justify-content-md-center">
     <div class="col-4">
-      <img class="img-thumbnail" [src]="getImage(student)" alt="student profile picture " />
+      <img class="img-thumbnail" [src]="studentService.getImage(student)" alt="student profile picture " />
       <div class="">
         <h5 class="text-center">{{ student.name }} {{ student.lastname }}</h5>
       </div>

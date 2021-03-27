@@ -52,9 +52,8 @@ export class StudentDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private studentService: StudentService,
+    public studentService: StudentService,
     private evaluationService: EvaluationService,
-    private sanitizer: DomSanitizer,
     private auth: AuthService,
   ) {}
 
@@ -64,15 +63,6 @@ export class StudentDetailsComponent implements OnInit {
       this.student$ = this.studentService.getStudentById(+this.studentId);
       this.loadEvaluations();
     });
-  }
-
-  getImage(student: Student) {
-    if (student.image) {
-      const objectURL = 'data:image/png;base64,' + student.image.imgByte;
-      return this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    } else {
-      return './assets/images.jpg';
-    }
   }
 
   loadEvaluations() {
