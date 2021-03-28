@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
-import { Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-student-list',
@@ -13,7 +11,7 @@ import { FormBuilder } from '@angular/forms';
 export class StudentListComponent implements OnInit {
   public students: Student[];
   private fullStudentsList: Student[];
-  constructor(private studentService: StudentService, private sanitizer: DomSanitizer) {}
+  constructor(private studentService: StudentService) {}
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
@@ -22,20 +20,16 @@ export class StudentListComponent implements OnInit {
     });
   }
 
-  getImage(student: Student) {
-    if (student.image) {
-      const objectURL = 'data:image/png;base64,' + student.image.imgByte;
-      return this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    } else {
-      return './assets/images.jpg';
-    }
-  }
   getImageTitle(student: Student) {
     if (student.image) {
       return student.image.name;
     } else {
       return 'noImage.jpg';
     }
+  }
+
+  getStudentImage(student: Student): SafeUrl {
+    return this.studentService.getImage(student);
   }
 
   filterStudents(searchValue: string) {

@@ -17,6 +17,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { EvaluateStudentComponent } from './evaluate-student/evaluate-student.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { UserEvaluationsComponent } from './user-evaluations/user-evaluations.component';
+import { SearchComponent } from './search/search.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { HttpResponseInterceptorService } from './services/interceptors/http-response-interceptor.service';
 
@@ -32,6 +33,7 @@ import { HttpResponseInterceptorService } from './services/interceptors/http-res
     EvaluateStudentComponent,
     StudentDetailsComponent,
     UserEvaluationsComponent,
+    SearchComponent,
     SpinnerComponent,
   ],
   imports: [
