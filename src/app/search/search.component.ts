@@ -51,11 +51,14 @@ export class SearchComponent implements OnInit {
   }
 
   getStudentName(student: Student): string {
-    const parts = this.query.split(' ').filter(part => !!part);
+    const parts = this.query.split(' ').filter((part) => !!part);
     let studentName = student.name + ' ' + student.lastname;
-    parts.forEach(item => {
+    parts.forEach((item) => {
       const expression = new RegExp(item, 'ig');
-      studentName = studentName.replace(expression, studentName.match(expression) && `<strong>${studentName.match(expression)[0]}</strong>`);
+      studentName = studentName.replace(
+        expression,
+        studentName.match(expression) && `<strong>${studentName.match(expression)[0]}</strong>`,
+      );
     });
     return studentName;
   }

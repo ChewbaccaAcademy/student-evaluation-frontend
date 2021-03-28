@@ -28,7 +28,6 @@ export class HttpResponseInterceptorService implements HttpInterceptor {
         },
         (error) => {
           this.spinnerService.fetchingStatusChanged(false);
-          console.log(error);
           if (error instanceof HttpErrorResponse) {
             switch (error.status) {
               case 401:

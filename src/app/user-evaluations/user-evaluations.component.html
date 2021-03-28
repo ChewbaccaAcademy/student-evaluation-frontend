@@ -12,7 +12,7 @@
             <th class="align-middle text-center">
               <img class="test"
                 [src]="getStudentImage(evaluation.student)"
-                height="90px"
+                [routerLink]="['/student', evaluation.student.id]"
               />
             </th>
             <td class="align-middle" style ="word-break:normal;">
@@ -25,7 +25,7 @@
             <td class="align-middle"><p class="text-center value">{{abilityToLearnOptions[evaluation.evaluation.learnAbility]}}</p></td>
             <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.comment}}</p></td>
             <td class="align-middle text-center">
-              <button type="button" class="btn btn-primary user-choice" (click)="updateValidation(evaluation.evaluation)" >Update</button>
+              <button type="button" class="btn btn-primary user-choice">Update</button>
 
              <button type="button" class="btn btn-danger user-choice" data-toggle="modal"  [attr.data-target]="'#deleteConfirmationModal'+j" >
                 Delete

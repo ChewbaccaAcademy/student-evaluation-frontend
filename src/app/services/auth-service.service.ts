@@ -5,8 +5,6 @@ import { LocalStorageData } from '../shared/local-storage-data';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
-
   public setAuthData(authData: LocalStorageData) {
     localStorage.setItem('token', authData.jwt);
     localStorage.setItem('tokenExpirationDate', authData.date.toString());
