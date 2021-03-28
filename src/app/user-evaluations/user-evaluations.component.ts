@@ -13,6 +13,7 @@ import {
   directionOptions,
   overallEvaluationOptions,
 } from '../shared/evaluation-form-globals';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-evaluations',
@@ -22,9 +23,9 @@ import {
 export class UserEvaluationsComponent implements OnInit {
   public userEvaluations: EvaluationStudent[];
   public streamOptions: string[] = streamOptions;
-  public communicationOptions: string[] = communicationOptions;
-  public abilityToLearnOptions: string[] = abilityToLearnOptions;
-  public directionOptions: string[] = directionOptions;
+  public communicationOptions: { id: number; name: string }[] = communicationOptions;
+  public abilityToLearnOptions: { id: number; name: string }[] = abilityToLearnOptions;
+  public directionOptions: { id: number; name: string }[] = directionOptions;
   public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
   public evaluationTableHeaderNames: string[] = [
     'Photo',
@@ -42,7 +43,8 @@ export class UserEvaluationsComponent implements OnInit {
     private evaluationService: EvaluationService,
     private toastr: ToastrService,
     private studentService: StudentService,
-  ) {}
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.evaluationService.getAllUserStudentEvaluations().subscribe((value) => {
@@ -59,5 +61,9 @@ export class UserEvaluationsComponent implements OnInit {
 
   getStudentImage(student: Student): SafeUrl {
     return this.studentService.getImage(student);
+  }
+
+  editEvaluation(evaluationId: number, studentId: number) {
+    this.router.navigate(['/evaluate'], { queryParams: { editStudent: studentId, evaluation: evaluationId } });
   }
 }

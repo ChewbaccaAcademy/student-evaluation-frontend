@@ -29,17 +29,17 @@ export class SpinnerService {
   }
 
   hide() {
-    this.appRef.detachView(this.componentRef.hostView);
-    this.componentRef.destroy();
+    // this.appRef.detachView(this.componentRef.hostView);
+    // this.componentRef.destroy();
   }
 
   show() {
-    this.componentRef = this.componentFactoryResolver.resolveComponentFactory(SpinnerComponent).create(this.injector);
+    // this.componentRef = this.componentFactoryResolver.resolveComponentFactory(SpinnerComponent).create(this.injector);
 
-    this.appRef.attachView(this.componentRef.hostView);
+    // this.appRef.attachView(this.componentRef.hostView);
 
-    const domElem = (this.componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    // const domElem = (this.componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
 
-    document.body.appendChild(domElem);
+    // document.body.appendChild(domElem);
   }
 }

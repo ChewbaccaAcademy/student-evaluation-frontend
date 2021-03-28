@@ -1,7 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 justify-content-center">
+      <!-- Form -->
+
+      <form [formGroup]="studentForm" class="black-border">
+      </form>
+
+      <!-- End Form -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8">
+  <div class="row">
+    <div class="col-md-8">
       <form [formGroup]="studentForm">
           <div class="row">
             <div class="form-inline float-sm-left" >
@@ -92,3 +122,4 @@
       (click)="editMode ?  updateStudent() :  submitForm() ">{{editMode ?   'Update student' :'Add student'}} </button>
     </div>
   </div>
+</div>
