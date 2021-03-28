@@ -37,13 +37,13 @@ export class AddStudentFormComponent implements OnInit {
       name: [
         '',
         {
-          validators: [Validators.pattern('^[^0-9]+$'), Validators.required],
+          validators: [Validators.maxLength(256), Validators.pattern(/^[\p{L} ]*$/u), Validators.required],
         },
       ],
       lastname: [
         '',
         {
-          validators: [Validators.pattern('^[^0-9]+$'), Validators.required],
+          validators: [Validators.maxLength(256), Validators.pattern(/^[\p{L}\- ]*$/u), Validators.required],
         },
       ],
       university: [''],
