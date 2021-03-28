@@ -50,8 +50,6 @@ export class UserEvaluationsComponent implements OnInit {
     });
   }
 
-  updateValidation(evaluation: Evaluation) {}
-
   deleteValidation(evaluation: Evaluation, index: number) {
     this.evaluationService.deleteEvaluation(evaluation.id).subscribe(() => {
       this.userEvaluations.splice(index, 1);

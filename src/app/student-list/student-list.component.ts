@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
-import { Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth-service.service';
 import { SafeUrl } from '@angular/platform-browser';
-
 
 @Component({
   selector: 'app-student-list',

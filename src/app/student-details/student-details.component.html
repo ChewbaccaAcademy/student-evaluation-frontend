@@ -38,10 +38,10 @@
                   <p class="text-center value">BE</p>
                 </th>
                 <th scope="col">
-                  <p class="text-center value">Project</p>
+                  <p class="text-center value">QA</p>
                 </th>
                 <th scope="col">
-                  <p class="text-center value">Testing</p>
+                  <p class="text-center value">Project</p>
                 </th>
               </tr>
             </thead>
@@ -58,19 +58,19 @@
                   <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.be == 0">-</p>
                 </td>
                 <td class="align-middle">
-                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.project != 0">
-                    {{student.averageEvaluationDetails.streamOverall.project}}</p>
-                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.project == 0">-</p>
-                </td>
-                <td class="align-middle">
                   <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.qa != 0">
                     {{student.averageEvaluationDetails.streamOverall.qa}}</p>
                   <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.qa == 0">-</p>
                 </td>
+                <td class="align-middle">
+                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.project != 0">
+                    {{student.averageEvaluationDetails.streamOverall.project}}</p>
+                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.project == 0">-</p>
+                </td>
               </tr>
             </tbody>
           </table>
-          <a (click)="exportCard(student)"><img src="../../assets/exportcard.png" alt="exportcard.png" width="200px"></a>
+          <a (click)="exportCard(student)"><img src="../../assets/exportcard.png" alt="exportcard.png" width="200px" style="cursor: pointer;"></a>
         </div>
 
       </div>

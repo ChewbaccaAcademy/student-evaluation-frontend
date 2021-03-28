@@ -12,10 +12,9 @@
                   type="text"
                   formControlName="name"
                 />
-                <ng-container >
+                <ng-container>
                   <div class="text-muted" *ngIf="name.errors?.required && name.touched" >Name is required. </div>
                   <div class="text-muted" *ngIf="name.errors?.pattern" >Name should only contain letters. </div>
-                    
                 </ng-container>
               </div>
             </div>
@@ -28,9 +27,9 @@
                       type="text"
                       formControlName="lastname"
                     />
-                      <ng-container *ngIf="lastname.touched ">
+                      <ng-container>
                         <div  class="text-muted" *ngIf="lastname.errors?.pattern" >Last name should only contain letters. </div>
-                        <div  class="text-muted" *ngIf="lastname.errors?.required && name.touched" >Last name is required. </div>
+                        <div  class="text-muted" *ngIf="lastname.errors?.required && lastname.touched" >Last name is required. </div>
                 </ng-container>
               </div>
             </div>
@@ -49,10 +48,10 @@
               <div class="row">
                 <div class="form-inline float-sm-left">
                   <p for="comment" style="width: 100px; text-align: left;">Comment</p>
-                    <textarea 
-                    class="form-control" 
-                    id="comment" 
-                    rows="3" 
+                    <textarea
+                    class="form-control"
+                    id="comment"
+                    rows="3"
                     formControlName="comment"
                     placeholder="Optional"
                     maxlength="250">
@@ -63,33 +62,33 @@
               <div class="row">
                 <div class="form-inline float-sm-left">
                     <p for="file" style="width: 100px; text-align: left;">Add photo</p>
-                    <input           
+                    <input
                         formControlName="file"
-                        id="file" 
-                        type="file" 
+                        id="file"
+                        type="file"
                         class="form-control"
-                        accept="image/*" 
+                        accept="image/*"
                         (change)="onFileChange($event)"
                         #inputFile>
                 </div>
                 <div  class="text-muted" *ngIf="file.errors?.extension" >Invalid photo format, only png, jpg, jpeg is allowed.</div>
               <div  class="text-muted" *ngIf="file.errors?.fileSize"  >Invalid photo size, max size 500kb.</div>
             </div>
-    </form> 
+    </form>
 	  </div>
 	  	<div class="col-md-4 text-center">
         <div>
         <img  [src]="imageSrc"/>
         </div>
-        <button *ngIf="imageSrc != '/assets/imgnotfound.png' " class="btn btn-outline-secondary" style = "margin-top: 5px;" (click)=" clearPhoto() ">Remove Photo</button>  
-      </div>  
+        <button *ngIf="imageSrc != '/assets/imgnotfound.png' " class="btn btn-outline-secondary" style = "margin-top: 5px;" (click)=" clearPhoto() ">Remove Photo</button>
+      </div>
 	</div>
   </div>
   <div class="row">
      <div class="col-md-12 text-center">
       <button class="btn btn-outline-secondary "
       style="margin-top: 50px;"
-      [disabled] = "!studentForm.valid" 
+      [disabled] = "!studentForm.valid"
       (click)="editMode ?  updateStudent() :  submitForm() ">{{editMode ?   'Update student' :'Add student'}} </button>
     </div>
   </div>
