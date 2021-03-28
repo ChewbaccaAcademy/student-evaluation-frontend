@@ -84,6 +84,7 @@ export class StudentDetailsComponent implements OnInit {
     });
   }
 
+
   getStudentImage(student: Student): SafeUrl {
     return this.studentService.getImage(student);
   }
