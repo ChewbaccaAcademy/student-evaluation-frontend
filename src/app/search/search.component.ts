@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.inputForm.valueChanges.pipe(debounceTime(200), distinctUntilChanged()).subscribe((res) => {
+    this.inputForm.valueChanges.pipe(debounceTime(400), distinctUntilChanged()).subscribe((res) => {
       if (/^[\p{L} ]*$/u.test(res)) {
         this.searchStudentSource(res);
       } else {
