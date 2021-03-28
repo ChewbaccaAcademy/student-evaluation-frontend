@@ -4,13 +4,15 @@ import { ToastrService } from 'ngx-toastr';
 import { Evaluation } from '../model/evaluation';
 import { EvaluationStudent } from '../model/evaluation-student';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
-import { streamOptions } from '../shared/evaluation-form-globals';
-import { communicationOptions } from '../shared/evaluation-form-globals';
-import { abilityToLearnOptions } from '../shared/evaluation-form-globals';
-import { directionOptions } from '../shared/evaluation-form-globals';
-import { overallEvaluationOptions } from '../shared/evaluation-form-globals';
 import { Student } from '../model/student';
 import { SafeUrl } from '@angular/platform-browser';
+import {
+  streamOptions,
+  communicationOptions,
+  abilityToLearnOptions,
+  directionOptions,
+  overallEvaluationOptions,
+} from '../shared/evaluation-form-globals';
 
 @Component({
   selector: 'app-user-evaluations',
@@ -43,7 +45,7 @@ export class UserEvaluationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.evaluationService.getAllUserEvaluationsStudent().subscribe((value) => {
+    this.evaluationService.getAllUserStudentEvaluations().subscribe((value) => {
       this.userEvaluations = value;
     });
   }

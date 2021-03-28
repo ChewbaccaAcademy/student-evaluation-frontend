@@ -18,6 +18,8 @@ import { EvaluateStudentComponent } from './evaluate-student/evaluate-student.co
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { UserEvaluationsComponent } from './user-evaluations/user-evaluations.component';
 import { SearchComponent } from './search/search.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { HttpResponseInterceptorService } from './services/interceptors/http-response-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { SearchComponent } from './search/search.component';
     StudentDetailsComponent,
     UserEvaluationsComponent,
     SearchComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,10 @@ import { SearchComponent } from './search/search.component';
     ReactiveFormsModule,
     RxReactiveFormsModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptorService, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

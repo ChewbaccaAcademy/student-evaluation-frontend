@@ -22,7 +22,7 @@ export class EvaluationService {
     return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation/user/${userId}`);
   }
 
-  getAllUserEvaluationsStudent(): Observable<EvaluationStudent[]> {
+  getAllUserStudentEvaluations(): Observable<EvaluationStudent[]> {
     return this.httpClient.get<EvaluationStudent[]>(`${URL}/student/evaluation/user/details`);
   }
 
