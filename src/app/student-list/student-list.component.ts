@@ -4,6 +4,7 @@ import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
+import { AuthService } from '../services/auth-service.service';
 
 @Component({
   selector: 'app-student-list',
@@ -13,7 +14,7 @@ import { FormBuilder } from '@angular/forms';
 export class StudentListComponent implements OnInit {
   public students: Student[];
   private fullStudentsList: Student[];
-  constructor(private studentService: StudentService, private sanitizer: DomSanitizer) {}
+  constructor(private studentService: StudentService, private sanitizer: DomSanitizer, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
@@ -36,6 +37,9 @@ export class StudentListComponent implements OnInit {
     } else {
       return 'noImage.jpg';
     }
+  }
+  getRole() {
+    return this.authService.getSessionUserRole();
   }
 
   filterStudents(searchValue: string) {
