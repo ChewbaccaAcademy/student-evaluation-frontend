@@ -9,11 +9,14 @@ import { Router } from '@angular/router';
 import { EvaluationPost } from '../model/evaluationPost';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { streamOptions } from '../shared/evaluation-form-globals';
-import { communicationOptions } from '../shared/evaluation-form-globals';
-import { abilityToLearnOptions } from '../shared/evaluation-form-globals';
-import { directionOptions } from '../shared/evaluation-form-globals';
-import { overallEvaluationOptions } from '../shared/evaluation-form-globals';
+import { streamOptions } from '../shared/evaluation-form-globals'
+import {
+  communicationOptions,
+  abilityToLearnOptions,
+  directionOptions,
+  overallEvaluationOptions,
+} from '../shared/evaluation-form-globals';
+
 
 @Component({
   selector: 'app-evaluate-student',

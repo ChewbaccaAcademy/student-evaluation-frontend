@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
 import { Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth-service.service';
+import { SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-student-list',
@@ -14,6 +15,7 @@ import { AuthService } from '../services/auth-service.service';
 export class StudentListComponent implements OnInit {
   public students: Student[];
   private fullStudentsList: Student[];
+
   constructor(private studentService: StudentService, private sanitizer: DomSanitizer, private authService: AuthService) {}
 
   ngOnInit(): void {
@@ -23,14 +25,6 @@ export class StudentListComponent implements OnInit {
     });
   }
 
-  getImage(student: Student) {
-    if (student.image) {
-      const objectURL = 'data:image/png;base64,' + student.image.imgByte;
-      return this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    } else {
-      return './assets/images.jpg';
-    }
-  }
   getImageTitle(student: Student) {
     if (student.image) {
       return student.image.name;
@@ -40,6 +34,10 @@ export class StudentListComponent implements OnInit {
   }
   getRole() {
     return this.authService.getSessionUserRole();
+  }
+
+  getStudentImage(student: Student): SafeUrl {
+    return this.studentService.getImage(student);
   }
 
   filterStudents(searchValue: string) {

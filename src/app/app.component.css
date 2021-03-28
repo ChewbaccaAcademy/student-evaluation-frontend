@@ -7,11 +7,11 @@
 
 background-color: #399cff;
   height: 250px;
-} 
+}
 
 
 svg path{
-	animation:pathAnim 4s; 
+	animation:pathAnim 4s;
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
 }

@@ -1,15 +1,23 @@
+import { StudentService } from './../services/student-service/student.service';
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { Evaluation } from '../model/evaluation';
 import { EvaluationStudent } from '../model/evaluation-student';
-import { Student } from '../model/student';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
 import { streamOptions } from '../shared/evaluation-form-globals';
 import { communicationOptions } from '../shared/evaluation-form-globals';
 import { abilityToLearnOptions } from '../shared/evaluation-form-globals';
 import { directionOptions } from '../shared/evaluation-form-globals';
 import { overallEvaluationOptions } from '../shared/evaluation-form-globals';
+import { Student } from '../model/student';
+import { SafeUrl } from '@angular/platform-browser';
+import {
+  streamOptions,
+  communicationOptions,
+  abilityToLearnOptions,
+  directionOptions,
+  overallEvaluationOptions,
+} from '../shared/evaluation-form-globals';
 
 @Component({
   selector: 'app-user-evaluations',
@@ -38,22 +46,13 @@ export class UserEvaluationsComponent implements OnInit {
   constructor(
     private evaluationService: EvaluationService,
     private toastr: ToastrService,
-    private sanitizer: DomSanitizer,
+    private studentService: StudentService,
   ) {}
 
   ngOnInit(): void {
-    this.evaluationService.getAllUserEvaluationsStudent().subscribe((value) => {
+    this.evaluationService.getAllUserStudentEvaluations().subscribe((value) => {
       this.userEvaluations = value;
     });
-  }
-
-  getImage(student: Student) {
-    if (student.image) {
-      const objectURL = 'data:image/png;base64,' + student.image.imgByte;
-      return this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    } else {
-      return './assets/images.jpg';
-    }
   }
 
   updateValidation(evaluation: Evaluation) {}
@@ -63,5 +62,9 @@ export class UserEvaluationsComponent implements OnInit {
       this.userEvaluations.splice(index, 1);
       this.toastr.success('Evaluation was deleted', 'Success', { positionClass: 'toast-bottom-center' });
     });
+  }
+
+  getStudentImage(student: Student): SafeUrl {
+    return this.studentService.getImage(student);
   }
 }
