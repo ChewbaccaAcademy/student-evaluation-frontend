@@ -2,7 +2,7 @@
   box-sizing: content-box;
   width: 5em;
   justify-content: center;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .my-center-element {
@@ -17,14 +17,19 @@
 }
 
 .black-border {
-  border: 2px solid black;
+  border: 1px solid black;
   padding: 2%;
-  max-width: 500px;
+  max-width: 500px ;
   float: none; margin: 0 auto;
   
 }
 .container{
   margin-top: 100px;
+}
+
+.align-self-center{
+  display: flex;
+  align-self: top !important;
 }
 
 
