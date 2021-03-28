@@ -16,7 +16,7 @@ export class StudentListComponent implements OnInit {
   public students: Student[];
   private fullStudentsList: Student[];
 
-  constructor(private studentService: StudentService, private sanitizer: DomSanitizer, private authService: AuthService) {}
+  constructor(private studentService: StudentService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
