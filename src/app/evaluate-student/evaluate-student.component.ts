@@ -43,7 +43,7 @@ export class EvaluateStudentComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.studentId = this.activatedRoute.snapshot.queryParams['student'];
@@ -105,7 +105,6 @@ export class EvaluateStudentComponent implements OnInit {
         this.direction.setValue(this.editEvaluation.direction);
         this.overallEvaluation.setValue(this.editEvaluation.evaluation);
         this.comment.setValue(this.editEvaluation.comment);
-
       });
     }
   }
@@ -120,10 +119,12 @@ export class EvaluateStudentComponent implements OnInit {
       comment: this.comment.value,
     };
 
-    if(!!this.evaluationId){
-      this.evaluationService.updateEvaluation(this.editStudentId, this.evaluationId, studentEvaluationForm).subscribe(() => {
-        this.router.navigate(['/myevaluations']);
-      })
+    if (!!this.evaluationId) {
+      this.evaluationService
+        .updateEvaluation(this.editStudentId, this.evaluationId, studentEvaluationForm)
+        .subscribe(() => {
+          this.router.navigate(['/myevaluations']);
+        });
     } else {
       this.evaluationService.postEvaluation(this.student.value, studentEvaluationForm).subscribe((response) => {
         if (response) {

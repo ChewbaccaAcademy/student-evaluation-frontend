@@ -15,7 +15,7 @@ export const directionOptions: { id: number; name: string }[] = [
   { id: 0, name: 'Java' },
   { id: 1, name: 'Angular' },
   { id: 2, name: 'Testing' },
-  { id: 3, name: 'Other' }
+  { id: 3, name: 'Other' },
 ];
 
 export const overallEvaluationOptions: { id: number; name: string }[] = [
