@@ -23,10 +23,8 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div [hidden]="student.valid || student.pristine">
-                                    <div *ngIf="student.errors?.required" class="text-muted">
+                                <div style="visibility: {{student.errors?.required && student.touched ? 'visible': 'hidden'}};"  class="text-muted">
                                         Please choose a student!
-                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -42,11 +40,9 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div [hidden]="stream.valid || stream.pristine">
-                                    <div *ngIf="stream.errors?.required" class="text-muted">
+                                    <div style="visibility: {{stream.errors?.required && stream.touched ? 'visible': 'hidden'}};"  class="text-muted">
                                         Please choose a stream option!
                                     </div>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
@@ -60,11 +56,11 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div [hidden]="direction.valid || direction.pristine">
-                                    <div *ngIf="direction.errors?.required" class="text-muted">
+                                
+                                    <div style="visibility: {{direction.errors?.required && direction.touched ? 'visible': 'hidden'}};"  class="text-muted">
                                         Please choose direction option!
                                     </div>
-                                </div>
+
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
@@ -78,11 +74,11 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div [hidden]="overallEvaluation.valid || overallEvaluation.pristine">
-                                    <div *ngIf="overallEvaluation.errors?.required" class="text-muted">
+         
+                                    <div style="visibility: {{overallEvaluation.errors?.required && overallEvaluation.touched ? 'visible': 'hidden'}};"   class="text-muted">
                                         Please evaluate the student!
                                     </div>
-                                </div>
+
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
@@ -95,6 +91,9 @@
                                             {{ option.name }}
                                         </option>
                                     </select>
+                                </div>
+                                <div class="filler">
+                                    
                                 </div>
                             </div>
                             <div class="form-group">
@@ -120,7 +119,7 @@
                                 <a class="align-middle" [routerLink]="['/myevaluations']" *ngIf="evaluationId">
                                     Cancel</a>
                                 <a class="align-middle" [routerLink]="['/students']" *ngIf="!evaluationId">
-                                    Students' list</a>
+                                    Students list</a>
                                 <div class="float-right">
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
                                         data-target="#myModal" *ngIf="evaluationId">Delete</button>
