@@ -24,7 +24,10 @@ export class HttpRequestInterceptorService implements HttpInterceptor {
         Authorization: authorization,
       }),
     });
-    this.spinnerService.fetchingStatusChanged(true);
+
+    if(!req.url.match('/search/student/')){
+      this.spinnerService.fetchingStatusChanged(true);
+    }
 
     if ((req.method == 'PUT' || req.method == 'POST') && req.url.match('/student')) {
       return next.handle(putHeader);
