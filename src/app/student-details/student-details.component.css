@@ -1,3 +1,11 @@
+fa-icon {
+  color: #212529;
+  }
+.delete:hover{
+    color: red;
+    cursor: pointer;
+}
+
 .img {
     width:200px;
     height:200px;

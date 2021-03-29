@@ -14,6 +14,7 @@ import {
   overallEvaluationOptions,
 } from '../shared/evaluation-form-globals';
 import { Router } from '@angular/router';
+import { faTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-user-evaluations',
@@ -38,6 +39,8 @@ export class UserEvaluationsComponent implements OnInit {
     'Comment',
     'Action',
   ];
+  public faTrashAlt = faTrashAlt;
+  public faEdit = faEdit;
 
   constructor(
     private evaluationService: EvaluationService,

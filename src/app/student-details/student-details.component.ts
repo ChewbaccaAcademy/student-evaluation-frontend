@@ -17,6 +17,7 @@ import {
   directionOptions,
   overallEvaluationOptions,
 } from '../shared/evaluation-form-globals';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-student-details',
@@ -32,6 +33,7 @@ export class StudentDetailsComponent implements OnInit {
   public abilityToLearnOptions: { id: number; name: string }[] = abilityToLearnOptions;
   public directionOptions: { id: number; name: string }[] = directionOptions;
   public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
+  public faTrashAlt = faTrashAlt;
 
   constructor(
     private route: ActivatedRoute,

@@ -90,14 +90,9 @@
                 student.averageEvaluationDetails.streamOverall.project : '-'}}</p>
             </td>
             <td class="align-middle text-center">
-              <button type="button" class="btn btn-primary user-choice" [routerLink]="['/edit', student.id]"
-                *ngIf="isAdmin()">Edit</button>
-              <br>
-              <button type="button" class="btn btn-primary user-choice"
-                (click)="evaluateStudent(student.id)">Evaluate</button>
-              <br>
-              <button type="button" class="btn btn-danger user-choice" data-toggle="modal"
-                [attr.data-target]="'#deleteConfirmationModal'+j" *ngIf="isAdmin()">Delete</button>
+              <fa-icon class="eval" [icon]="faClipboard" size="2x" (click)="evaluateStudent(student.id)"></fa-icon>
+              <fa-icon class="edit" [icon]="faEdit" size="2x" [routerLink]="['/edit', student.id]" *ngIf="isAdmin()"></fa-icon>
+              <fa-icon class="delete" [icon]="faTrashAlt" size="2x" data-toggle="modal" [attr.data-target]="'#deleteConfirmationModal'+j" *ngIf="isAdmin()"></fa-icon>
               <div class="modal fade" [attr.id]="'deleteConfirmationModal'+j" tabindex="-1" role="dialog"
                 [attr.aria-labelledby]="'deleteConfirmationModal'+j" aria-hidden="true">
                 <div class="modal-dialog" role="document">

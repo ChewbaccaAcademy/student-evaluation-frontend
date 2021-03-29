@@ -136,8 +136,12 @@
               <p class="text-center value">{{evaluation.comment}}</p>
             </td>
             <td class="align-middle text-center">
-              <button type="button" class="btn btn-primary" *ngIf="(isEvaluationDeletable(evaluation))"
-                [disabled]="!evaluation.active" (click)="deleteEvaluation(evaluation)">Delete</button>
+              <div *ngIf="!evaluation.active">
+                <fa-icon class="delete-disabled" [icon]="faTrashAlt" size="2x" *ngIf="(isEvaluationDeletable(evaluation))" [style.opacity]="0.2"></fa-icon>
+              </div>
+              <div *ngIf="evaluation.active">
+                <fa-icon class="delete" [icon]="faTrashAlt" size="2x" *ngIf="(isEvaluationDeletable(evaluation))" [style.opacity]="1" (click)="deleteEvaluation(evaluation)"></fa-icon>
+              </div>
             </td>
           </tr>
 

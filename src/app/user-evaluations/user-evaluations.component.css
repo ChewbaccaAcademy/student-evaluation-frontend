@@ -1,6 +1,28 @@
-button.user-choice{
-  width: 90px;
+.icons{
+  display: inline-flex;
+  font-size: 14px;
 }
+
+fa-icon {
+color: #212529;
+padding: 2px;
+  }
+
+  .eval:hover{
+    color: green;
+    cursor: pointer;
+  }
+
+  .edit:hover{
+    color: #389cff;
+    cursor: pointer;
+  }
+
+  .delete:hover{
+    color: red;
+    cursor: pointer;
+  }
+
 
 img {
   width: 100px;
