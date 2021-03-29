@@ -53,17 +53,30 @@ a:hover {
 }
 
 th img {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+th {
+  text-align: center;
+}
+
+table {
+  border-radius: 30px;
+  width: 1078px;
+}
+
+.evaluation {
+  font-size: 14pt;
+  font-weight: bold;
 }
 
 .truncate {
   white-space: unset;
   overflow: hidden;
   text-overflow: initial;
-  max-width: 100%;
 }
 #footer {
   position: relative;

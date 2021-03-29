@@ -30,3 +30,6 @@ a{
 .table{
     border-radius: 30px ;
 }
+img {
+  object-fit: cover;
+}
