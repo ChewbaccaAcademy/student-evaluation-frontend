@@ -21,6 +21,7 @@ import { SearchComponent } from './search/search.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { HttpResponseInterceptorService } from './services/interceptors/http-response-interceptor.service';
 import { SortDirective } from './directive/sort.directive';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { SortDirective } from './directive/sort.directive';
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
+    FontAwesomeModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptorService, multi: true },

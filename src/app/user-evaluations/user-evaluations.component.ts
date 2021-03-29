@@ -14,6 +14,7 @@ import {
   overallEvaluationOptions,
 } from '../shared/evaluation-form-globals';
 import { Router } from '@angular/router';
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-evaluations',
@@ -38,6 +39,7 @@ export class UserEvaluationsComponent implements OnInit {
     'Comment',
     'Action',
   ];
+  public faAddressCard = faAddressCard;
 
   constructor(
     private evaluationService: EvaluationService,
@@ -49,6 +51,7 @@ export class UserEvaluationsComponent implements OnInit {
   ngOnInit(): void {
     this.evaluationService.getAllUserStudentEvaluations().subscribe((value) => {
       this.userEvaluations = value;
+      console.log(this.userEvaluations);
     });
   }
 

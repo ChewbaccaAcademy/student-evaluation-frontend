@@ -19,16 +19,16 @@
       <table class="table table-striped table-responsive">
         <thead class="thead-dark">
           <tr>
-            <th rowspan="2">Picture
+            <th rowspan="2" style="width: 10%;">Picture
             </th>
-            <th rowspan="2">Student
+            <th rowspan="2" style="width: 22%;">Student
             </th>
-            <th colspan="4">
-              <div style="border: 10px; border-color: black;">
+            <th colspan="4" style="width: 1080px;">
+              <div>
                 <p class="text-center value">Average</p>
               </div>
             </th>
-            <th rowspan="2">Actions
+            <th rowspan="2" style="width: 175px;">Actions
             </th>
           </tr>
           <tr>
@@ -59,33 +59,43 @@
           </tr>
         </thead>
         <tbody>
+          <tr *ngIf="studentsList?.length == 0 || studentsList == null">
+            <th class="no-evaluations" rowspan="1" colspan="9">
+              <div>
+                <fa-icon class="fa-3x" [icon]="faAddressCard"></fa-icon>
+              </div>
+              <div>
+                Students have not yet been added!
+              </div>
+            </th>
+          </tr>
           <tr *ngFor="let student of studentsList; let j = index">
             <th>
               <img class="test" [src]="getStudentImage(student)" [alt]="getImageTitle(student)"
                 [routerLink]="['/student', student.id]" />
             </th>
-            <td class="align-middle" style="word-break:normal;">
-              <a class="student-name text-center truncate" [routerLink]="['/student', student.id]">
+            <td class="align-middle" style="word-break:normal; width: 220px;" >
+              <a class="student-name text-center truncate" style="word-break:{{(student.name.length + student.lastname.length) > 50 ? 'break-all': 'normal'}}"   [routerLink]="['/student', student.id]">
                 {{ student.name }} {{ student.lastname }}
               </a>
             </td>
             <td class="align-middle">
-              <p class="text-center value">
+              <p class="text-center value evaluation">
                 {{student.averageEvaluationDetails.streamOverall.fe ? student.averageEvaluationDetails.streamOverall.fe
                 : '-'}}</p>
             </td>
             <td class="align-middle">
-              <p class="text-center value">
+              <p class="text-center value evaluation">
                 {{student.averageEvaluationDetails.streamOverall.be ? student.averageEvaluationDetails.streamOverall.be
                 : '-'}}</p>
             </td>
             <td class="align-middle">
-              <p class="text-center value">
+              <p class="text-center value evaluation">
                 {{student.averageEvaluationDetails.streamOverall.qa ? student.averageEvaluationDetails.streamOverall.qa
                 : '-'}}</p>
             </td>
             <td class="align-middle">
-              <p class="text-center value">
+              <p class="text-center value evaluation">
                 {{student.averageEvaluationDetails.streamOverall.project ?
                 student.averageEvaluationDetails.streamOverall.project : '-'}}</p>
             </td>
