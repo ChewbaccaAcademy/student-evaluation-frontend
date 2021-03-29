@@ -60,7 +60,7 @@
         </thead>
         <tbody>
           <tr *ngIf="studentsList?.length == 0 || studentsList == null">
-            <th class="no-evaluations" rowspan="1" colspan="9">
+            <th class="no-students" rowspan="1" colspan="9">
               <div>
                 <fa-icon class="fa-3x" [icon]="faAddressCard"></fa-icon>
               </div>
@@ -71,7 +71,7 @@
           </tr>
           <tr *ngFor="let student of studentsList; let j = index">
             <th>
-              <img class="test" [src]="getStudentImage(student)" [alt]="getImageTitle(student)"
+              <img [src]="getStudentImage(student)" [alt]="getImageTitle(student)"
                 [routerLink]="['/student', student.id]" />
             </th>
             <td class="align-middle" style="word-break:normal; width: 220px;" >

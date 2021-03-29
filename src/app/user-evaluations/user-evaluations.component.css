@@ -3,26 +3,42 @@
   font-size: 14px;
 }
 
+.student-name {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9em;
+}
+
 fa-icon {
-color: #212529;
-padding: 2px;
-  }
+  color: #212529;
+  padding: 2px;
+}
 
-  .eval:hover{
-    color: green;
-    cursor: pointer;
-  }
+.eval:hover{
+  color: green;
+  cursor: pointer;
+}
 
-  .edit:hover{
-    color: #389cff;
-    cursor: pointer;
-  }
+.edit:hover{
+  color: #389cff;
+  cursor: pointer;
+}
 
-  .delete:hover{
-    color: red;
-    cursor: pointer;
-  }
+.delete:hover{
+  color: red;
+  cursor: pointer;
+}
 
+a {
+  color: #000000;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 img {
   width: 75px;
@@ -40,38 +56,38 @@ table {
   border-radius: 30px;
 }
 
-.ttt {
+.header-element {
   text-align: center;
 }
 
-.ttt:nth-child(1) {
+.header-element:nth-child(1) {
   width: 124px;
 }
 
-.ttt:nth-child(2) {
+.header-element:nth-child(2) {
   width: 102.67px;
 }
 
-.ttt:nth-child(3) {
+.header-element:nth-child(3) {
   width: 77.3px;
 }
 
-.ttt:nth-child(4) {
+.header-element:nth-child(4) {
   width: 50px;
 }
 
-.ttt:nth-child(5) {
+.header-element:nth-child(5) {
   width: 93.33px;
 }
 
-.ttt:nth-child(6) {
+.header-element:nth-child(6) {
   width: 144px;
 }
 
-.ttt:nth-child(7) {
+.header-element:nth-child(7) {
   width: 221.33px;
 }
 
-.ttt:nth-child(8) {
+.header-element:nth-child(8) {
   width: 98.67px;
 }

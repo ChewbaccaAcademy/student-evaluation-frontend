@@ -22,6 +22,10 @@ fa-icon {
   cursor: pointer;
 }
 
+.no-students {
+  text-align: center;
+  padding: 5%;
+}
 
 .student-name {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -36,15 +40,12 @@ fa-icon {
   padding: 0;
 }
 
-
 a {
   color: #000000;
 }
 
 a:hover {
-  color: #000000;
-  text-decoration: none;
-  text-shadow: 0px 0px 3px rgba(130, 130, 130, 1);
+  text-decoration: underline;
   cursor: pointer;
 }
 
