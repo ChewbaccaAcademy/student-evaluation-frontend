@@ -1,12 +1,12 @@
 
 .content {
-  min-height: calc(100vh - 174px);
+  min-height: calc(100vh - 193px);
   padding-bottom: inherit;
 }
 .footer {
 
 background-color: #399cff;
-  height: 250px;
+  
 }
 
 
@@ -46,4 +46,27 @@ svg path:nth-child(4){
 
 
 
+@media (max-width:1300px){
+	.footer{
 
+     min-height:calc(5vw + 5px);
+	}
+}
+@media (max-width:800px){
+	.footer{
+
+     min-height:calc(5vw + 20px);
+	}
+}
+@media (max-width:670px){
+	.footer{
+
+     min-height:calc(5vw + 35px);
+	}
+}
+@media (max-width:500px){
+	.footer{
+
+     min-height:calc(5vw + 50px);
+	}
+}
