@@ -89,12 +89,12 @@ export class EvaluateStudentComponent implements OnInit {
       ],
     });
 
-    if (this.studentId) {
+    if (!!this.studentId) {
       this.student.setValue(this.studentId);
       this.student.disable();
     }
 
-    if (this.evaluationId) {
+    if (!!this.evaluationId) {
       this.evaluationService.getEvaluationById(this.evaluationId).subscribe((value) => {
         this.editEvaluation = value;
         this.student.setValue(this.editStudentId);
@@ -119,7 +119,7 @@ export class EvaluateStudentComponent implements OnInit {
       comment: this.comment.value,
     };
 
-    if (this.evaluationId) {
+    if (!!this.evaluationId) {
       this.evaluationService
         .updateEvaluation(this.editStudentId, this.evaluationId, studentEvaluationForm)
         .subscribe(() => {
@@ -131,7 +131,7 @@ export class EvaluateStudentComponent implements OnInit {
           this.toastr.success('Evaluation was successfully submited!', 'Success', {
             positionClass: 'toast-bottom-center',
           });
-          if (this.studentId) {
+          if (!!this.studentId) {
             this.router.navigate([`/student/${this.studentId}`]);
           } else {
             this.router.navigate(['/main']);
