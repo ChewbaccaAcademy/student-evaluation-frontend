@@ -119,7 +119,8 @@ export class EvaluateStudentComponent implements OnInit {
       comment: this.comment.value,
     };
 
-    if (this.evaluationId) {
+
+    if (!!this.evaluationId) {
       this.evaluationService
         .updateEvaluation(this.editStudentId, this.evaluationId, studentEvaluationForm)
         .subscribe(() => {
