@@ -49,10 +49,4 @@ th img {
   width: 100%;
   height: 2.5rem;            /* Footer height */
 }
-#resultsTable {
-  border-radius: 30px ;
-}
-.btn-primary{
-  background-color: #399cff;
-  border: 0;
-}
+

@@ -44,7 +44,7 @@ export class UserEvaluationsComponent implements OnInit {
     private toastr: ToastrService,
     private studentService: StudentService,
     private router: Router,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.evaluationService.getAllUserStudentEvaluations().subscribe((value) => {
