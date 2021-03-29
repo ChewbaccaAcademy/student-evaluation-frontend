@@ -21,18 +21,13 @@
   overflow-x: hidden;
 }
 
-.black-border {
-  border: 2px solid black;
-  padding-right: 5%;
-  padding-left: 5%;
+.text-muted{
+  font-size: 0.75em;
+  font-style: oblique;
 }
-
-.form-inline{
-  min-width: 35em;
-  max-width: 40em;
-}
-
-.drop-down-width{
-  min-width: 30em;
-  max-width: 35em;
+.input-group-text {
+  box-sizing: content-box;
+  width: 5em;
+  justify-content: left;
+  font-weight: 600;
 }

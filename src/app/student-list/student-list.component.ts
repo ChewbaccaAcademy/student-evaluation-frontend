@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
-import { AuthService } from '../services/auth-service.service';
 import { SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-student-list',
@@ -10,14 +12,22 @@ import { SafeUrl } from '@angular/platform-browser';
   styleUrls: ['./student-list.component.css'],
 })
 export class StudentListComponent implements OnInit {
-  public students: Student[];
+  public studentsList: Student[];
   private fullStudentsList: Student[];
-
-  constructor(private studentService: StudentService, private authService: AuthService) {}
+  public evaluationTableHeaderNames: string[] = [
+    'Picture',
+    'Student',
+    'Backend',
+    'Frontend',
+    'Testing',
+    'Project',
+    'Action',
+  ];
+  constructor(private studentService: StudentService, private router: Router, private auth: AuthService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
-      this.students = value;
+      this.studentsList = value;
       this.fullStudentsList = value;
     });
   }
@@ -29,20 +39,34 @@ export class StudentListComponent implements OnInit {
       return 'noImage.jpg';
     }
   }
-  getRole() {
-    return this.authService.getSessionUserRole();
-  }
 
   getStudentImage(student: Student): SafeUrl {
     return this.studentService.getImage(student);
   }
 
   filterStudents(searchValue: string) {
-    this.students = this.fullStudentsList.filter((student) => {
+    this.studentsList = this.fullStudentsList.filter((student) => {
       return student.name
         .toLowerCase()
         .concat(' ' + student.lastname.toLowerCase())
         .includes(searchValue.toLowerCase());
     });
   }
+
+  evaluateStudent(studentId: number) {
+    this.router.navigate(['/evaluate'], { queryParams: { student: studentId } });
+  }
+
+  isAdmin() {
+    return this.auth.getSessionUserRole() === 'ADMIN';
+  }
+
+  deleteStudent(studentId: number, index: number) {
+    this.studentService.deleteStudent(studentId).subscribe(() => {
+      this.studentsList.splice(index, 1);
+      this.router.navigate(['/students']);
+      this.toastr.success('Student was deleted', 'Success', { positionClass: 'toast-bottom-center' });
+    });
+  }
+
 }

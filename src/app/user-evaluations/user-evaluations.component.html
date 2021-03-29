@@ -1,13 +1,13 @@
 <div class="container text-shrink">
   <div class="row justify-content-center">
     <div class="col-auto">
-      <table class="table table-striped  ">
+      <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
             <th scope="col" *ngFor="let name of evaluationTableHeaderNames">{{name}}</th>
           </tr>
         </thead>
-        <tbody >
+        <tbody>
           <tr *ngFor="let evaluation of userEvaluations; let j = index">
             <th class="align-middle text-center">
               <img class="test"
@@ -20,12 +20,12 @@
             </td>
             <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.stream}}</p></td>
             <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.evaluation}}</p></td>
-            <td class="align-middle"><p class="text-center value">{{directionOptions[evaluation.evaluation.direction]}}</p></td>
-            <td class="align-middle"><p class="text-center value">{{communicationOptions[evaluation.evaluation.communication]}}</p></td>
-            <td class="align-middle"><p class="text-center value">{{abilityToLearnOptions[evaluation.evaluation.learnAbility]}}</p></td>
+            <td class="align-middle"><p class="text-center value">{{directionOptions[evaluation.evaluation.direction].name}}</p></td>
+            <td class="align-middle"><p class="text-center value" *ngIf="evaluation.evaluation.communication != undefined">{{communicationOptions[evaluation.evaluation.communication].name}}</p></td>
+            <td class="align-middle"><p class="text-center value" *ngIf="evaluation.evaluation.learnAbility != undefined">{{abilityToLearnOptions[evaluation.evaluation.learnAbility].name || ''}}</p></td>
             <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.comment}}</p></td>
             <td class="align-middle text-center">
-              <button type="button" class="btn btn-primary user-choice">Update</button>
+              <button type="button" class="btn btn-primary user-choice" (click)="editEvaluation(evaluation.evaluation.id, evaluation.student.id)" >Update</button>
 
              <button type="button" class="btn btn-danger user-choice" data-toggle="modal"  [attr.data-target]="'#deleteConfirmationModal'+j" >
                 Delete

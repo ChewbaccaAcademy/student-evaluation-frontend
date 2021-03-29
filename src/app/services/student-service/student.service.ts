@@ -35,4 +35,8 @@ export class StudentService {
       return './assets/images.jpg';
     }
   }
+
+  deleteStudent(studentId: number): Observable<any> {
+    return this.httpClient.put(`${URL}/student/disable/${studentId}`, studentId);
+  }
 }

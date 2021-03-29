@@ -19,6 +19,10 @@ export class MainLayoutComponent implements OnInit {
         path: '/myevaluations',
         title: 'My Evaluations',
       },
+      {
+        path: '/evaluate',
+        title: 'Create/Edit Evaluation',
+      },
     ];
   }
 

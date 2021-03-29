@@ -20,6 +20,7 @@ import { UserEvaluationsComponent } from './user-evaluations/user-evaluations.co
 import { SearchComponent } from './search/search.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { HttpResponseInterceptorService } from './services/interceptors/http-response-interceptor.service';
+import { SortDirective } from './directive/sort.directive';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HttpResponseInterceptorService } from './services/interceptors/http-res
     UserEvaluationsComponent,
     SearchComponent,
     SpinnerComponent,
+    SortDirective,
   ],
   imports: [
     BrowserModule,
