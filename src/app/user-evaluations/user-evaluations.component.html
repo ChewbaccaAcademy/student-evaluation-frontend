@@ -1,14 +1,16 @@
-<div class="container text-shrink">
+<div class="container">
   <div class="row justify-content-center">
     <div class="col-auto">
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col" *ngFor="let name of evaluationTableHeaderNames">{{name}}</th>
+      
+      <table class="table table-striped" >
+        
+        <thead class="thead-dark" >
+          <tr >
+            <th scope="col "  class="tt"  *ngFor="let name of evaluationTableHeaderNames">{{name}}</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let evaluation of userEvaluations; let j = index">
+          <tr class="tr"  *ngFor="let evaluation of userEvaluations; let j = index">
             <th class="align-middle text-center">
               <img class="test"
                 [src]="getStudentImage(evaluation.student)"
@@ -55,6 +57,7 @@
             </td>
           </tr>
         </tbody>
+        
       </table>
     </div>
   </div>

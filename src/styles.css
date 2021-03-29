@@ -1,0 +1,32 @@
+.btn-primary{
+  background-color: #389cff;
+  border-color: #389cff;
+  box-shadow: inset 0 0 0 0 #0080ff;
+  transition: ease-out 0.5s;
+}
+.btn-primary:disabled:hover{
+
+     box-shadow: inset 0 0 0 0 #389cff;
+}
+.btn-primary:hover{
+
+  box-shadow: inset 400px 0 0 0 #0080ff;
+}
+
+a{
+    color: #0c71d6;
+}
+.form-group{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 4px;
+
+}
+  .text-muted{
+    font-size: 0.75em;
+    font-style: oblique;
+  }
+
+.table{
+    border-radius: 30px ;
+}
