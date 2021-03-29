@@ -23,11 +23,15 @@ export class HttpResponseInterceptorService implements HttpInterceptor {
       tap(
         (evt) => {
           if (evt instanceof HttpResponse || evt instanceof HttpErrorResponse) {
-            this.spinnerService.fetchingStatusChanged(false);
+            if (!req.url.match('/search/student/')) {
+              this.spinnerService.fetchingStatusChanged(false);
+            }
           }
         },
         (error) => {
-          this.spinnerService.fetchingStatusChanged(false);
+          if (!req.url.match('/search/student/')) {
+            this.spinnerService.fetchingStatusChanged(false);
+          }
           if (error instanceof HttpErrorResponse) {
             switch (error.status) {
               case 401:
