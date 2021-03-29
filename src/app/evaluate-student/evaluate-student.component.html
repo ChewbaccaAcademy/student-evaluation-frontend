@@ -3,7 +3,7 @@
         <div class="col-md-12 justify-content-center">
             <!-- Form -->
 
-            <form [formGroup]="evaluationForm" class="black-border">
+            <form [formGroup]="evaluationForm">
                 <div *ngIf="students$ | async as students">
                     <h2 class="text-center" *ngIf="!studentId && !evaluationId">Select a student for evaluation</h2>
                     <h2 class="text-center" *ngIf="studentId">Evaluate the student</h2>
