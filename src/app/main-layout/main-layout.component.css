@@ -8,6 +8,14 @@
   box-shadow: 0px 0px 1px 0px #508fb9;
   z-index: -100;
 }
+img{
+  
+  position: absolute;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(127deg) brightness(103%) contrast(103%);
+  left: 35px;
+  top: 65px;
+
+}
 
 .small{
   background: #3399ff;
@@ -93,5 +101,5 @@
 }
 
 .content {
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 153px);
 }
