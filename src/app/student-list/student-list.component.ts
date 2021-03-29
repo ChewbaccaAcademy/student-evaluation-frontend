@@ -5,6 +5,9 @@ import { SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-student-list',
@@ -13,6 +16,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class StudentListComponent implements OnInit {
   public studentsList: Student[];
+  public faTrashAlt = faTrashAlt;
+  public faClipboard = faClipboardList;
+  public faEdit = faEdit;
   private fullStudentsList: Student[];
   public evaluationTableHeaderNames: string[] = [
     'Picture',

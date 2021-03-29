@@ -27,11 +27,10 @@
             <td class="align-middle"><p class="text-center value" *ngIf="evaluation.evaluation.learnAbility != undefined">{{abilityToLearnOptions[evaluation.evaluation.learnAbility].name || ''}}</p></td>
             <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.comment}}</p></td>
             <td class="align-middle text-center">
-              <button type="button" class="btn btn-primary user-choice" (click)="editEvaluation(evaluation.evaluation.id, evaluation.student.id)" >Update</button>
-
-             <button type="button" class="btn btn-danger user-choice" data-toggle="modal"  [attr.data-target]="'#deleteConfirmationModal'+j" >
-                Delete
-              </button>
+              <div class="icons">
+              <fa-icon class="edit" [icon]="faEdit" size="2x" (click)="editEvaluation(evaluation.evaluation.id, evaluation.student.id)" ></fa-icon>
+              <fa-icon class="delete" [icon]="faTrashAlt" size="2x" data-toggle="modal" [attr.data-target]="'#deleteConfirmationModal'+j"></fa-icon>
+              </div>
 
               <div class="modal fade" [attr.id]="'deleteConfirmationModal'+j" tabindex="-1" role="dialog" [attr.aria-labelledby]="'deleteConfirmationModal'+j" aria-hidden="true">
                 <div class="modal-dialog" role="document">
