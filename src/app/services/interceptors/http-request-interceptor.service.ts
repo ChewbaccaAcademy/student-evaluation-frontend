@@ -25,7 +25,7 @@ export class HttpRequestInterceptorService implements HttpInterceptor {
       }),
     });
 
-    if(!req.url.match('/search/student/')){
+    if (!req.url.match('/search/student/')) {
       this.spinnerService.fetchingStatusChanged(true);
     }
 

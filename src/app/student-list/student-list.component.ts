@@ -23,7 +23,12 @@ export class StudentListComponent implements OnInit {
     'Project',
     'Action',
   ];
-  constructor(private studentService: StudentService, private router: Router, private auth: AuthService, private toastr: ToastrService) {}
+  constructor(
+    private studentService: StudentService,
+    private router: Router,
+    private auth: AuthService,
+    private toastr: ToastrService,
+  ) {}
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
@@ -68,5 +73,4 @@ export class StudentListComponent implements OnInit {
       this.toastr.success('Student was deleted', 'Success', { positionClass: 'toast-bottom-center' });
     });
   }
-
 }

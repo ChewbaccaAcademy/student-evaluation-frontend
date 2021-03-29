@@ -32,14 +32,13 @@ export class StudentDetailsComponent implements OnInit {
   public abilityToLearnOptions: { id: number; name: string }[] = abilityToLearnOptions;
   public directionOptions: { id: number; name: string }[] = directionOptions;
   public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
-  
 
   constructor(
     private route: ActivatedRoute,
     private studentService: StudentService,
     private evaluationService: EvaluationService,
     private auth: AuthService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {

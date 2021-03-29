@@ -22,21 +22,22 @@ export class SpinnerService {
     private appRef: ApplicationRef,
     private injector: Injector,
   ) {
-    this.requestCounter.subscribe((value) =>
-    {
-    if (value > 0 && !this.activeLoader ) {
-      this.show();
-    } else {this.hide();
-    }})
+    this.requestCounter.subscribe((value) => {
+      if (value > 0 && !this.activeLoader) {
+        this.show();
+      } else {
+        this.hide();
+      }
+    });
   }
 
   fetchingStatusChanged(input: boolean): void {
-    const counter = input? 1 : -1;
-      this.requestCounter.next(this.requestCounter.getValue() + counter);
-    }
+    const counter = input ? 1 : -1;
+    this.requestCounter.next(this.requestCounter.getValue() + counter);
+  }
 
   hide() {
-    if(this.componentRef){
+    if (this.componentRef) {
       this.appRef.detachView(this.componentRef.hostView);
       this.componentRef.destroy();
       this.activeLoader = false;
