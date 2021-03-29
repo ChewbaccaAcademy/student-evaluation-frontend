@@ -89,8 +89,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text" for="communication">Soft skills</div>
                                     </div>
-                                    <select formControlName="communication"
-                                        class="form-control drop-down no-border drop-down-width">
+                                    <select formControlName="communication" class="form-control drop-down no-border">
                                         <option default value="">Select</option>
                                         <option *ngFor="let option of communicationOptions;" [value]="option.id">
                                             {{ option.name }}
@@ -103,8 +102,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text" for="abilityToLearn">Aptitude</div>
                                     </div>
-                                    <select formControlName="abilityToLearn"
-                                        class="form-control drop-down no-border drop-down-width">
+                                    <select formControlName="abilityToLearn" class="form-control drop-down no-border">
                                         <option default value="">Select</option>
                                         <option *ngFor="let option of abilityToLearnOptions;" [value]="option.id">
                                             {{ option.name }}
@@ -114,17 +112,15 @@
                             </div>
                             <div class="form-group text-center">
                                 <p for="comment" style="width: 145px; text-align: left;">General comment</p>
-                                <textarea class="form-control no-border drop-down-width" id="comment" rows="3"
-                                    formControlName="comment" placeholder="Your thoughts on the student"
-                                    maxlength="250">
-                    </textarea>
+                                <textarea class="form-control no-border" id="comment" rows="3" formControlName="comment"
+                                    placeholder="Your thoughts on the student" maxlength="250"></textarea>
                             </div>
                             <p>*Mandatory fields</p>
                             <div class="form-group">
                                 <a class="align-middle" [routerLink]="['/myevaluations']" *ngIf="evaluationId">
                                     Cancel</a>
                                 <a class="align-middle" [routerLink]="['/students']" *ngIf="!evaluationId">
-                                    Back</a>
+                                    Students' list</a>
                                 <div class="float-right">
                                     <button type="button" class="btn btn-danger" data-toggle="modal"
                                         data-target="#myModal" *ngIf="evaluationId">Delete</button>

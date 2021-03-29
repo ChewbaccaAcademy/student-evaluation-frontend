@@ -1,16 +1,50 @@
-.boxImg{
+.ng-dirty:not(form).ng-invalid:not(.dropdown) {
+    border: 2px solid red;
+  }
+  
+  .ng-valid:not(form).ng-valid:not(.dropdown) {
+    border: 2px solid green;
+  }
+  
+  .no-border {
+    border: 1px solid #ced4da !important;
+  }
+  
+  .my-center-element {
+    display: flex;
+    margin-top: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    overflow-x: hidden;
+  }
+  
+  .black-border {
+    border: 1px solid black;
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+  
+  .text-muted{
+    font-size: 0.75em;
+    font-style: oblique;
+  }
+  .input-group-text {
+    box-sizing: content-box;
+    width: 5em;
+    justify-content: left;
+    font-weight: 600;
+  }
+
+  .boxImg{
     width:193px; 
     height: 193px; 
-
     background-size: 200px 200px;
 }
 .borderbox{
     width:200px; 
     height: 200px; 
     border: 3.5px dashed rgba(11, 27, 31, 0.445);
-}
-.btn-outline-secondary:disabled{
-    border-color: black;
-    background-color: rgb(230, 0, 0);
-    color: white;
 }

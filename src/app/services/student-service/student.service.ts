@@ -23,8 +23,8 @@ export class StudentService {
     return this.httpClient.post<Student>(`${URL}/student`, student);
   }
 
-  updateStudent(student: Student): Observable<Student> {
-    return this.httpClient.put<Student>(`${URL}/student/${student.id}`, student);
+  updateStudent(formData: FormData, id: number): Observable<Student> {
+    return this.httpClient.put<Student>(`${URL}/student/${id}`, formData);
   }
 
   getImage(student: Student) {
@@ -34,5 +34,9 @@ export class StudentService {
     } else {
       return './assets/images.jpg';
     }
+  }
+
+  deleteStudent(studentId: number): Observable<any> {
+    return this.httpClient.put(`${URL}/student/disable/${studentId}`, studentId);
   }
 }

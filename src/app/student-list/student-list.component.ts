@@ -4,6 +4,7 @@ import { Student } from '../model/student';
 import { SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-student-list',
@@ -11,7 +12,7 @@ import { AuthService } from '../services/auth-service.service';
   styleUrls: ['./student-list.component.css'],
 })
 export class StudentListComponent implements OnInit {
-  public students: Student[];
+  public studentsList: Student[];
   private fullStudentsList: Student[];
   public evaluationTableHeaderNames: string[] = [
     'Picture',
@@ -22,11 +23,11 @@ export class StudentListComponent implements OnInit {
     'Project',
     'Action',
   ];
-  constructor(private studentService: StudentService, private router: Router, private auth: AuthService) {}
+  constructor(private studentService: StudentService, private router: Router, private auth: AuthService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe((value) => {
-      this.students = value;
+      this.studentsList = value;
       this.fullStudentsList = value;
     });
   }
@@ -44,7 +45,7 @@ export class StudentListComponent implements OnInit {
   }
 
   filterStudents(searchValue: string) {
-    this.students = this.fullStudentsList.filter((student) => {
+    this.studentsList = this.fullStudentsList.filter((student) => {
       return student.name
         .toLowerCase()
         .concat(' ' + student.lastname.toLowerCase())
@@ -60,9 +61,12 @@ export class StudentListComponent implements OnInit {
     return this.auth.getSessionUserRole() === 'ADMIN';
   }
 
-  deleteStudent() {
-    // this.evaluationService.deleteEvaluation(evaluation.id).subscribe(() => {
-    //   this.loadEvaluations();
-    // });
+  deleteStudent(studentId: number, index: number) {
+    this.studentService.deleteStudent(studentId).subscribe(() => {
+      this.studentsList.splice(index, 1);
+      this.router.navigate(['/students']);
+      this.toastr.success('Student was deleted', 'Success', { positionClass: 'toast-bottom-center' });
+    });
   }
+
 }

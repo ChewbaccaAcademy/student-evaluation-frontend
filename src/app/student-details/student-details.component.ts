@@ -32,6 +32,7 @@ export class StudentDetailsComponent implements OnInit {
   public abilityToLearnOptions: { id: number; name: string }[] = abilityToLearnOptions;
   public directionOptions: { id: number; name: string }[] = directionOptions;
   public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
+  
 
   constructor(
     private route: ActivatedRoute,
