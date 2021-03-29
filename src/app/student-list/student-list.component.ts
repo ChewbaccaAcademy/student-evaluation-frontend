@@ -8,7 +8,6 @@ import { ToastrService } from 'ngx-toastr';
 import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 
-
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',

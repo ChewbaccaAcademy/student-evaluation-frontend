@@ -42,7 +42,6 @@ export class UserEvaluationsComponent implements OnInit {
   public faTrashAlt = faTrashAlt;
   public faEdit = faEdit;
 
-
   constructor(
     private evaluationService: EvaluationService,
     private toastr: ToastrService,
