@@ -12,12 +12,6 @@ input {
   line-height: 21px;
 }
 
-#search-icon {
-  position: relative;
-  right: 0.5rem;
-  cursor: pointer;
-}
-
 #close-icon {
   position: relative;
   right: 1rem;
@@ -41,9 +35,10 @@ ul {
   position: absolute;
   top: 100%;
   z-index: 1000;
+  margin-left: 15px;
   overflow: hidden;
   font-size: 12px;
-  min-width: 320px;
+  min-width: 300px;
   max-height: 34vh;
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.03);
 }

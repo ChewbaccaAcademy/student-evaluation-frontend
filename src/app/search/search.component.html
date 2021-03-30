@@ -1,6 +1,6 @@
-<input type="text" class="form-control" maxlength="512" placeholder="Search..." [formControl]="inputForm"/>
+<input type="text" class="form-control" maxlength="512" placeholder="Search..." [formControl]="inputForm" style="width: inherit;"/>
 <div class="autocomplete row justify-content-center" *ngIf="resultStudentList$ | async as resultStudentList">
-  <div class="col-auto">
+  <div>
     <ul>
       <li *ngFor="let student of resultStudentList" (click)="openStudent()" [routerLink]="['/student', student?.id]">
         <img [src]='getStudentImage(student)'>

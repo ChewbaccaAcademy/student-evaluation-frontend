@@ -22,14 +22,16 @@ a{
   margin-bottom: 4px;
 
 }
-  .text-muted{
-    font-size: 0.75em;
-    font-style: oblique;
-  }
+
+.text-muted{
+  font-size: 0.75em;
+  font-style: oblique;
+}
 
 .table{
-    border-radius: 30px ;
+    border-radius: 30px;
 }
+
 img {
   object-fit: cover;
 }

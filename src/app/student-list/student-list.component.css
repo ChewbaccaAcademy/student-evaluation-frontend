@@ -68,6 +68,22 @@ table {
   border-radius: 30px;
 }
 
+.picture {
+  width: 10%;
+}
+
+.student {
+  width: 22%;
+}
+
+.average {
+  width: 1080px;
+}
+
+.actions {
+  width: 175px;
+}
+
 .evaluation {
   font-size: 14pt;
   font-weight: bold;
