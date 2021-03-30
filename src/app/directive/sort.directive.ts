@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, Output, Renderer2, EventEmitter} from '@angular/core';
 import { Student } from '../model/student';
 import { Sort } from '../shared/sort';
 import { get as lodashGet } from 'lodash';
@@ -8,7 +8,11 @@ import { get as lodashGet } from 'lodash';
 })
 export class SortDirective {
   @Input() appSort: Student[];
+  @Output() sortKey: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(private renderer: Renderer2, private targetElem: ElementRef) {}
+
+
 
   @HostListener('click')
   sortdata() {
@@ -25,5 +29,8 @@ export class SortDirective {
     } else {
       elem.setAttribute('data-order', -1);
     }
+    this.sortKey.emit("test");
+    console.log(this.sortKey.emit("test"));
+    console.log(this);
   }
 }

@@ -32,28 +32,10 @@
             </th>
           </tr>
           <tr>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.fe">
-              <a>
-                <p class="text-center value unselectable">Frontend</p>
-              </a>
-            </th>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.be">
-              <a>
-                <p class="text-center value unselectable">Backend</p>
-              </a>
-            </th>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.qa">
-              <a>
-                <p class="text-center value unselectable">Testing</p>
-              </a>
-            </th>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.project">
-              <a>
-                <p class="text-center value unselectable">Project</p>
+            <th *ngFor="let evaluationHeader of evaluationHeaders"  scope="col" [appSort]="studentsList" (emitKey)="console.log($event)" data-order="-1"
+              [attr.data-name]="evaluationHeader.evaluationKey">
+               <a>
+                <p class="text-center value unselectable">{{evaluationHeader.name}} </p>
               </a>
             </th>
           </tr>
