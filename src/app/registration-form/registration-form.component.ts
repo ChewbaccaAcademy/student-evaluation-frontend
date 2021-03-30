@@ -40,7 +40,7 @@ export class RegistrationFormComponent implements OnInit {
       stream: [
         '',
         {
-          validators: [Validators.required, Validators.pattern('^((?!Select stream).)*$')],
+          validators: [Validators.required, Validators.pattern('^(Frontend|Backend|Testing|Project)')],
           updateOn: 'blur',
         },
       ],
@@ -64,7 +64,19 @@ export class RegistrationFormComponent implements OnInit {
     return this.registrationForm.get('password');
   }
   submitForm() {
-    const user: User = {
+    const regexEmail = new RegExp('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$');
+    const regexStream = new RegExp('^(Frontend|Backend|Testing|Project)');
+    const regexPassword = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$');
+  if(this.username.value.trim().length < 5 || this.username.value.trim().length > 40 ){
+     this.toastr.error("Username should be atleast 5 characters long (without spaces) and should not be longer than 40 characters!", 'Error', { positionClass: 'toast-bottom-center' });
+  }else if(!regexEmail.test(this.email.value) ){
+    this.toastr.error("Please enter valid e-mail address!", 'Error', { positionClass: 'toast-bottom-center' });
+  }else if(!regexStream.test(this.stream.value) ){
+    this.toastr.error("Please select stream!", 'Error', { positionClass: 'toast-bottom-center' });
+  }else if(!regexPassword.test(this.password.value) || this.password.value.length > 50 ){
+    this.toastr.error("Password should be at least 8 characters long and contain at least one digit and should not be longer than 50 characters!", 'Error', { positionClass: 'toast-bottom-center' });
+  }else{
+      const user: User = {
       username: this.username.value,
       password: this.password.value,
       stream: this.stream.value,
@@ -78,6 +90,9 @@ export class RegistrationFormComponent implements OnInit {
         this.toastr.error(response, 'Error', { positionClass: 'toast-bottom-center' });
       }
     });
+
+   }
+
   }
 
   goBack() {
