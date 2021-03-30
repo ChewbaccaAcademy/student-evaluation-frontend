@@ -5,8 +5,6 @@ export class Sort {
     sensitivity: 'base',
   });
 
-  constructor() {}
-
   public startSort(property, order, type = '') {
     if (order === 'desc') {
       this.sortOrder = -1;

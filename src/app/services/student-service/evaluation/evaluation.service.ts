@@ -30,19 +30,8 @@ export class EvaluationService {
     return this.httpClient.get<Evaluation[]>(`${URL}/student/evaluation/${studentId}`);
   }
 
-  postEvaluation(studentId: number, evaluation: EvaluationPost): any {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-    return this.httpClient
-      .post<Evaluation>(`${URL}/student/evaluation/${studentId}`, evaluation, {
-        headers,
-        responseType: 'text' as 'json',
-      })
-      .pipe(
-        mapTo(true),
-        catchError((error) => {
-          return of(JSON.parse(error.error).message);
-        }),
-      );
+  postEvaluation(studentId: number, evaluation: EvaluationPost): Observable<EvaluationPost> {
+    return this.httpClient.post<EvaluationPost>(`${URL}/student/evaluation/${studentId}`, evaluation);
   }
 
   updateEvaluation(studentId: number, evaluationId: number, evaluation: EvaluationPost): Observable<Evaluation> {

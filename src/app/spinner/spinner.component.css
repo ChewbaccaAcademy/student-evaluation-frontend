@@ -1,15 +1,22 @@
-@keyframes ldio-9b0bm85q8jl {
-  0% { background: #28292f }
-  12.5% { background: #28292f }
-  12.625% { background: #399cff }
-  100% { background: #399cff }
+
+@keyframes rotate{
+   0% { transform: rotate(0deg) translateX(100px) rotate(0deg) scale(0.2);}
+      12.625% {transform:rotate(45.45deg) translateX(100px) rotate(-45.45deg)  scale(0.2);}
+   80%{transform: rotate(288deg) translateX(100px) rotate(-288deg) scale(0.8);}
+
+    100%  { transform: rotate(360deg) translateX(100px) rotate(-360deg) scale(0.2) ; }
+
 }
 .ldio-9b0bm85q8jl div {
   position: absolute;
   width: 54.34px;
   height: 54.34px;
-  background: #399cff;
-  animation: ldio-9b0bm85q8jl 1.4925373134328357s linear infinite;
+  border-radius: 50%;
+  background: #fafcff;
+  transform: scale(0);
+  left: 96.33px;
+  top: 96.33px;
+  animation: rotate 1.5s linear infinite;
 }
 .loadingio-spinner-blocks-jdrtn25cue {
   width: 247px;
@@ -19,6 +26,7 @@
   background: none;
 }
 .ldio-9b0bm85q8jl {
+
   width: 100%;
   height: 100%;
   position: relative;
@@ -31,6 +39,7 @@
 
 
 .wrapper {
+
   position: fixed;
   left:0px;
   top:0px;

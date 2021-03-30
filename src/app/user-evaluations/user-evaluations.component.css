@@ -62,40 +62,45 @@ table {
 }
 
 .header-element:nth-child(1) {
-  width: 124px;
+  width: 114px;
 }
 
 .header-element:nth-child(2) {
-  width: 102.67px;
+  width: 95px;
+  padding-left: 0;
+  text-align: left;
 }
 
 .header-element:nth-child(3) {
-  width: 77.3px;
+  width: 78px;
 }
 
 .header-element:nth-child(4) {
-  width: 50px;
+  width: 103px;
 }
 
 .header-element:nth-child(5) {
-  width: 93.33px;
+  width: 94px;
 }
 
 .header-element:nth-child(6) {
-  width: 144px;
+  width: 171px;
 }
 
 .header-element:nth-child(7) {
-  width: 221.33px;
+  width: 165px;
 }
 
 .header-element:nth-child(8) {
-  width: 98.67px;
+  width: 199px;
+}
+
+.header-element:nth-child(9) {
+  width: 99px;
 }
 
 @media screen and (min-width: 992px) {
   h2 {
     display: none;
-    margin-bottom: 20px;
   }
 }

@@ -14,6 +14,7 @@ import { faClipboardList, faAddressCard, faSortDown, faSortUp, faSort } from '@f
   styleUrls: ['./student-list.component.css'],
 })
 export class StudentListComponent implements OnInit {
+  public selectedStudentId: number;
   public studentsList: Student[];
   public faTrashAlt = faTrashAlt;
   public faClipboard = faClipboardList;
@@ -101,10 +102,9 @@ export class StudentListComponent implements OnInit {
     return this.auth.getSessionUserRole() === 'ADMIN';
   }
 
-  deleteStudent(studentId: number, index: number) {
-    this.studentService.deleteStudent(studentId).subscribe(() => {
-      this.studentsList.splice(index, 1);
-      this.router.navigate(['/students']);
+  deleteStudent(event) {
+    this.studentService.deleteStudent(event).subscribe(() => {
+      this.studentsList = this.studentsList.filter((student: Student) => student.id !== event);
       this.toastr.success('Student was deleted', 'Success', { positionClass: 'toast-bottom-center' });
     });
   }
