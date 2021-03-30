@@ -22,6 +22,10 @@ fa-icon {
   cursor: pointer;
 }
 
+.arrow{
+  color: white;
+}
+
 .no-students {
   text-align: center;
   padding: 5%;
