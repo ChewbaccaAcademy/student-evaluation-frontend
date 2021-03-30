@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MenuItem } from '../shared/menu-item';
 import { LoginService } from '../services/login.service';
 import { AuthService } from '../services/auth-service.service';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,7 @@ export class NavbarComponent implements OnInit {
   @Input() menuItems: MenuItem[];
   public isAdmin = false;
   public isCollapsed = false;
+  public faSignOutAlt = faSignOutAlt;
 
   constructor(private loginService: LoginService, private authService: AuthService) {}
 

@@ -1,86 +1,77 @@
 <div id="student-details" class="container-fluid" *ngIf="student$ | async as student">
-  <div class="row justify-content-md-center">
-    <div class="col-4">
-      <img class="img-thumbnail" [src]="getStudentImage(student)" alt="student profile picture " />
-      <div class="">
+	<div class="row">
+		<div class="col-md-4 text-center">
+      <div>
+        <img class="img" [src]="getStudentImage(student)" alt="student profile picture "/>
+      </div>
+      <div>
         <h5 class="text-center">{{ student.name }} {{ student.lastname }}</h5>
       </div>
-    </div>
-    <div class="col-4">
-      <br>
+		</div>
+		<div class="col-md-4" style="min-width: 200px; padding-left: 30px; padding-right: 30px;">
       <div class="row" *ngIf="student.university">
-        <div class="col-6">University</div>
-        <div class="col-6">{{ student.university }}</div>
+        <div class="col-4 infoHU" >University</div>
+        <div class="col-8 infoU" ><div style="margin-top: 10px;">{{ student.university }}</div></div>
       </div>
-      <br>
       <div class="row" *ngIf="student.comment">
-        <div class="col-6">Previous experience</div>
-        <div class="col-6">{{ student.comment }}</div>
+        <div class="col-4 infoH" >Previous experience</div>
+        <div class="col-8 info">{{ student.comment }}</div>
       </div>
-      <br>
-
-    </div>
-    <div class="col-4">
-      <div class="row justify-content-md-center">
-        <div class="col-auto">
-          <table class="table table-striped table-responsive">
-            <thead class="thead-dark">
-              <tr>
-                <th colspan="4" style="padding: 0;">
-                  <p class="text-center value">Average</p>
-                </th>
-              </tr>
-              <tr>
-                <th scope="col">
-                  <p class="text-center value">FE</p>
-                </th>
-                <th scope="col">
-                  <p class="text-center value">BE</p>
-                </th>
-                <th scope="col">
-                  <p class="text-center value">QA</p>
-                </th>
-                <th scope="col">
-                  <p class="text-center value">Project</p>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="align-middle">
-                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.fe != 0">
-                    {{student.averageEvaluationDetails.streamOverall.fe}}</p>
-                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.fe == 0">-</p>
-                </td>
-                <td class="align-middle">
-                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.be != 0">
-                    {{student.averageEvaluationDetails.streamOverall.be}}</p>
-                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.be == 0">-</p>
-                </td>
-                <td class="align-middle">
-                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.qa != 0">
-                    {{student.averageEvaluationDetails.streamOverall.qa}}</p>
-                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.qa == 0">-</p>
-                </td>
-                <td class="align-middle">
-                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.project != 0">
-                    {{student.averageEvaluationDetails.streamOverall.project}}</p>
-                  <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.project == 0">-</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <a (click)="exportCard(student)"><img src="../../assets/exportcard.png" alt="exportcard.png" width="200px" style="cursor: pointer;"></a>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="row justify-content-center">
-    <div class="col-auto">
+		</div>
+		<div class="col-auto">
+      <table class="table table-striped table-responsive average-table">
+        <thead class="thead-dark">
+          <tr>
+            <th colspan="4" style="padding: 0;">
+              <p class="text-center value">Average</p>
+            </th>
+          </tr>
+          <tr>
+            <th scope="col">
+              <p class="text-center value">FE</p>
+            </th>
+            <th scope="col">
+              <p class="text-center value">BE</p>
+            </th>
+            <th scope="col">
+              <p class="text-center value">QA</p>
+            </th>
+            <th scope="col">
+              <p class="text-center value">Project</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="align-middle">
+              <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.fe != 0">
+                {{student.averageEvaluationDetails.streamOverall.fe}}</p>
+              <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.fe == 0">-</p>
+            </td>
+            <td class="align-middle">
+              <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.be != 0">
+                {{student.averageEvaluationDetails.streamOverall.be}}</p>
+              <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.be == 0">-</p>
+            </td>
+            <td class="align-middle">
+              <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.qa != 0">
+                {{student.averageEvaluationDetails.streamOverall.qa}}</p>
+              <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.qa == 0">-</p>
+            </td>
+            <td class="align-middle">
+              <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.project != 0">
+                {{student.averageEvaluationDetails.streamOverall.project}}</p>
+              <p class="text-center value" *ngIf="student.averageEvaluationDetails.streamOverall.project == 0">-</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
       <h2>Current evaluations</h2>
-      <table class="table table-striped table-responsive ">
+      <table class="table table-striped table-responsive">
         <thead class="thead-dark">
           <tr>
             <th scope="col">
@@ -148,6 +139,6 @@
 
         </tbody>
       </table>
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
