@@ -44,9 +44,16 @@ fa-icon {
   width: 1080px;
 }
 
-
-
-
+@media screen and (max-width: 768px) {
+  .exportbtn {
+    padding-bottom: 0;
+    margin-bottom: -50px;
+    margin-right: 15px;
+    margin-top: 4px;
+    padding-left: 0px;
+    text-align: left;
+  }
+}
 
 .infoH{
   background-color: #f2f2f2 ;color:black;
@@ -63,9 +70,10 @@ fa-icon {
 
 @media screen and (max-width: 768px) {
   .average-table {
-    margin-left: 25%;
+    margin-left: 2.5%;
   }
 }
+
 .truncate {
   white-space: unset;
   overflow: hidden;
