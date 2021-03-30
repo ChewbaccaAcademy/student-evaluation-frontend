@@ -26,7 +26,7 @@
           <table class="table table-striped table-responsive">
             <thead class="thead-dark">
               <tr>
-                <th colspan="4">
+                <th colspan="4" style="padding: 0;">
                   <p class="text-center value">Average</p>
                 </th>
               </tr>
@@ -137,10 +137,10 @@
             </td>
             <td class="align-middle text-center">
               <div *ngIf="!evaluation.active">
-                <fa-icon class="delete-disabled" [icon]="faTrashAlt" size="2x" *ngIf="(isEvaluationDeletable(evaluation))" [style.opacity]="0.2"></fa-icon>
+                <fa-icon class="delete-disabled" title="Disabled" [icon]="faTrashAlt" size="2x" *ngIf="(isEvaluationDeletable(evaluation))" [style.opacity]="0.2"></fa-icon>
               </div>
               <div *ngIf="evaluation.active">
-                <fa-icon class="delete" [icon]="faTrashAlt" size="2x" *ngIf="(isEvaluationDeletable(evaluation))" [style.opacity]="1" (click)="deleteEvaluation(evaluation)"></fa-icon>
+                <fa-icon class="delete" title="Delete" [icon]="faTrashAlt" size="2x" *ngIf="(isEvaluationDeletable(evaluation))" [style.opacity]="1" (click)="deleteEvaluation(evaluation)"></fa-icon>
               </div>
             </td>
           </tr>

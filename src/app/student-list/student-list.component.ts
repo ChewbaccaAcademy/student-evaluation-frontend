@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import { faClipboardList, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-student-list',
@@ -28,6 +28,8 @@ export class StudentListComponent implements OnInit {
     'Project',
     'Action',
   ];
+  public faAddressCard = faAddressCard;
+
   constructor(
     private studentService: StudentService,
     private router: Router,

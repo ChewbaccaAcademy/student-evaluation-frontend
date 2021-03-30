@@ -1,24 +1,34 @@
-<div class="container">
+<div class="container text-shrink">
   <div class="row justify-content-center">
     <div class="col-auto">
-      
-      <table class="table table-striped table-responsive" style="border-radius: 30px;">
-        
-        <thead class="thead-dark" >
-          <tr >
-            <th scope="col "    *ngFor="let name of evaluationTableHeaderNames">{{name}}</th>
+      <h2 class="text-center">Your evaluations</h2>
+      <table class="table table-striped table-responsive">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" class="header-element unselectable" *ngFor="let name of evaluationTableHeaderNames">{{name}}</th>
           </tr>
         </thead>
         <tbody>
-          <tr   *ngFor="let evaluation of userEvaluations; let j = index">
+          <tr *ngIf="userEvaluations?.length == 0 || userEvaluations == null">
+            <th class="no-evaluations" rowspan="1" colspan="9">
+              <div>
+                <fa-icon class="fa-3x" [icon]="faAddressCard"></fa-icon>
+              </div>
+              <div>
+                You have not yet evaluated any student!
+              </div>
+            </th>
+          </tr>
+          <tr *ngFor="let evaluation of userEvaluations; let j = index">
             <th class="align-middle text-center">
               <img class="test"
                 [src]="getStudentImage(evaluation.student)"
                 [routerLink]="['/student', evaluation.student.id]"
               />
             </th>
-            <td class="align-middle" style ="word-break:normal;">
-              <a href="" [routerLink]="['/student', evaluation.student.id]">{{evaluation.student.name}} {{evaluation.student.lastname}}</a>
+
+            <td class="align-middle student-name" style ="word-break:normal;">
+              <a [routerLink]="['/student', evaluation.student.id]">{{evaluation.student.name}} {{evaluation.student.lastname}}</a>
             </td>
             <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.stream}}</p></td>
             <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.evaluation}}</p></td>
@@ -28,15 +38,20 @@
             <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.comment}}</p></td>
             <td class="align-middle text-center">
               <div class="icons">
-              <fa-icon class="edit" [icon]="faEdit" size="2x" (click)="editEvaluation(evaluation.evaluation.id, evaluation.student.id)" ></fa-icon>
-              <fa-icon class="delete" [icon]="faTrashAlt" size="2x" data-toggle="modal" [attr.data-target]="'#deleteConfirmationModal'+j"></fa-icon>
+                <div *ngIf="!evaluation.evaluation.active" title="Disabled">
+                  <fa-icon class="edit" [icon]="faEdit" size="2x" [style.opacity]="0.2"></fa-icon>
+                  <fa-icon class="delete" [icon]="faTrashAlt" size="2x" data-toggle="modal" [style.opacity]="0.2"></fa-icon>
+                </div>
+                <div *ngIf="evaluation.evaluation.active">
+                  <fa-icon class="edit" title="Edit" [icon]="faEdit" size="2x" (click)="editEvaluation(evaluation.evaluation.id, evaluation.student.id)"></fa-icon>
+                  <fa-icon class="delete" title="Delete" [icon]="faTrashAlt" size="2x" data-toggle="modal" [attr.data-target]="'#deleteConfirmationModal'+j"></fa-icon>
+                </div>
               </div>
-
               <div class="modal fade" [attr.id]="'deleteConfirmationModal'+j" tabindex="-1" role="dialog" [attr.aria-labelledby]="'deleteConfirmationModal'+j" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" [attr.id]="'deleteConfirmationModalLabel'+j">Attention!!!</h5>
+                      <h5 class="modal-title" [attr.id]="'deleteConfirmationModalLabel'+j">Attention!</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -51,12 +66,10 @@
                   </div>
                 </div>
               </div>
-
-
             </td>
           </tr>
         </tbody>
-        
+
       </table>
     </div>
   </div>

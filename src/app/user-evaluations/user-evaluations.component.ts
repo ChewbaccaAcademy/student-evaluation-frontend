@@ -15,6 +15,7 @@ import {
 } from '../shared/evaluation-form-globals';
 import { Router } from '@angular/router';
 import { faTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons';
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-evaluations',
@@ -41,6 +42,7 @@ export class UserEvaluationsComponent implements OnInit {
   ];
   public faTrashAlt = faTrashAlt;
   public faEdit = faEdit;
+  public faAddressCard = faAddressCard;
 
   constructor(
     private evaluationService: EvaluationService,

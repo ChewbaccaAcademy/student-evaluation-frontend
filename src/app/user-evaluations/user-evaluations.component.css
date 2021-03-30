@@ -3,30 +3,99 @@
   font-size: 14px;
 }
 
+.student-name {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9em;
+}
+
 fa-icon {
-color: #212529;
-padding: 2px;
-  }
+  color: #212529;
+  padding: 2px;
+}
 
-  .eval:hover{
-    color: green;
-    cursor: pointer;
-  }
+.eval:hover{
+  color: green;
+  cursor: pointer;
+}
 
-  .edit:hover{
-    color: #389cff;
-    cursor: pointer;
-  }
+.edit:hover{
+  color: #389cff;
+  cursor: pointer;
+}
 
-  .delete:hover{
-    color: red;
-    cursor: pointer;
-  }
+.delete:hover{
+  color: red;
+  cursor: pointer;
+}
 
+a {
+  color: #000000;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 img {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.no-evaluations {
+  text-align: center;
+  padding: 5%;
+  width: 1080px;
+}
+
+table {
+  border-radius: 30px;
+}
+
+.header-element {
+  text-align: center;
+}
+
+.header-element:nth-child(1) {
+  width: 124px;
+}
+
+.header-element:nth-child(2) {
+  width: 102.67px;
+}
+
+.header-element:nth-child(3) {
+  width: 77.3px;
+}
+
+.header-element:nth-child(4) {
+  width: 50px;
+}
+
+.header-element:nth-child(5) {
+  width: 93.33px;
+}
+
+.header-element:nth-child(6) {
+  width: 144px;
+}
+
+.header-element:nth-child(7) {
+  width: 221.33px;
+}
+
+.header-element:nth-child(8) {
+  width: 98.67px;
+}
+
+@media screen and (min-width: 992px) {
+  h2 {
+    display: none;
+    margin-bottom: 20px;
+  }
 }

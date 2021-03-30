@@ -12,12 +12,6 @@ input {
   line-height: 21px;
 }
 
-#search-icon {
-  position: relative;
-  right: 0.5rem;
-  cursor: pointer;
-}
-
 #close-icon {
   position: relative;
   right: 1rem;
@@ -39,19 +33,17 @@ ul {
   list-style: none;
   padding: 0;
   position: absolute;
-  width: 100%;
   top: 100%;
   z-index: 1000;
+  margin-left: 15px;
   overflow: hidden;
   font-size: 12px;
   min-width: 300px;
   max-height: 34vh;
-  overflow-y: scroll;
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.03);
 }
 
 li {
-  max-width: 100%;
   display: flex;
   min-height: 28px;
   padding-top: 16px;

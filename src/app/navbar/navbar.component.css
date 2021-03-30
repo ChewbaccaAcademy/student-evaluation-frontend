@@ -1,7 +1,18 @@
-
-.container {
-  padding: 0;
+nav {
+  margin-bottom: 50px;
 }
-.navbar-toggler{
-  align-content: right;
+
+.navbar-container {
+  position: absolute;
+  z-index: 1000;
+  top: 100%;
+  width: 95%;
+  height: 100%;
+  float: left;
+}
+
+.navbar-collapse {
+  background-color: white;
+  margin-left: -5px;
+  padding-left: 12px;
 }

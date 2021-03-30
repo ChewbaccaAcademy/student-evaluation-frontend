@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth-service.service';
 export class NavbarComponent implements OnInit {
   @Input() menuItems: MenuItem[];
   public isAdmin = false;
+  public isCollapsed = false;
 
   constructor(private loginService: LoginService, private authService: AuthService) {}
 
@@ -20,7 +21,12 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  coll(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
   logout() {
+    this.isCollapsed = false;
     this.loginService.logout();
   }
 }
