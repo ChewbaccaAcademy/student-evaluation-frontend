@@ -60,6 +60,12 @@ th img {
   cursor: pointer;
 }
 
+@media screen and (max-width: 768px) {
+  .image-scale {
+    transform: translateY(10%);
+  }
+}
+
 th {
   text-align: center;
 }
