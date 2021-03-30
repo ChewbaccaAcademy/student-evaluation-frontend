@@ -112,4 +112,7 @@ export class StudentListComponent implements OnInit {
   handleSortKey(key: string) {
     this.sortKey = key;
   }
+  selectStudent(studentId) {
+    this.selectedStudentId = studentId;
+  }
 }
