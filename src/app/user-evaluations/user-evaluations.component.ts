@@ -54,7 +54,6 @@ export class UserEvaluationsComponent implements OnInit {
   ngOnInit(): void {
     this.evaluationService.getAllUserStudentEvaluations().subscribe((value) => {
       this.userEvaluations = value;
-      console.log(this.userEvaluations);
     });
   }
 

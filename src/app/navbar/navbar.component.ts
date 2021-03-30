@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit {
 
   coll(): void {
     this.isCollapsed = !this.isCollapsed;
-    console.log(this.isCollapsed);
   }
 
   logout() {
