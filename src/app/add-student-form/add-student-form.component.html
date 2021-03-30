@@ -77,6 +77,7 @@
               <a class="align-middle" [routerLink]="['/students']" >
                 Students' list</a>
               <div class="float-right">
+                <button class="btn btn-danger" *ngIf="editMode" (click)="deleteStudent()">Delete</button>
                 <button class="btn btn-primary" [disabled]="!studentForm.valid"
                   (click)="editMode ?  updateStudent() :  submitForm() ">{{editMode ? 'Update' :'Add'}}
                 </button>
