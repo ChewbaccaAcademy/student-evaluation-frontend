@@ -62,11 +62,11 @@ table {
 }
 
 .header-element:nth-child(1) {
-  width: 114px;
+  width: 110px;
 }
 
 .header-element:nth-child(2) {
-  width: 95px;
+  width: 93px;
   padding-left: 0;
   text-align: left;
 }
@@ -84,19 +84,19 @@ table {
 }
 
 .header-element:nth-child(6) {
-  width: 171px;
+  width: 167px;
 }
 
 .header-element:nth-child(7) {
-  width: 165px;
+  width: 156px;
 }
 
 .header-element:nth-child(8) {
-  width: 199px;
+  width: 183px;
 }
 
 .header-element:nth-child(9) {
-  width: 99px;
+  width: 96px;
 }
 
 @media screen and (min-width: 992px) {
