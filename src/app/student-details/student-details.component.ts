@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 import { ParamMap } from '@angular/router';
 import { SafeUrl } from '@angular/platform-browser';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
@@ -18,6 +18,7 @@ import {
   overallEvaluationOptions,
 } from '../shared/evaluation-form-globals';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-student-details',
@@ -34,6 +35,7 @@ export class StudentDetailsComponent implements OnInit {
   public directionOptions: { id: number; name: string }[] = directionOptions;
   public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
   public faTrashAlt = faTrashAlt;
+  public faAddressCard = faAddressCard;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,13 +47,14 @@ export class StudentDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.studentId = +params.get('studentId');
-      this.student$ = this.studentService.getStudentById(+this.studentId);
-      this.loadEvaluations();
+      forkJoin([
+        this.studentService.getStudentById(+this.studentId),
+        this.evaluationService.getAllStudentEvaluations(this.studentId),
+      ]).subscribe(([student, evaluations]) => {
+        this.student$ = of(student);
+        this.evaluationList$ = of(evaluations);
+      });
     });
-  }
-
-  loadEvaluations() {
-    this.evaluationList$ = this.evaluationService.getAllStudentEvaluations(this.studentId);
   }
 
   isEvaluationDeletable(evaluation: Evaluation) {
@@ -60,7 +63,7 @@ export class StudentDetailsComponent implements OnInit {
 
   deleteEvaluation(evaluation: Evaluation) {
     this.evaluationService.deleteEvaluation(evaluation.id).subscribe(() => {
-      this.loadEvaluations();
+      this.evaluationList$ = this.evaluationService.getAllStudentEvaluations(this.studentId);
     });
   }
 

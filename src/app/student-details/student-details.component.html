@@ -73,7 +73,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-      <h2>Current evaluations</h2>
+      <h5 class="text-center">Current evaluations</h5>
       <table class="table table-striped table-responsive">
         <thead class="thead-dark">
           <tr>
@@ -104,7 +104,16 @@
           </tr>
         </thead>
         <tbody *ngIf="evaluationList$ | async as evaluationList">
-
+          <tr *ngIf="evaluationList?.length == 0 || evaluationList == null">
+            <th class="no-evaluations" rowspan="1" colspan="9">
+              <div>
+                <fa-icon class="fa-3x" [icon]="faAddressCard"></fa-icon>
+              </div>
+              <div>
+                Student does not have any evaluations!
+              </div>
+            </th>
+          </tr>
           <tr *ngFor="let evaluation of evaluationList">
             <td class="align-middle">
               <p class="text-center value">{{evaluation.userUsername}}</p>
@@ -139,7 +148,6 @@
               </div>
             </td>
           </tr>
-
         </tbody>
       </table>
 		</div>
