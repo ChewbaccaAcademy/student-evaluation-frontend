@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable, of } from 'rxjs';
 import { ParamMap } from '@angular/router';
 import { SafeUrl } from '@angular/platform-browser';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
@@ -17,7 +17,10 @@ import {
   directionOptions,
   overallEvaluationOptions,
 } from '../shared/evaluation-form-globals';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faClipboard, faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-student-details',
@@ -34,24 +37,46 @@ export class StudentDetailsComponent implements OnInit {
   public directionOptions: { id: number; name: string }[] = directionOptions;
   public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
   public faTrashAlt = faTrashAlt;
+  public faAddressCard = faAddressCard;
+  public faEdit = faEdit;
+  public faClipboard = faClipboard;
 
   constructor(
     private route: ActivatedRoute,
     private studentService: StudentService,
     private evaluationService: EvaluationService,
     private auth: AuthService,
+    private router: Router,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.studentId = +params.get('studentId');
-      this.student$ = this.studentService.getStudentById(+this.studentId);
-      this.loadEvaluations();
+      forkJoin([
+        this.studentService.getStudentById(+this.studentId),
+        this.evaluationService.getAllStudentEvaluations(this.studentId),
+      ]).subscribe(([student, evaluations]) => {
+        this.student$ = of(student);
+        this.evaluationList$ = of(evaluations);
+      });
     });
   }
 
-  loadEvaluations() {
-    this.evaluationList$ = this.evaluationService.getAllStudentEvaluations(this.studentId);
+  evaluateStudent(studentId: number) {
+    this.router.navigate(['/evaluate'], { queryParams: { student: studentId } });
+  }
+
+  isAdmin() {
+    return this.auth.getSessionUserRole() === 'ADMIN';
+  }
+
+  deleteStudent(event) {
+    this.studentService.deleteStudent(event).subscribe(() => {
+      this.student$ = this.student$.pipe(filter((student: Student) => student.id !== event));
+      this.router.navigate(['/students']);
+      this.toastr.success('Student was deleted', 'Success', { positionClass: 'toast-bottom-center' });
+    });
   }
 
   isEvaluationDeletable(evaluation: Evaluation) {
@@ -60,7 +85,7 @@ export class StudentDetailsComponent implements OnInit {
 
   deleteEvaluation(evaluation: Evaluation) {
     this.evaluationService.deleteEvaluation(evaluation.id).subscribe(() => {
-      this.loadEvaluations();
+      this.evaluationList$ = this.evaluationService.getAllStudentEvaluations(this.studentId);
     });
   }
 
