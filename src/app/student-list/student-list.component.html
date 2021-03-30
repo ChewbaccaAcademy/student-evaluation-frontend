@@ -21,7 +21,7 @@
           <tr>
             <th class="picture unselectable" rowspan="2">Picture
             </th>
-            <th class="student unselectable" rowspan="2">Student
+            <th class="student unselectable text-left" rowspan="2" style="width: 170px;">Student
             </th>
             <th class="average" colspan="4">
               <div>
@@ -70,13 +70,14 @@
             </th>
           </tr>
           <tr *ngFor="let student of studentsList; let j = index">
-            <th>
+            <th class="image-scale">
               <img [src]="getStudentImage(student)" [alt]="getImageTitle(student)"
                 [routerLink]="['/student', student.id]" />
             </th>
-            <td class="align-middle" style="word-break:normal; width: 220px;" >
-              <a class="student-name text-center truncate" style="word-break:{{(student.name.length + student.lastname.length) > 50 ? 'break-all': 'normal'}}"   [routerLink]="['/student', student.id]">
-                {{ student.name }} {{ student.lastname }}
+            <td class="align-middle" style="word-break: normal; width: 170px;" >
+              <a class="student-name text-left truncate" [routerLink]="['/student', student.id]">
+                  <div>{{ student.name }}</div>
+                  <div>{{ student.lastname }}</div>
               </a>
             </td>
             <td class="align-middle">
