@@ -25,34 +25,20 @@ fa-icon {
   width: 1080px;
 }
 
-.infoU{
-  background-color:#f2f2f2 ;
-  border-radius: 0px  20px 20px 0px;
-  color:black;
-  border-bottom: 0.5px solid #dee2e6;
-}
 
-.infoHU{
-  border-radius: 20px   0 0 20px;
-  background-color: #343a40 ;color:white;
-    border-bottom: 0.5px solid #454d55;
-    width: 25px;
-    height: 48px;
-    font-weight: bold;
-    padding-top: 10px;
-}
+
+
 
 .infoH{
-  border-radius: 20px   0 0 20px;
-  background-color: #343a40 ;color:white;
+  background-color: #f2f2f2 ;color:black;
+  border-color: blue;
   font-weight: bold;
-  width: 25px;
+  width: 80px;
 }
 
 .info{
-  border-radius: 0px  20px 20px 0px;
+
   background-color:#ffffff ;
-  border: 0.5px solid #dee2e6;
   color:black;
 }
 
@@ -60,4 +46,9 @@ fa-icon {
   .average-table {
     margin-left: 25%;
   }
+}
+.truncate {
+  white-space: unset;
+  overflow: hidden;
+  text-overflow: initial;
 }
