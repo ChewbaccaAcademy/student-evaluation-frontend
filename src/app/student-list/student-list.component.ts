@@ -34,6 +34,7 @@ export class StudentListComponent implements OnInit {
     'Action',
   ];
   public faAddressCard = faAddressCard;
+  public sortKey: string = '';
   public evaluationHeaders: {evaluationKey: string,
     name: string,
     key: string,
@@ -58,32 +59,7 @@ export class StudentListComponent implements OnInit {
   key: "project"
 },
 ]
-/*
-    <th #fe scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.fe" (click)="sorting('fe')">
-               <a>
-                <p class="text-center value unselectable">Frontend <fa-icon [icon]="!feActive ? faSort : (feValue == 1 ? faSortDown : faSortUp) " size="1x"></fa-icon></p>
-              </a>
-            </th>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.be">
-              <a>
-                <p class="text-center value unselectable">Backend</p>
-              </a>
-            </th>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.qa">
-              <a>
-                <p class="text-center value unselectable">Testing</p>
-              </a>
-            </th>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.project">
-              <a>
-                <p class="text-center value unselectable">Project</p>
-              </a>
-            </th>
-*/
+
   constructor(
     private studentService: StudentService,
     private router: Router,
@@ -135,18 +111,8 @@ export class StudentListComponent implements OnInit {
     });
   }
 
-  sorting(value: string){
-    if(value = "fe"){
-      var element = document.getElementById('fe');
-      this.feActive = true;
-      this.feValue = +element.getAttribute('data-order');
-
-    }
-
-  }
-
-  onSort(event: Event){
-    console.log(event);
+  handleSortKey(key: string) {
+    this.sortKey = key;
   }
 
 }

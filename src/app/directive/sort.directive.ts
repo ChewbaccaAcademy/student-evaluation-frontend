@@ -8,15 +8,13 @@ import { get as lodashGet } from 'lodash';
 })
 export class SortDirective {
   @Input() appSort: Student[];
-  @Output() sortKey: EventEmitter<string> = new EventEmitter<string>();
+  @Input() appSortKey: string;
+  @Output() appSortKeyEmit: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private renderer: Renderer2, private targetElem: ElementRef) {}
 
-
-
   @HostListener('click')
   sortdata() {
-    const sort = new Sort();
     const elem = this.targetElem.nativeElement;
     const order = elem.getAttribute('data-order');
     const property = elem.getAttribute('data-name');
@@ -29,8 +27,8 @@ export class SortDirective {
     } else {
       elem.setAttribute('data-order', -1);
     }
-    this.sortKey.emit("test");
-    console.log(this.sortKey.emit("test"));
-    console.log(this);
+
+    const emitString = `${this.appSortKey}-${dir === 1 ? 'asc' : 'desc'}`;
+    this.appSortKeyEmit.emit(emitString);
   }
 }
