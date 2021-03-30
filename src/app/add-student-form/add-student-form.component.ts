@@ -156,10 +156,11 @@ export class AddStudentFormComponent implements OnInit {
       return '/assets/imgnotfound.png';
     }
   }
-   deleteStudent() {
+  deleteStudent() {
     this.studentService.deleteStudent(this.studentId).subscribe(() => {
       this.router.navigate(['/main']);
       this.toastr.success('Student was deleted', 'Success', { positionClass: 'toast-bottom-center' });
     });
   }
+
 }

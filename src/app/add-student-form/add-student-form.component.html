@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-md-12 justify-content-center">
       <!-- Form -->
-
       <form [formGroup]="studentForm">
         <h2 class="text-center" *ngIf="!editMode">Add new student</h2>
         <h2 class="text-center" *ngIf="editMode">Edit the student</h2>
@@ -16,8 +15,8 @@
                 </div>
                 <input class="form-control" id="name" type="text" formControlName="name" />
               </div>
-               <div 
-              style="visibility: {{!name.errors?.pattern ? 'hidden': 'visible'}};" 
+               <div
+              style="visibility: {{!name.errors?.pattern ? 'hidden': 'visible'}};"
               [hidden]="(name.errors?.required && name?.touched)"
               class="text-muted">
                Name should only contain letters.
@@ -31,7 +30,7 @@
                 </div>
                 <input class="form-control" id="lastname" type="text" formControlName="lastname" />
               </div>
-              <div style="visibility: {{!lastname.errors?.pattern ? 'hidden': 'visible'}};" 
+              <div style="visibility: {{!lastname.errors?.pattern ? 'hidden': 'visible'}};"
               [hidden]="(lastname.errors?.required && lastname?.touched)"
               class="text-muted">
                 Last name should only contain letters.
@@ -70,14 +69,14 @@
               <div class="borderbox">
                 <img class="boxImg" [src]="imageSrc" />
               </div>
-              <button class="borderbox boxImg" style="visibility: {{imageSrc != '/assets/imgnotfound.png'  ? 'visible': 'hidden'}};"  
-                class="btn btn-outline-secondary" style="margin-top: 5px;" (click)=" clearPhoto() ">Remove Photo</button>
+              <button class="borderbox boxImg" style="visibility: {{imageSrc != '/assets/imgnotfound.png'  ? 'visible': 'hidden'}};"
+                class="btn btn-outline-secondary" style="margin-top: 5px;" (click)="clearPhoto()">Remove Photo</button>
             </div>
             <div class="form-group">
               <a class="align-middle" [routerLink]="['/students']" >
-                Students' list</a>
+                Students list</a>
               <div class="float-right">
-                <button class="btn btn-danger" *ngIf="editMode" (click)="deleteStudent()">Delete</button>
+                <button class="btn btn-danger" *ngIf="editMode" data-toggle="modal" data-target="#deleteConfirmationModal" (click)="studentId">Delete</button>
                 <button class="btn btn-primary" [disabled]="!studentForm.valid"
                   (click)="editMode ?  updateStudent() :  submitForm() ">{{editMode ? 'Update' :'Add'}}
                 </button>
@@ -86,8 +85,9 @@
           </div>
         </div>
       </form>
-
       <!-- End Form -->
+      <app-deletion-modal (closeModal)="deleteStudent()" #deleteConfirmationModal>
+      </app-deletion-modal>
     </div>
   </div>
 </div>

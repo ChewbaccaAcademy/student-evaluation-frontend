@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '../services/student-service/student.service';
 import { Student } from '../model/student';
 import { forkJoin, Observable, of } from 'rxjs';
@@ -17,8 +17,10 @@ import {
   directionOptions,
   overallEvaluationOptions,
 } from '../shared/evaluation-form-globals';
-import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faClipboard, faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-student-details',
@@ -36,12 +38,16 @@ export class StudentDetailsComponent implements OnInit {
   public overallEvaluationOptions: { id: number; name: string }[] = overallEvaluationOptions;
   public faTrashAlt = faTrashAlt;
   public faAddressCard = faAddressCard;
+  public faEdit = faEdit;
+  public faClipboard = faClipboard;
 
   constructor(
     private route: ActivatedRoute,
     private studentService: StudentService,
     private evaluationService: EvaluationService,
     private auth: AuthService,
+    private router: Router,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +60,22 @@ export class StudentDetailsComponent implements OnInit {
         this.student$ = of(student);
         this.evaluationList$ = of(evaluations);
       });
+    });
+  }
+
+  evaluateStudent(studentId: number) {
+    this.router.navigate(['/evaluate'], { queryParams: { student: studentId } });
+  }
+
+  isAdmin() {
+    return this.auth.getSessionUserRole() === 'ADMIN';
+  }
+
+  deleteStudent(event) {
+    this.studentService.deleteStudent(event).subscribe(() => {
+      this.student$ = this.student$.pipe(filter((student: Student) => student.id !== event));
+      this.router.navigate(['/students']);
+      this.toastr.success('Student was deleted', 'Success', { positionClass: 'toast-bottom-center' });
     });
   }
 

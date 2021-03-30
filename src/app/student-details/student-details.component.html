@@ -6,7 +6,12 @@
       </div>
       <div>
         <h5 class="text-center">{{ student.name }} {{ student.lastname }}</h5>
-        <button type="button" class="btn btn-evaluate" (click)="exportCard(student)">Export</button>
+        <div class="align-middle text-center" style="margin-bottom: 5px;">
+          <fa-icon class="eval" title="Evaluate" [icon]="faClipboard" size="2x" (click)="evaluateStudent(student.id)"></fa-icon>
+          <fa-icon class="edit" title="Edit" [icon]="faEdit" size="2x" [routerLink]="['/edit', student.id]" *ngIf="isAdmin()"></fa-icon>
+          <fa-icon class="delete" title="Delete" [icon]="faTrashAlt" size="2x" data-toggle="modal" data-target="#deleteConfirmationModal" (click)="student.id" *ngIf="isAdmin()"></fa-icon>
+        </div>
+        <button type="button" class="btn btn-evaluate" title="Export student details" (click)="exportCard(student)">Export</button>
       </div>
 		</div>
 		<div class="col-md-4">
@@ -150,6 +155,8 @@
           </tr>
         </tbody>
       </table>
+      <app-deletion-modal [id]="studentId" (closeModal)="deleteStudent($event)" #deleteConfirmationModal>
+      </app-deletion-modal>
 		</div>
 	</div>
 </div>
