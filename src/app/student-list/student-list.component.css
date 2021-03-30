@@ -105,6 +105,12 @@ table {
   text-overflow: initial;
 }
 
+@media screen and (min-width: 992px) {
+  h2 {
+    display: none;
+  }
+}
+
 #footer {
   position: relative;
   bottom: 0;
