@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, Output, Renderer2, EventEmitter} from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, Output, Renderer2, EventEmitter } from '@angular/core';
 import { Student } from '../model/student';
 import { Sort } from '../shared/sort';
 import { get as lodashGet } from 'lodash';

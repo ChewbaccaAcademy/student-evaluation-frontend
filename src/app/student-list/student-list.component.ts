@@ -18,7 +18,7 @@ export class StudentListComponent implements OnInit {
   public faTrashAlt = faTrashAlt;
   public faClipboard = faClipboardList;
   public faEdit = faEdit;
-  public faSortDown =faSortDown;
+  public faSortDown = faSortDown;
   public faSortUp = faSortUp;
   public faSort = faSort;
   public feActive = false;
@@ -34,31 +34,29 @@ export class StudentListComponent implements OnInit {
     'Action',
   ];
   public faAddressCard = faAddressCard;
-  public sortKey: string = '';
-  public evaluationHeaders: {evaluationKey: string,
-    name: string,
-    key: string,
-      }[] = [{
-    evaluationKey: "averageEvaluationDetails.streamOverall.fe",
-    name: "Frontend",
-    key: "fe"
-},
-{
-  evaluationKey: "averageEvaluationDetails.streamOverall.be",
-  name: "Backend",
-  key: "be"
-},
-{
-  evaluationKey: "averageEvaluationDetails.streamOverall.qa",
-  name: "Testing",
-  key: "qa"
-},
-{
-  evaluationKey: "averageEvaluationDetails.streamOverall.project",
-  name: "Project",
-  key: "project"
-},
-]
+  public sortKey = '';
+  public evaluationHeaders: { evaluationKey: string; name: string; key: string }[] = [
+    {
+      evaluationKey: 'averageEvaluationDetails.streamOverall.fe',
+      name: 'Frontend',
+      key: 'fe',
+    },
+    {
+      evaluationKey: 'averageEvaluationDetails.streamOverall.be',
+      name: 'Backend',
+      key: 'be',
+    },
+    {
+      evaluationKey: 'averageEvaluationDetails.streamOverall.qa',
+      name: 'Testing',
+      key: 'qa',
+    },
+    {
+      evaluationKey: 'averageEvaluationDetails.streamOverall.project',
+      name: 'Project',
+      key: 'project',
+    },
+  ];
 
   constructor(
     private studentService: StudentService,
@@ -114,5 +112,4 @@ export class StudentListComponent implements OnInit {
   handleSortKey(key: string) {
     this.sortKey = key;
   }
-
 }
