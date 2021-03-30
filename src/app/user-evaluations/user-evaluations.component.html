@@ -28,7 +28,10 @@
             </th>
 
             <td class="align-middle student-name" style ="word-break:normal;">
-              <a [routerLink]="['/student', evaluation.student.id]">{{evaluation.student.name}} {{evaluation.student.lastname}}</a>
+              <a class="text-left" [routerLink]="['/student', evaluation.student.id]">
+                  <div>{{evaluation.student.name}}</div>
+                  <div>{{evaluation.student.lastname}}</div>
+              </a>
             </td>
             <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.stream}}</p></td>
             <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.evaluation}}</p></td>

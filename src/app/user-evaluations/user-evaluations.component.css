@@ -67,6 +67,8 @@ table {
 
 .header-element:nth-child(2) {
   width: 102.67px;
+  padding-left: 0;
+  text-align: left;
 }
 
 .header-element:nth-child(3) {
