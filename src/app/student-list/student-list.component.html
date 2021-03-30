@@ -70,11 +70,11 @@
             </th>
           </tr>
           <tr *ngFor="let student of studentsList; let j = index">
-            <th>
+            <th class="image-scale">
               <img [src]="getStudentImage(student)" [alt]="getImageTitle(student)"
                 [routerLink]="['/student', student.id]" />
             </th>
-            <td class="align-middle" style="word-break: break-all; width: 170px;" >
+            <td class="align-middle" style="word-break: normal; width: 170px;" >
               <a class="student-name text-left truncate" [routerLink]="['/student', student.id]">
                   <div>{{ student.name }}</div>
                   <div>{{ student.lastname }}</div>
