@@ -94,25 +94,6 @@ img {
   box-shadow: inset 400px 0 0 0 rgb(230, 0, 0);
 }
 
-/* .btn-evaluate{
-  color: white;
-  font-weight: bold;
-  background-color: #909192;
-
-  border-color:#909192;
-  box-shadow: inset 0 0 0 0 #054d96(230, 0, 0);
-  transition: ease-out 0.4s;
-}
-.btn-evaluate:disabled:hover{
-
-     box-shadow: inset 0 0 0 0 red;
-}
-
-.btn-evaluate:hover{
-
-  box-shadow: inset 400px 0 0 0 #054d96(230, 0, 0);
-} */
-
 .btn-evaluate{
   background-color:  #343a40;
   border-color: #343a40;
