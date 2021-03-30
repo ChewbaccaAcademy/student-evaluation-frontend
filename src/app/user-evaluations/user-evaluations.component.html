@@ -1,4 +1,4 @@
-<div class="container text-shrink">
+<div class="container" style="width: 1500px;">
   <div class="row justify-content-center">
     <div class="col-auto">
       <h2 class="text-center" style="margin-bottom: 20px;">Your evaluations</h2>
@@ -38,7 +38,7 @@
             <td class="align-middle"><p class="text-center value">{{directionOptions[evaluation.evaluation.direction].name}}</p></td>
             <td class="align-middle"><p class="text-center value" *ngIf="evaluation.evaluation.communication != undefined">{{communicationOptions[evaluation.evaluation.communication].name}}</p></td>
             <td class="align-middle"><p class="text-center value" *ngIf="evaluation.evaluation.learnAbility != undefined">{{abilityToLearnOptions[evaluation.evaluation.learnAbility].name || ''}}</p></td>
-            <td class="align-middle"><p class="text-center value">{{evaluation.evaluation.comment}}</p></td>
+            <td class="align-middle"><p class="text-center value" style="width: 175px;">{{evaluation.evaluation.comment}}</p></td>
             <td class="align-middle text-center">
               <div class="icons">
                 <div *ngIf="!evaluation.evaluation.active" title="Disabled">
