@@ -6,16 +6,19 @@
       </div>
       <div>
         <h5 class="text-center">{{ student.name }} {{ student.lastname }}</h5>
+        <button type="button" class="btn btn-evaluate" (click)="exportCard(student)">Export</button>
       </div>
 		</div>
-		<div class="col-md-4" style="min-width: 200px; padding-left: 30px; padding-right: 30px;">
-      <div class="row" *ngIf="student.university">
-        <div class="col-4 infoHU" >University</div>
-        <div class="col-8 infoU" ><div style="margin-top: 10px;">{{ student.university }}</div></div>
-      </div>
-      <div class="row" *ngIf="student.comment">
-        <div class="col-4 infoH" >Previous experience</div>
-        <div class="col-8 info">{{ student.comment }}</div>
+		<div class="col-md-4">
+      <div class="container" style=" border-radius: 20px; overflow: hidden ;">
+        <div class="row"   *ngIf="student.university" >
+          <div class="col-4 infoH" style=" border-right: 0.5px solid #d0d7df; vertical-align: middle">University</div>
+          <div class="col-8 info"><p style="word-wrap:break-word;">{{ student.university }}</p></div>
+        </div>
+        <div class="row" *ngIf="student.comment">
+          <div class="col-4  align-middle   infoH"  style="display:block; border-top: 0.5px solid #d0d7df; border-right: 0.5px solid #d0d7df;  ">    Previous experience</div>
+          <div class="col-8  info"  style="border-top:  0.5px solid #d0d7df; "><p style="word-wrap:break-word;">{{ student.comment }}</p></div>
+        </div>
       </div>
 		</div>
 		<div class="col-auto">
