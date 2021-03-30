@@ -1,5 +1,5 @@
 <div id="student-details" class="container-fluid" *ngIf="student$ | async as student">
-	<div class="row">
+	<div class="row d-flex">
 		<div class="col-md-4 text-center">
       <div>
         <img class="img" [src]="getStudentImage(student)" alt="student profile picture "/>
@@ -11,7 +11,6 @@
           <fa-icon class="edit" title="Edit" [icon]="faEdit" size="2x" [routerLink]="['/edit', student.id]" *ngIf="isAdmin()"></fa-icon>
           <fa-icon class="delete" title="Delete" [icon]="faTrashAlt" size="2x" data-toggle="modal" data-target="#deleteConfirmationModal" (click)="student.id" *ngIf="isAdmin()"></fa-icon>
         </div>
-        <button type="button" class="btn btn-evaluate" title="Export student details" (click)="exportCard(student)">Export</button>
       </div>
 		</div>
 		<div class="col-md-4">
@@ -30,21 +29,21 @@
       <table class="table table-striped table-responsive average-table">
         <thead class="thead-dark">
           <tr>
-            <th colspan="4" style="padding: 0;">
-              <p class="text-center value">Average</p>
+            <th colspan="4" style="padding-bottom: 0;">
+              <p class="text-center value" style="margin-bottom: 0px; width: 275px;">Average</p>
             </th>
           </tr>
           <tr>
-            <th scope="col">
+            <th scope="col" style="padding-bottom: 0;">
               <p class="text-center value">FE</p>
             </th>
-            <th scope="col">
+            <th scope="col" style="padding-bottom: 0;">
               <p class="text-center value">BE</p>
             </th>
-            <th scope="col">
+            <th scope="col" style="padding-bottom: 0;">
               <p class="text-center value">QA</p>
             </th>
-            <th scope="col">
+            <th scope="col" style="padding-bottom: 0;">
               <p class="text-center value">Project</p>
             </th>
           </tr>
@@ -76,9 +75,18 @@
       </table>
 		</div>
 	</div>
+  <div class="row" style="margin-bottom: -20px;">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4 exportbtn" style="padding-bottom: 0;">
+      <h5 class="text-center">Current evaluations</h5>
+    </div>
+    <div class="col-md-4 text-right">
+      <button type="button" class="btn btn-evaluate" title="Export student details" (click)="exportCard(student)">Export</button>
+    </div>
+  </div>
 	<div class="row">
 		<div class="col-md-12">
-      <h5 class="text-center">Current evaluations</h5>
       <table class="table table-striped table-responsive">
         <thead class="thead-dark">
           <tr>
