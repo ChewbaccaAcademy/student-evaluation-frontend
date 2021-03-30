@@ -162,5 +162,4 @@ export class AddStudentFormComponent implements OnInit {
       this.toastr.success('Student was deleted', 'Success', { positionClass: 'toast-bottom-center' });
     });
   }
-
 }
