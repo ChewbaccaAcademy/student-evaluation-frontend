@@ -22,6 +22,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { HttpResponseInterceptorService } from './services/interceptors/http-response-interceptor.service';
 import { SortDirective } from './directive/sort.directive';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DeletionModalComponent } from './deletion-modal/deletion-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SearchComponent,
     SpinnerComponent,
     SortDirective,
+    DeletionModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,7 @@
           </div>
           <div class="text-muted" style="visibility: {{!username.errors?.minlength ? 'hidden': 'visible'}};"
             [hidden]="username.errors?.maxlength">Username should be atleast 5 characters long!</div>
-          <div [hidden]="!username.errors?.maxlength">Username should not be longer than 40 characters!</div>
+          <div class="text-muted" [hidden]="!username.errors?.maxlength">Username should not be longer than 40 characters!</div>
         </div>
         <div class="form-group">
           <div class="input-group">

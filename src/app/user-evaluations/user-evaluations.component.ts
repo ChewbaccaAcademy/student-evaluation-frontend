@@ -1,7 +1,6 @@
 import { StudentService } from './../services/student-service/student.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Evaluation } from '../model/evaluation';
 import { EvaluationStudent } from '../model/evaluation-student';
 import { EvaluationService } from '../services/student-service/evaluation/evaluation.service';
 import { Student } from '../model/student';
@@ -23,6 +22,7 @@ import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./user-evaluations.component.css'],
 })
 export class UserEvaluationsComponent implements OnInit {
+  public selectedEvaluationId: number;
   public userEvaluations: EvaluationStudent[];
   public streamOptions: string[] = streamOptions;
   public communicationOptions: { id: number; name: string }[] = communicationOptions;
@@ -57,9 +57,11 @@ export class UserEvaluationsComponent implements OnInit {
     });
   }
 
-  deleteValidation(evaluation: Evaluation, index: number) {
-    this.evaluationService.deleteEvaluation(evaluation.id).subscribe(() => {
-      this.userEvaluations.splice(index, 1);
+  deleteEvaluation(event) {
+    this.evaluationService.deleteEvaluation(event).subscribe(() => {
+      this.userEvaluations = this.userEvaluations.filter(
+        (evaluation: EvaluationStudent) => evaluation.evaluation.id !== event,
+      );
       this.toastr.success('Evaluation was deleted', 'Success', { positionClass: 'toast-bottom-center' });
     });
   }
@@ -70,5 +72,9 @@ export class UserEvaluationsComponent implements OnInit {
 
   editEvaluation(evaluationId: number, studentId: number) {
     this.router.navigate(['/evaluate'], { queryParams: { editStudent: studentId, evaluation: evaluationId } });
+  }
+
+  selectEvaluation(evaluationId) {
+    this.selectedEvaluationId = evaluationId;
   }
 }

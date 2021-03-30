@@ -3,7 +3,7 @@ export interface EvaluationPost {
   stream: number;
   communication?: number;
   learnAbility?: number;
-  direction?: number;
+  direction: number;
   evaluation: number;
   comment?: string;
   isActive?: boolean;

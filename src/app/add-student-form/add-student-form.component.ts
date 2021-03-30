@@ -4,9 +4,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Image } from '../model/image';
 import { Student } from '../model/student';
 import { StudentService } from '../services/student-service/student.service';
 
