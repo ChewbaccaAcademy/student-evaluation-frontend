@@ -1,10 +1,10 @@
 fa-icon {
   color: #212529;
-  }
+}
 
 .delete:hover{
-    color: red;
-    cursor: pointer;
+  color: red;
+  cursor: pointer;
 }
 
 .img {
@@ -17,6 +17,12 @@ fa-icon {
 
 .col-md-4 {
   padding-bottom: 25px;
+}
+
+.no-evaluations {
+  text-align: center;
+  padding: 5%;
+  width: 1080px;
 }
 
 .infoU{
