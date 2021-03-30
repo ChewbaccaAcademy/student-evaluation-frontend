@@ -119,27 +119,31 @@ export class EvaluateStudentComponent implements OnInit {
       comment: this.comment.value,
     };
 
-    if (!!this.evaluationId) {
-      this.evaluationService
-        .updateEvaluation(this.editStudentId, this.evaluationId, studentEvaluationForm)
-        .subscribe(() => {
-          this.router.navigate(['/myevaluations']);
-        });
-    } else {
-      this.evaluationService.postEvaluation(this.student.value, studentEvaluationForm).subscribe((response) => {
-        if (response) {
-          this.toastr.success('Evaluation was successfully submited!', 'Success', {
-            positionClass: 'toast-bottom-center',
+    if(this.evaluationForm.valid) {
+      if (this.evaluationId) {
+        this.evaluationService
+          .updateEvaluation(this.editStudentId, this.evaluationId, studentEvaluationForm)
+          .subscribe(() => {
+            this.router.navigate(['/myevaluations']);
           });
-          if (this.studentId) {
-            this.router.navigate([`/student/${this.studentId}`]);
+      } else {
+        this.evaluationService.postEvaluation(this.student.value, studentEvaluationForm).subscribe((response) => {
+          if (response) {
+            this.toastr.success('Evaluation was successfully submited!', 'Success', {
+              positionClass: 'toast-bottom-center',
+            });
+            if (this.studentId) {
+              this.router.navigate([`/student/${this.studentId}`]);
+            } else {
+              this.router.navigate(['/main']);
+            }
           } else {
-            this.router.navigate(['/main']);
+            this.toastr.error('Evaluation was not submited', 'Error', { positionClass: 'toast-bottom-center' });
           }
-        } else {
-          this.toastr.error('Please check your input fields', 'Error', { positionClass: 'toast-bottom-center' });
-        }
-      });
+        });
+      }
+    } else {
+      this.toastr.error('Please check your input fields', 'Error', { positionClass: 'toast-bottom-center' });
     }
   }
 
