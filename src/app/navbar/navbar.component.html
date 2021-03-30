@@ -1,26 +1,26 @@
- <nav class="navbar navbar-expand-lg navbar-light">
+ <nav class="navbar navbar-expand-lg navbar-light" style="margin-bottom: 50px;">
+   <div class="container-fluid" style="position: absolute; z-index: 1000; top: 100%; width: 95%; height: 100%; float: left;">
     <button
       class="navbar-toggler"
       type="button"
-      data-toggle="collapse"
       data-target="#navbarNav"
       aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
       aria-
     >
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon" (click)="isCollapsed = !isCollapsed"></span>
     </button>
 
-    <div class="collapse navbar-collapse text-right" id="navbarNav">
-      <ul class="navbar-nav" *ngFor="let menuItem of menuItems">
+    <div class="collapse navbar-collapse text-left" id="navbarNav" [ngClass]="{collapse: !isCollapsed}" style="background-color: white; margin-left: -10px; padding-left: 12px;">
+      <ul class="navbar-nav" *ngFor="let menuItem of menuItems" (click)="isCollapsed = false">
         <li class="nav-item" [routerLinkActive]="'active'">
           <a class="nav-link" [routerLink]="menuItem.path"
             >{{ menuItem.title }}
           </a>
         </li>
       </ul>
-      <ul class="navbar-nav" *ngIf="isAdmin">
+      <ul class="navbar-nav" *ngIf="isAdmin" (click)="isCollapsed = false">
         <li class="nav-item" [routerLinkActive]="'active'">
           <a class="nav-link" [routerLink]="'/add'" >Add New Student</a>
         </li>
@@ -34,9 +34,10 @@
       </div>
       <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-          <a class="nav-link" href="" (click)="logout()"><img src="assets/logout.png" alt="logout.png" height="25"> Logout</a>
+          <a class="nav-link" href="" (click)="logout(); isCollapsed = false;"><img src="assets/logout.png" alt="logout.png" height="25"> Logout</a>
         </li>
       </ul>
     </div>
+  </div>
   </nav>
 

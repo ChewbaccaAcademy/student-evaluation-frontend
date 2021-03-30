@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth-service.service';
 export class NavbarComponent implements OnInit {
   @Input() menuItems: MenuItem[];
   public isAdmin = false;
+  public isCollapsed = false;
 
   constructor(private loginService: LoginService, private authService: AuthService) {}
 
@@ -18,6 +19,11 @@ export class NavbarComponent implements OnInit {
     if (this.authService.getSessionUserRole() === 'ADMIN') {
       this.isAdmin = true;
     }
+  }
+
+  coll(): void {
+    this.isCollapsed = !this.isCollapsed;
+    console.log(this.isCollapsed);
   }
 
   logout() {
