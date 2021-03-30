@@ -32,28 +32,22 @@
             </th>
           </tr>
           <tr>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.fe">
-              <a>
-                <p class="text-center value unselectable">Frontend</p>
-              </a>
-            </th>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.be">
-              <a>
-                <p class="text-center value unselectable">Backend</p>
-              </a>
-            </th>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.qa">
-              <a>
-                <p class="text-center value unselectable">Testing</p>
-              </a>
-            </th>
-            <th scope="col" [appSort]="studentsList" data-order="-1"
-              data-name="averageEvaluationDetails.streamOverall.project">
-              <a>
-                <p class="text-center value unselectable">Project</p>
+            <th *ngFor="let evH of evaluationHeaders"
+                [appSort]="studentsList"
+                [appSortKey]="evH.key"
+                (appSortKeyEmit)="handleSortKey($event)"
+                scope="col"
+                data-order="-1"
+              [attr.data-name]="evH.evaluationKey">
+               <a>
+                <p class="text-center value unselectable">
+                  {{evH.name}}
+                   <fa-icon class="arrow" [icon]="
+                             sortKey === evH.key + '-' + 'asc' ? faSortUp :
+                              sortKey === evH.key + '-' + 'desc' ? faSortDown :
+                              faSort"
+                            size="1x"></fa-icon>
+                </p>
               </a>
             </th>
           </tr>
